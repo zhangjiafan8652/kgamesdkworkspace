@@ -1,0 +1,49 @@
+<resources>
+
+    <string name="app_name">星启天支付（微信）DEMO</string>
+    <string name="btn_name">微信支付</string>
+    <string name="bn_upmp_pay_name">银联支付</string>
+    <string name="bn_alipay_pay_name">支付宝支付</string>
+    <string name="bn_dotpay_name">点卡支付</string>
+    <string name="bn_rechargpay_name">充值卡支付</string>
+    <string name="bn_wechat_name">微信支付</string>
+    <string name="us">订单信息</string>
+    
+    
+    
+	<string name="app_tip">提示</string>
+    <string name="app_send">发送</string>
+    <string name="getting_access_token">正在获取access token...</string>
+    <string name="get_access_token_succ">获取access token成功</string>
+    <string name="get_access_token_fail" formatted="false">获取access token失败，原因%s</string>
+    <string name="get_prepayid_succ">获取prepayid成功</string>
+    <string name="get_prepayid_fail" formatted="false">获取prepayid失败，原因%s</string>
+    <string name="getting_prepayid">正在获取预支付订单...</string>
+	<string name="paying">支付中</string>
+	<string name="et_input_money">请输入支付金额</string>
+	<string name="et_input_order_des">订单描述如：精品玩具</string>
+	<string name="submit_pay">提交支付</string>
+	<string name="versions_check_ok">你的版本支持支付</string>
+	<string name="versions_check_no">你的版本不支持支付</string>
+	<string name="select_pay_type">你选择了</string>
+	<string name="click_bt_submit">，点击按钮进行支付</string>
+	<string name="greater_one">金额必须大于1分钱</string>
+	
+	<string name="no_token_id">订单号为空或位数不对，请检查输入的订单号！</string>
+	<string name="new_token">或生成一个新的测试订单号</string>
+	<string name="buy">去财付通支付</string>
+	<string name="loading">正在生成token_id中..</string>
+	<string name="order_query">订单查询</string>
+	<string name="order_id">请输入订单号查询</string>
+	
+	<string name="action_pay">付款</string>
+	<string name="action_stream">流水</string>
+	<string name="action_count">统计</string>
+	<string name="action_share">分享</string>
+	 <string name="getting_all_access">正在获取全部订单...</string>
+	 <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
+	  <string name="order_success">支付成功</string>
+	  <string name="action_cancel">你取消了支付</string>
+	  <string name="action_sourch_null">查询不到订单</string>
+	  <string name="scan_text">将二维码放入框内, 即可自动扫描</string>
+</resources>

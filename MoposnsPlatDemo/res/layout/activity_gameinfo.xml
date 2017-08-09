@@ -1,0 +1,218 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/text_commit"
+                style="@style/gamebutton"
+                android:text="提交数据:" />
+
+            <TextView
+                android:id="@+id/text_commit_result"
+                style="@style/gamebutton"
+                android:layout_toRightOf="@id/text_commit"
+                android:padding="10dp"
+                android:text="提交结果" />
+
+            <!-- 角色名 -->
+
+            <TextView
+                android:id="@+id/text_rolename"
+                style="@style/gamebutton"
+                android:layout_below="@id/text_commit"
+                android:text="角色名:" />
+
+            <EditText
+                android:id="@+id/edit_rolename"
+                style="@style/gameedit"
+                android:layout_alignTop="@id/text_rolename"
+                android:layout_toRightOf="@id/text_rolename"
+                android:inputType="text" />
+
+            <!-- 等级 -->
+
+            <TextView
+                android:id="@+id/text_rolelevel"
+                style="@style/gamebutton"
+                android:layout_below="@id/text_rolename"
+                android:text="等级:" />
+
+            <EditText
+                android:id="@+id/edit_rolelevel"
+                style="@style/gameedit"
+                android:layout_alignTop="@id/text_rolelevel"
+                android:layout_toRightOf="@id/text_rolelevel"
+                android:inputType="numberSigned" />
+
+            <!-- 服务器信息 -->
+
+            <TextView
+                android:id="@+id/text_serverinfo"
+                style="@style/gamebutton"
+                android:layout_below="@id/text_rolelevel"
+                android:text="服务器:" />
+
+            <EditText
+                android:id="@+id/edit_serverinfo"
+                style="@style/gameedit"
+                android:layout_alignTop="@id/text_serverinfo"
+                android:layout_toRightOf="@id/text_serverinfo"
+                android:inputType="text" />
+
+            <!-- 职业 -->
+
+            <TextView
+                android:id="@+id/text_roletype"
+                style="@style/gamebutton"
+                android:layout_below="@id/text_serverinfo"
+                android:text="职业:" />
+
+            <EditText
+                android:id="@+id/edit_roletype"
+                style="@style/gameedit"
+                android:layout_alignTop="@id/text_roletype"
+                android:layout_toRightOf="@id/text_roletype"
+                android:inputType="text" />
+
+            <!-- 金钱 -->
+
+            <TextView
+                android:id="@+id/text_money"
+                style="@style/gamebutton"
+                android:layout_below="@id/text_roletype"
+                android:text="金钱:" />
+
+            <EditText
+                android:id="@+id/edit_money"
+                style="@style/gameedit"
+                android:layout_alignTop="@id/text_money"
+                android:layout_toRightOf="@id/text_money"
+                android:inputType="numberSigned" />
+
+            <!-- 战力 -->
+
+            <TextView
+                android:id="@+id/text_power"
+                style="@style/gamebutton"
+                android:layout_below="@id/text_money"
+                android:text="战力:" />
+
+            <EditText
+                android:id="@+id/edit_power"
+                style="@style/gameedit"
+                android:layout_alignTop="@id/text_power"
+                android:layout_toRightOf="@id/text_power"
+                android:inputType="numberSigned" />
+            <!-- 装备评分 -->
+
+            <TextView
+                android:id="@+id/text_score"
+                style="@style/gamebutton"
+                android:layout_below="@id/text_power"
+                android:text="装备评分:" />
+
+            <EditText
+                android:id="@+id/edit_score"
+                style="@style/gameedit"
+                android:layout_alignTop="@id/text_score"
+                android:layout_toRightOf="@id/text_score"
+                android:inputType="numberSigned" />
+
+            <!-- 保留一 -->
+
+            <TextView
+                android:id="@+id/text_param1_tag"
+                style="@style/gamebutton"
+                android:layout_below="@id/text_score"
+                android:text="保留一标签:" />
+
+            <EditText
+                android:id="@+id/edit_param1_tag"
+                style="@style/gameedit"
+                android:layout_alignTop="@id/text_param1_tag"
+                android:layout_toRightOf="@id/text_param1_tag"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/text_param1"
+                style="@style/gamebutton"
+                android:layout_below="@id/text_param1_tag"
+                android:text="保留一:" />
+
+            <EditText
+                android:id="@+id/edit_param1"
+                style="@style/gameedit"
+                android:layout_alignTop="@id/text_param1"
+                android:layout_toRightOf="@id/text_param1"
+                android:inputType="text" />
+            <!-- 保留二 -->
+
+            <TextView
+                android:id="@+id/text_param2_tag"
+                style="@style/gamebutton"
+                android:layout_below="@id/text_param1"
+                android:text="保留二标签:" />
+
+            <EditText
+                android:id="@+id/edit_param2_tag"
+                style="@style/gameedit"
+                android:layout_alignTop="@id/text_param2_tag"
+                android:layout_toRightOf="@id/text_param2_tag"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/text_param2"
+                style="@style/gamebutton"
+                android:layout_below="@id/text_param2_tag"
+                android:text="保留二:" />
+
+            <EditText
+                android:id="@+id/edit_param2"
+                style="@style/gameedit"
+                android:layout_alignTop="@id/text_param2"
+                android:layout_toRightOf="@id/text_param2"
+                android:inputType="text" />
+            <!-- 保留三 -->
+
+            <TextView
+                android:id="@+id/text_param3_tag"
+                style="@style/gamebutton"
+                android:layout_below="@id/text_param2"
+                android:text="保留三标签:" />
+
+            <EditText
+                android:id="@+id/edit_param3_tag"
+                style="@style/gameedit"
+                android:layout_alignTop="@id/text_param3_tag"
+                android:layout_toRightOf="@id/text_param3_tag"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/text_param3"
+                style="@style/gamebutton"
+                android:layout_below="@id/text_param3_tag"
+                android:text="保留三:" />
+
+            <EditText
+                android:id="@+id/edit_param3"
+                style="@style/gameedit"
+                android:layout_alignTop="@id/text_param3"
+                android:layout_toRightOf="@id/text_param3"
+                android:inputType="text" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

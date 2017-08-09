@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/float_window_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    tools:background="@android:color/holo_green_dark"
+    android:orientation="horizontal" >
+
+
+    <LinearLayout
+        android:id="@+id/menu_user_center_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:tag="account"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/menu_user_center_img"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:gravity="center"
+            android:src="@drawable/cqsdk_user_center" />
+
+        <TextView
+            android:id="@+id/menu_user_center_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="1dp"
+            android:text="账号"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/cqsdk_menu_font_size" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/menu_line"
+        android:layout_width="0.5dp"
+        android:layout_height="match_parent"
+        android:background="#476410"
+        android:gravity="center"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+         />
+
+    <LinearLayout
+        android:id="@+id/menu_feed_back_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <!--<ImageView-->
+            <!--android:id="@+id/menu_feed_back_img"-->
+            <!--android:layout_width="24dp"-->
+            <!--android:layout_height="24dp"-->
+            <!--android:gravity="center"-->
+            <!--android:src="@drawable/sdk_feed_back" />-->
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/menu_feed_back_img"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:gravity="center"
+                android:src="@drawable/cqsdk_feed_back" />
+            <View
+                android:background="@drawable/cqsdk_badge_radius3"
+                android:layout_alignRight="@id/menu_feed_back_img"
+                android:id="@+id/inner_feedback_badge"
+                android:visibility="invisible"
+                android:layout_width="6dp"
+                android:layout_height="6dp"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/menu_feed_back_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="反馈"
+            android:layout_marginTop="1dp"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/cqsdk_menu_font_size" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/menu_line2"
+        android:layout_width="0.5dp"
+        android:layout_height="match_parent"
+        android:background="#476410"
+        android:gravity="center"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+         />
+
+    <LinearLayout
+        android:id="@+id/menu_notice_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="center"
+        android:clipChildren="false"
+        android:orientation="vertical" >
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/menu_notice_img"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:gravity="center"
+                android:src="@drawable/cqsdk_announcement" />
+            <View
+                android:background="@drawable/cqsdk_badge_radius3"
+                android:layout_alignRight="@id/menu_notice_img"
+                android:id="@+id/inner_notice_badge"
+                android:visibility="invisible"
+                android:layout_width="6dp"
+                android:layout_height="6dp"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/menu_notice_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="公告"
+            android:layout_marginTop="1dp"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/cqsdk_menu_font_size" />
+    </LinearLayout>
+
+</LinearLayout>

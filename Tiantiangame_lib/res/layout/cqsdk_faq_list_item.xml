@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/cqsdk_main_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/cqsdk_bg_frame"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/sdk_ll_faq_ask"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cqsdk_faq_ask"
+                android:textColor="@color/cqsdk_yellow_text"
+                android:textSize="@dimen/cqsdk_general_font_size" />
+
+            <TextView
+                android:id="@+id/sdk_tv_faq_ask"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/cqsdk_black_text"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/sdk_v_faq_line"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@color/cqsdk_line" />
+
+        <LinearLayout
+            android:id="@+id/sdk_ll_faq_answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="16dp"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/tv_order_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/cqsdk_faq_answer"
+                android:textColor="#8fcc14"
+                android:textSize="@dimen/cqsdk_general_font_size" />
+
+            <TextView
+                android:id="@+id/sdk_tv_faq_answer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8dp"
+                android:textColor="#999999"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/cqsdk_title_bar_color"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/cqsdk_title_bar_color"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/sdk_ib_go_back"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:padding="12dp"
+            android:background="@drawable/cqsdk_button_background_selector"
+            android:scaleType="fitCenter"
+            android:src="@drawable/cqsdk_btn_back"/>
+        <Button
+            android:id="@+id/sdk_bt_go_back_game"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/cqsdk_button_background_selector"
+            android:paddingLeft="8dp"
+            android:paddingRight="20dp"
+            android:text="返回游戏"
+            android:textColor="@color/cqsdk_while"
+            android:textSize="15sp"
+            />
+        <TextView
+            android:id="@+id/sdk_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/sdk_ib_go_back"
+            android:layout_toLeftOf="@id/sdk_bt_go_back_game"
+            android:singleLine="true"
+            android:text="天天游戏中心"
+            android:textColor="@color/cqsdk_while"
+            android:textSize="17sp"/>
+
+    </RelativeLayout>
+
+    <View
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignBottom="@+id/sdk_ib_go_back"
+        android:background="#cccccc"
+        />
+</LinearLayout>

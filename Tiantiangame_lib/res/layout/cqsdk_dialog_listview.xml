@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListView
+        android:id="@+id/sdk_listview"
+        android:background="@drawable/cqsdk_bg_frame_circle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/cqsdk_divider_line"
+        android:cacheColorHint="#00000000"
+        android:dividerHeight="1px"
+        android:listSelector="@drawable/cqsdk_item_click_selector" />
+
+</RelativeLayout>
+
+
+

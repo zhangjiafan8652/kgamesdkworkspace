@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    
+    <string name="login">登录</string>
+    <string name="login_out">登出</string>
+    <string name="update_auto">自动更新</string>
+    <string name="pay">支付</string>
+</resources>

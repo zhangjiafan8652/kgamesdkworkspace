@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cqsdk_main_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/cqsdk_bg_frame"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="153dp"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/sdk_tv_desc_identity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textColor="#ff0000"
+                    android:textSize="16sp"
+                    android:text="*" />
+
+                <com.ltsdkgame.sdk.view.widget.ScrollEditText
+                    android:id="@+id/sdk_edt_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="144dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="left|top"
+                    android:hint="您的反馈对我们非常重要"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/cqsdk_main_txt"
+                    android:textColorHint="@color/cqsdk_gray_text"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="#eeeeee" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/sdk_img_select_photo"
+                    android:layout_width="27dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentRight="true"
+                    android:paddingBottom="11dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:src="@drawable/cqsdk_select_photo" />
+
+                <com.ltsdkgame.sdk.view.widget.MyGridView
+                    android:id="@+id/sdk_gv_submit_feedback"
+                    android:layout_width="256dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_margin="8dp"
+                    android:numColumns="3"
+                    android:listSelector="@color/cqsdk_transparent"
+                    android:verticalSpacing="8dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/sdk_rl_feedback_type"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@drawable/cqsdk_bg_frame"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:id="@+id/sdk_tv_type_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:textColor="#ff0000"
+                android:textSize="16sp"
+                android:text="*"/>
+
+            <TextView
+                android:id="@+id/sdk_tv_feedback_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/sdk_tv_type_star"
+                android:hint="请选择反馈类型"
+                android:paddingLeft="10dp"
+                android:textColor="#333"
+                android:textColorHint="#cccccc"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/cqsdk_right_arrow" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/cqsdk_bg_frame"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:visibility="invisible"
+                android:textColor="#ff0000"
+                android:textSize="16sp"
+                android:text="*" />
+
+            <EditText
+                android:id="@+id/sdk_edt_email"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:hint="请输入您的QQ号"
+                android:background="@null"
+                android:inputType="number"
+                android:maxLength="11"
+                android:maxLines="1"
+                android:paddingBottom="14dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="14dp"
+                android:singleLine="true"
+                android:textColor="#333"
+                android:textColorHint="#cccccc"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@drawable/cqsdk_bg_frame"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textColor="#ff0000"
+                android:textSize="16sp"
+                android:visibility="invisible"
+                android:text="*" />
+
+            <EditText
+                android:id="@+id/sdk_edt_phone"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@null"
+                android:hint="请输入您的手机号码"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:maxLines="1"
+                android:paddingBottom="14dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="14dp"
+                android:singleLine="true"
+                android:textColor="#333"
+                android:textColorHint="#cccccc"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/sdk_btn_submit_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/cqsdk_green_button"
+            android:text="提交"
+            android:textColor="#fffefe"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</ScrollView>

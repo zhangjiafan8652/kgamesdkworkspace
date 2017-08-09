@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#3e000000"
+    android:gravity="center" >
+
+    <ProgressBar
+        android:id="@+id/load_progress"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:indeterminateBehavior="repeat"
+        android:indeterminateDrawable="@drawable/progress_loading_intern"
+        android:progressDrawable="@drawable/progress_loading_intern" />
+
+</FrameLayout>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cqsdk_main_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="14dp"
+        android:background="@color/cqsdk_main_bg"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="7dp"
+            android:text="@string/cqsdk_update_pwd_tip"
+            android:textColor="#333333"
+            android:textSize="13sp" />
+
+
+        <EditText
+            android:id="@+id/sdk_et_update_pwd_old"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="12dp"
+            android:background="@null"
+            android:hint="@string/cqsdk_update_pwd_old"
+            android:inputType="textPassword"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:textColor="@color/cqsdk_main_txt"
+            android:textColorHint="@color/cqsdk_gray_text"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#eeeeee" />
+
+        <EditText
+            android:id="@+id/sdk_et_update_pwd_new"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@null"
+            android:hint="@string/cqsdk_update_pwd_new"
+            android:inputType="textPassword"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:textColor="@color/cqsdk_main_txt"
+            android:textColorHint="@color/cqsdk_gray_text"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#eeeeee" />
+
+        <EditText
+            android:id="@+id/sdk_et_update_pwd_renew"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@null"
+            android:hint="@string/cqsdk_update_pwd_renew"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:textColor="@color/cqsdk_main_txt"
+            android:textColorHint="@color/cqsdk_gray_text"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#eeeeee" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/sdk_btn_update_pwd_finish"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/cqsdk_green_button"
+        android:text="@string/cqsdk_update_pwd_finish"
+        android:textColor="@color/cqsdk_while"
+        android:textSize="@dimen/cqsdk_general_font_size" />
+</LinearLayout>

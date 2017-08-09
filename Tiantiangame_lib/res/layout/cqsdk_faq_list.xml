@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/cqsdk_main_bg"
+              android:orientation="vertical">
+
+    <com.ltsdkgame.sdk.view.widget.pullable.PullToRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/refresh_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/cqsdk_pullable_refresh_head"/>
+        <!-- 支持所有实现Pullable接口的View -->
+
+        <com.ltsdkgame.sdk.view.widget.pullable.PullableListView
+            android:id="@+id/lv_trade"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cqsdk_main_bg"
+            android:listSelector="@color/cqsdk_transparent"
+            android:cacheColorHint="@color/cqsdk_transparent"
+            android:paddingBottom="8dp"
+            android:divider="@color/cqsdk_transparent"
+            android:dividerHeight="0dp"/>
+
+        <include layout="@layout/cqsdk_pullable_load_more"/>
+
+    </com.ltsdkgame.sdk.view.widget.pullable.PullToRefreshLayout>
+
+</LinearLayout>

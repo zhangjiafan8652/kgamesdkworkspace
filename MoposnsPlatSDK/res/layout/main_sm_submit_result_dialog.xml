@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sub_ret_dialog"
+    android:layout_width="300dp"
+    android:layout_height="228dp"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/sm_main_menu_input_bg"
+    android:orientation="vertical" 
+    android:padding="2dp">
+
+    <LinearLayout
+        android:id="@+id/main_sub_ret_dialog_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/imge_ret_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/sm_submit_success" >
+        </ImageView>
+
+        <TextView
+            android:id="@+id/sub_ret_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp"
+            android:text="支付请求已提交"
+            android:textColor="#5B6E7C"
+            android:textSize="16sp" >
+        </TextView>
+    </LinearLayout>
+
+    <!-- <RelativeLayout -->
+    <!-- android:id="@+id/main_sub_ret_dialog_rl" -->
+    <!-- android:layout_marginTop="10dp" -->
+    <!-- android:layout_width="fill_parent" -->
+    <!-- android:layout_height="wrap_content" > -->
+
+
+    <!-- <ScrollView -->
+    <!-- android:id="@+id/main_sub_ret_sv" -->
+    <!-- android:layout_width="fill_parent" -->
+    <!-- android:layout_height="fill_parent" -->
+    <!-- android:layout_alignParentTop="true" -->
+    <!-- android:fadingEdge="none" > -->
+
+
+    <!-- <LinearLayout -->
+    <!-- android:id="@+id/main_sub_ret_sv_ll" -->
+    <!-- android:layout_width="fill_parent" -->
+    <!-- android:layout_height="wrap_content" > -->
+
+
+    <!-- <TextView -->
+    <!-- android:id="@+id/sub_hint_tv" -->
+    <!-- android:layout_width="fill_parent" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:autoLink="all" -->
+    <!-- android:lineSpacingExtra="3dp" -->
+    <!-- android:paddingLeft="20dp" -->
+    <!-- android:paddingRight="20dp" -->
+    <!-- android:text="支付请求已提交" -->
+    <!-- android:textColor="#5B6E7C" -->
+    <!-- android:textSize="14sp" > -->
+    <!-- </TextView> -->
+    <!-- </LinearLayout> -->
+    <!-- </ScrollView> -->
+
+
+    <!-- <Button -->
+    <!-- android:id="@+id/button_left" -->
+    <!-- android:layout_width="110.67dp" -->
+    <!-- android:layout_height="40dp" -->
+    <!-- android:layout_alignParentBottom="true" -->
+    <!-- android:layout_alignParentLeft="true" -->
+    <!-- android:layout_marginBottom="10dp" -->
+    <!-- android:layout_marginLeft="20dp" -->
+    <!-- android:background="@drawable/sm_cancel_btn" -->
+    <!-- android:text="返    回" > -->
+    <!-- </Button> -->
+
+
+    <!-- <Button -->
+    <!-- android:id="@+id/button_right" -->
+    <!-- android:layout_width="110.67dp" -->
+    <!-- android:layout_height="40dp" -->
+    <!-- android:layout_alignParentBottom="true" -->
+    <!-- android:layout_alignParentRight="true" -->
+    <!-- android:layout_marginBottom="10dp" -->
+    <!-- android:layout_marginRight="20dp" -->
+    <!-- android:background="@drawable/sm_cancel_btn" -->
+    <!-- android:text="查看结果" /> -->
+    <!-- </RelativeLayout> -->
+
+    <RelativeLayout
+        android:id="@+id/main_sub_ret_dialog_rl"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <LinearLayout
+            android:id="@+id/bottom_btns_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/button_left"
+                android:layout_width="110.67dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/sm_cancel_btn"
+                android:text="返    回"                android:textColor="#484848" >
+            </Button>
+
+            <Button
+                android:id="@+id/button_right"
+                android:layout_width="110.67dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/sm_cancel_btn"
+                android:text="查看结果"
+                android:textColor="#484848" />
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/main_sub_ret_sv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/bottom_btns_layout"
+            android:layout_alignParentTop="true"
+            android:fadingEdge="none" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/sub_hint_tv"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:autoLink="all"
+                    android:lineSpacingExtra="5dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="支付请求已提交"
+                    android:textColor="#5B6E7C"
+                    android:textSize="14sp" >
+                </TextView>
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+</LinearLayout>

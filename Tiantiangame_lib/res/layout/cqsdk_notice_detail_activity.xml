@@ -1,0 +1,54 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cqsdk_main_bg"
+    android:orientation="vertical"
+    >
+
+    <com.ltsdkgame.sdk.view.TitleBar
+        android:id="@+id/sdk_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/sdk_tv_notice_detail_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="12dp"
+        android:layout_marginTop="18dp"
+        android:paddingRight="12dp"
+        android:singleLine="true"
+        android:text="@string/cqsdk_empty_str"
+        android:visibility="gone"
+        android:textColor="@color/cqsdk_main_txt"
+        android:textSize="@dimen/cqsdk_general_font_size"/>
+
+    <TextView
+        android:layout_marginTop="6dp"
+        android:id="@+id/sdk_tv_notice_detail_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:singleLine="true"
+        android:text="@string/cqsdk_empty_str"
+        android:textColor="@color/cqsdk_gray_text"
+        android:textSize="@dimen/cqsdk_general_font_size"/>
+    <View
+        android:layout_height="1px"
+        android:layout_width="match_parent"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="@dimen/cqsdk_general_margin"
+        android:layout_marginRight="@dimen/cqsdk_general_margin"
+        android:visibility="gone"
+        android:background="@color/cqsdk_line"/>
+    <WebView
+        android:overScrollMode="never"
+        android:id="@+id/sdk_tv_notice_detail_html"
+        android:background="@color/cqsdk_main_bg"
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="match_parent"
+        />
+</LinearLayout>

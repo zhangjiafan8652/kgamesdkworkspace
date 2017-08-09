@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_tab"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="2dp" >
+
+    <FrameLayout
+        android:id="@+id/main_tab_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/sm_main_menu_input_bg"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/main_tab_top_ll"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="top"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/main_tab_top_rl"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/sm_main_menu_input_top"
+                android:gravity="right"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/main_tab_card_back_button"
+                    android:layout_width="42dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="13dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/sm_cancel_btn"
+                    android:gravity="center"
+                    android:text="返回"
+                    android:textColor="#6b6b6b"
+                    android:textSize="13sp" >
+                </Button>
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/main_tab_image_split"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/sm_main_menu_split" />
+        </LinearLayout>
+
+        <TabHost
+            android:id="@android:id/tabhost"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center" >
+
+            <LinearLayout
+                android:id="@+id/main_hole_ll"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <RadioGroup
+                    android:id="@+id/main_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45.3dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/radio_button_day"
+                        style="@style/main_tab_bottom"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="2dp"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:tag="radio_button_day"
+                        android:text="@string/day_skypay" />
+
+                    <RadioButton
+                        android:id="@+id/radio_button_week"
+                        style="@style/main_tab_bottom"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="2.0dip"
+                        android:gravity="center"
+                        android:tag="radio_button_week"
+                        android:text="@string/week_skypay" />
+
+                    <RadioButton
+                        android:id="@+id/radio_button_month"
+                        style="@style/main_tab_bottom"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="2.0dip"
+                        android:gravity="center"
+                        android:tag="radio_button_month"
+                        android:text="@string/month_skypay" />
+                </RadioGroup>
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center" >
+
+                    <ListView
+                        android:id="@+id/list"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="4dp"
+                        android:cacheColorHint="#00000000"
+                        android:divider="#B4CEE1"
+                        android:dividerHeight="1px"
+                        android:drawSelectorOnTop="false"
+                        android:fadingEdge="none"
+                        android:listSelector="#00000000" />
+                </FrameLayout>
+
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.0"
+                    android:gravity="center"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </TabHost>
+    </FrameLayout>
+
+</FrameLayout>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/game_main_bg" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:id="@+id/pay_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="600dp"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/pay1"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:onClick="pay1"
+                android:text="支付中心1" />
+
+            <Button
+                android:id="@+id/pay2"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:onClick="pay2"
+                android:text="支付中心2" />
+
+            <Button
+                android:id="@+id/witch_user"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:onClick="switchUser"
+                android:text="切换帐号" />
+
+            <Button
+                android:id="@+id/perfect_user"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:onClick="perfectUser"
+                android:text="完善帐号" />
+
+            <Button
+                android:id="@+id/other_info"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:onClick="otherInfo"
+                android:text="其他信息" />
+
+            <Button
+                android:id="@+id/onClean"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:onClick="onClean"
+                android:text="清除数据" />
+              <Button
+                android:id="@+id/GiftCenter"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:onClick="GiftCenter"
+                android:text="礼包中心" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

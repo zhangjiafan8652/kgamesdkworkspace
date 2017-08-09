@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:gravity="center_vertical"
+    android:background="@color/cqsdk_green_light"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/action_bar_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:src="@drawable/cqsdk_actionbar_logo" />
+
+    <TextView
+        android:id="@+id/sdk_action_bar_tittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="游戏中心"
+        android:textColor="@color/cqsdk_while"
+        android:textSize="@dimen/cqsdk_general_font_size" />
+
+</LinearLayout>

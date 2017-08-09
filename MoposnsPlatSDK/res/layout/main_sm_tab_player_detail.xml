@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_sm_tab_player_detail"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/main_sm_tab_player_detail_usericon_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/main_sm_tab_player_detail_user_img_zyf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:src="@drawable/sm_player_detail_icon" />
+
+        <LinearLayout
+            android:id="@+id/main_sm_tab_player_detail_number_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/main_sm_tab_player_detail_user_number_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="账户："
+                android:textColor="#282828"
+                android:textSize="15.3sp" />
+
+            <TextView
+                android:id="@+id/main_sm_tab_player_detail_user_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="18268820688"
+                android:textColor="#282828"
+                android:textSize="15.3sp" />
+
+            <TextView
+                android:id="@+id/main_sm_tab_player_detail_user_lv"
+                android:layout_width="43dp"
+                android:layout_height="18dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/sm_lv"
+                android:text="       01"
+                android:textColor="#7d7d7d"
+                android:textSize="13.3sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/main_sm_tab_player_detail_balance_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:id="@+id/main_sm_tab_player_detail_balance_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="余额："
+                android:textColor="#282828"
+                android:textSize="15.3sp" />
+
+            <TextView
+                android:id="@+id/main_sm_tab_player_detail_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="5.00 元"
+                android:textColor="#282828"
+                android:textSize="15.3sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

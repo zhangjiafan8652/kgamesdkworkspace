@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cqsdk_main_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ImageView
+        android:src="@drawable/cqsdk_feedback_empty"
+        android:layout_marginTop="86dp"
+        android:layout_width="240dp"
+        android:layout_height="270dp" />
+
+    <TextView
+        android:id="@+id/sdk_stub_empty_tip"
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+        android:textColor="#999999"
+        android:text="您还没有反馈记录"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

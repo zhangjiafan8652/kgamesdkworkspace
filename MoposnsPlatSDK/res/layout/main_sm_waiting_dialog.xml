@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="256dp"
+    android:layout_height="180dp"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/sm_main_menu_input_bg"
+    android:orientation="vertical" 
+    android:padding="2dp">
+
+    <ImageView
+        android:id="@+id/image_slogan"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:src="@drawable/sm_slogan" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout1"
+        android:layout_width="78.6dp"
+        android:layout_height="78.6dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/sm_waiting_progressbar_bg1" >
+
+        <ProgressBar
+            android:layout_width="78.6dp"
+            android:layout_height="78.6dp"
+            android:layout_gravity="center"
+            android:indeterminateDrawable="@drawable/sm_image_progress" >
+        </ProgressBar>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/waitdialoghint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="7dp"
+        android:text="请稍候"
+        android:textColor="#6F6F6F"
+        android:textSize="13.3sp" >
+    </TextView>
+
+</LinearLayout>

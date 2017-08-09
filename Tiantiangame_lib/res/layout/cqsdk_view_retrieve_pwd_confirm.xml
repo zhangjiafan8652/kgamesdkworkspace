@@ -1,0 +1,100 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_dialog_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cqsdk_view_bg"
+    android:orientation="vertical">
+
+    <com.ltsdkgame.sdk.view.TitleBar
+        android:id="@+id/sdk_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:lineSpacingExtra="7dp"
+                android:text="请为账号设置新登录密码，密码长度为6-20个字符，区分大小写。建议使用字母，数字与标点组合，可大幅提高账号安全度。"
+                android:textColor="@color/cqsdk_black_text"
+                android:textSize="14sp" />
+        </RelativeLayout>
+        <!--手机号码注册-->
+        <LinearLayout
+            android:id="@+id/ly_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/et_new_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:background="@null"
+                android:hint="请输入新密码"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="textPassword"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:textColor="@color/cqsdk_black_text"
+                android:textColorHint="@color/cqsdk_gray_text"
+                android:textSize="13sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/cqsdk_line" />
+
+
+            <EditText
+                android:id="@+id/et_new_pwd_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:background="@null"
+                android:hint="请再次输入新密码"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="textPassword"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:textColor="@color/cqsdk_black_text"
+                android:textColorHint="@color/cqsdk_gray_text"
+                android:textSize="13sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/cqsdk_line" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_finish"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/cqsdk_green_button"
+        android:gravity="center"
+        android:text="完成"
+        android:textColor="@color/cqsdk_while"
+        android:textSize="@dimen/cqsdk_general_font_size" />
+</LinearLayout>

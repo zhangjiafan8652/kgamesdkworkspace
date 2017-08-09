@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bdsgz.mzw"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+
+    <!-- 查看当前运行的进程的权限 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <application
+        android:name="com.yayawan.impl.YYApplication"
+        android:allowBackup="true"
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        <activity
+            android:name="com.yayawan.sdktemplate.MainActivity"
+            android:label="app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+       <!-- 插件的代理器，使用框架必须声明 -->
+        <activity android:name="com.muzhiwan.plugin.LActivityProxy"
+            android:theme="@android:style/Theme.Translucent" 
+            android:configChanges="keyboardHidden|navigation|orientation|screenSize"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <service android:name="com.muzhiwan.plugin.service.LProxyService" />
+
+       
+        <meta-data
+            android:name="MZWAPPKEY"
+            android:value="70d50550f765bb82683f1ba34db99f69" />
+        <meta-data
+            android:name="mzw_channel"
+            android:value="mzw" />
+        <meta-data
+            android:name="mzw_cps"
+            android:value="mzw" />
+        <meta-data
+            android:name="DEBUG"
+            android:value="false" />
+        
+        <meta-data
+            android:name="yayawan_game_id"
+            android:value="yaya1039899331" />
+        <meta-data
+            android:name="union_id"
+            android:value="yaya312920543" />
+        <meta-data
+            android:name="isLandscape"
+            android:value="false" />
+        
+       <!--  8.19优化 解决登录和支付问题-->
+    </application>
+
+</manifest>

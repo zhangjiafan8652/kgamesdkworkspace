@@ -1,0 +1,237 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sdk_rl_dialog_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cqsdk_view_bg"
+    android:orientation="vertical">
+
+    <com.ltsdkgame.sdk.view.TitleBar
+    android:id="@+id/sdk_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/sdk_ll_pay_announcement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cqsdk_white"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="12dp"
+            android:src="@drawable/cqsdk_img_broadcast" />
+
+        <TextView
+            android:id="@+id/sdk_tv_announcement"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="公告信息加载中..."
+            android:textColor="@color/cqsdk_dialog_login_title"
+            android:textSize="@dimen/cqsdk_general_font_size" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="商品名称 : "
+                        android:textColor="@color/cqsdk_pay_center_text"
+                        android:textSize="@dimen/cqsdk_general_font_size" />
+
+                    <TextView
+                        android:id="@+id/sdk_tv_waresname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="一大袋砖石 : "
+                        android:textColor="@color/cqsdk_pay_center_text"
+                        android:textSize="@dimen/cqsdk_general_font_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="14dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="应付金额 : "
+                        android:textColor="@color/cqsdk_pay_center_text"
+                        android:textSize="@dimen/cqsdk_general_font_size" />
+
+                    <TextView
+                        android:id="@+id/sdk_tv_pay_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="120"
+                        android:textColor="@color/cqsdk_orange_press"
+                        android:textSize="@dimen/cqsdk_general_font_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 元"
+                        android:textColor="@color/cqsdk_pay_center_text"
+                        android:textSize="@dimen/cqsdk_general_font_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/sdk_self_pay_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/cqsdk_view_retrieve_pwd_xml_bg"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginLeft="12dp"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="选择支付方式"
+                            android:textColor="@color/cqsdk_black_text"
+                            android:textSize="@dimen/cqsdk_general_font_size" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="vertical">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1sp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:background="@color/cqsdk_line" />
+
+                        <com.ltsdkgame.sdk.view.widget.MyGridView
+                            android:id="@+id/sdk_gv_pay_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="12dp"
+                            android:numColumns="auto_fit"
+                            android:columnWidth="48dp"
+                            android:horizontalSpacing="20dp"
+                            android:verticalSpacing="0dp"
+                        >
+
+                        </com.ltsdkgame.sdk.view.widget.MyGridView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/sdk_rl_more_pay"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:background="@drawable/cqsdk_view_retrieve_pwd_xml_bg"
+                    android:orientation="horizontal"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="更多支付方式"
+                        android:textColor="@color/cqsdk_black_text"
+                        android:textSize="@dimen/cqsdk_general_font_size" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/cqsdk_ico_more" />
+                </RelativeLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="支付前请认真核对所购买商品"
+                    android:textColor="@color/cqsdk_pay_center_text"
+                    android:textSize="@dimen/cqsdk_general_font_size_sm" />
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="支付成功后所购买商品需要2~10分钟到达游戏账户"
+                    android:textColor="@color/cqsdk_pay_center_text"
+                    android:textSize="@dimen/cqsdk_general_font_size_sm" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="支付中遇到问题请联系 :"
+                    android:textColor="@color/cqsdk_pay_center_text"
+                    android:textSize="@dimen/cqsdk_general_font_size_sm" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="微信号 : ttigame"
+                    android:textColor="@color/cqsdk_pay_center_text"
+                    android:textSize="@dimen/cqsdk_general_font_size_sm" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="客服QQ : 2264237956"
+                    android:textColor="@color/cqsdk_pay_center_text"
+                    android:textSize="@dimen/cqsdk_general_font_size_sm" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_input_bank_card"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <!-- 聚焦区域布局 -->
+
+    <LinearLayout
+        android:id="@+id/main_input_bank_card_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/main_input_bank_card_inside_ll"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/sm_main_menu_input_bg"
+            android:gravity="fill_horizontal"
+            android:orientation="vertical" >
+
+            <!-- 标题栏 -->
+
+            <RelativeLayout
+                android:id="@+id/main_input_bank_card_top_rl"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/sm_main_menu_input_top"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:id="@+id/img_card_hint_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:id="@+id/img_card_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="center"
+                        android:src="@drawable/sm_main_card_input_small_default" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/text_card_hint_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="58dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/text_card_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="欢迎使用指易付"
+                        android:textColor="@color/input_title"
+                        android:textSize="14.7sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/main_input_bank_card_back_button_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/main_input_bank_card_btn_help"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="12dp"
+                        android:background="@drawable/sm_main_menu_help_btn" />
+
+                    <Button
+                        android:id="@+id/main_input_bank_card_back_button"
+                        android:layout_width="52dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/sm_cancel_btn"
+                        android:gravity="center"
+                        android:text="返 回"
+                        android:textColor="#6b6b6b"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <!-- 标题栏 -->
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/main_input_bank_card_image_split"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/sm_main_menu_split" />
+            <!-- 输入栏 -->
+
+            <LinearLayout
+                android:id="@+id/main_input_bank_card_bottom_ll"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <!-- 需要付费金额提示 -->
+
+                <LinearLayout
+                    android:id="@+id/amount_hint_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:paddingLeft="1dp"
+                    android:paddingTop="2dp" >
+
+                    <TextView
+                        android:id="@+id/text_charge_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="left"
+                        android:gravity="center_vertical"
+                        android:text="交易金额："
+                        android:textColor="@color/input_hint"
+                        android:textSize="14.7sp" />
+
+                    <TextView
+                        android:id="@+id/amount_hint_tv"
+                        android:layout_width="185dp"
+                        android:layout_marginLeft="6dp"
+                        android:layout_height="32dp"
+                        android:gravity="center_vertical"
+                        android:hint="充值金额"
+                        android:paddingLeft="7.3dp"
+                        android:singleLine="true"
+                        android:textColor="@color/input_hint"
+                        android:textSize="14.7sp" />
+                    <!-- 需要付费金额提示 -->
+                </LinearLayout>
+
+                <!-- 面额 -->
+
+                <LinearLayout
+                    android:id="@+id/amount_select_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal" >
+
+                    <!-- 面额 -->
+
+                    <GridView
+                        android:id="@+id/input_card_gridview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginTop="8dp"
+                        android:cacheColorHint="#00000000"
+                        android:columnWidth="50dp"
+                        android:fadingEdge="none"
+                        android:gravity="center"
+                        android:listSelector="#00000000"
+                        android:numColumns="auto_fit"
+                        android:scrollbars="none"
+                        android:verticalSpacing="5dp" />
+                </LinearLayout>
+
+                <!-- 已绑定老用户提示 -->
+
+                <LinearLayout
+                    android:id="@+id/bank_card_bind_info_ll"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/bind_hint_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:lineSpacingExtra="10dp"
+                        android:paddingLeft="8dp"
+                        android:text=""
+                        android:textColor="@color/input_hint"
+                        android:textSize="14.7sp" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="vertical" >
+
+                        <Button
+                            android:id="@+id/bind_user_btn_continue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@drawable/sm_main_menu_auth_button"
+                            android:padding="10dp"
+                            android:textSize="16sp"
+                            android:text="继续输入验证码"
+                            android:textColor="#ffffff" >
+                        </Button>
+
+                        <ScrollView
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent" >
+
+                            <TextView
+                                android:id="@+id/bind_user_bank_card_hint_buttom"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:layout_marginTop="10dp"
+                                android:gravity="left"
+                                android:paddingLeft="15dp"
+                                android:paddingRight="10dp"
+                                android:text="欢迎使用指易付"
+                                android:textColor="#8b8b8b"
+                                android:textSize="13sp" />
+                        </ScrollView>
+                    </LinearLayout>
+<!--                     已绑定老用户提示 -->
+                </LinearLayout>
+
+                <!-- 滚动条 -->
+
+                <ScrollView
+                    android:id="@+id/bank_card_info_ll"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:paddingBottom="4dp" >
+
+                    <!-- 银行卡布局 -->
+
+                    <LinearLayout
+                        android:id="@+id/bank_card"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="vertical" >
+
+                        <!-- 银行卡号 -->
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:orientation="horizontal"
+                            android:paddingLeft="1dp"
+                            android:paddingTop="4dp" >
+
+                            <TextView
+                                android:id="@+id/text_bank_card_number"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="银行卡号："
+                                android:textColor="@color/input_hint"
+                                android:textSize="14.7sp" />
+
+                            <EditText
+                                android:id="@+id/edt_bank_card_num"
+                                android:layout_width="185dp"
+                                android:layout_marginLeft="6dp"
+                                android:layout_height="32dp"
+                                android:background="@drawable/sm_input_edit"
+                                android:digits="0123456789"
+                                android:hint="请输入银行卡号"
+                                android:imeOptions="flagNoExtractUi"
+                                android:inputType="number"
+                                android:paddingLeft="7.3dp"
+                                android:singleLine="true"
+                                android:textColor="@color/input_edit_content"
+                                android:textColorHint="@color/input_edit_hint"
+                                android:textSize="14.7sp" />
+                            <!-- 银行卡号 -->
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/bank_card_more"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:orientation="vertical" >
+
+                            <!-- 开户姓名 -->
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal"
+                                android:paddingLeft="1dp"
+                                android:paddingTop="4dp" >
+
+                                <TextView
+                                    android:id="@+id/text_bank_card_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="开户姓名："
+                                    android:textColor="@color/input_hint"
+                                    android:textSize="14.7sp" />
+
+                                <EditText
+                                    android:id="@+id/edt_bank_card_name"
+                                    android:layout_width="185dp"
+                                    android:layout_height="32dp"
+                                    android:layout_marginLeft="6dp"
+                                    android:background="@drawable/sm_input_edit"
+                                    android:hint="银行卡的开户姓名"
+                                    android:imeOptions="flagNoExtractUi"
+                                    android:paddingLeft="7.3dp"
+                                    android:singleLine="true"
+                                    android:textColor="@color/input_edit_content"
+                                    android:textColorHint="@color/input_edit_hint"
+                                    android:textSize="14.7sp" />
+                                <!-- 开户姓名 -->
+                            </LinearLayout>
+
+                            <!-- 身份证号 -->
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal"
+                                android:paddingLeft="1dp"
+                                android:paddingTop="10dp" >
+
+                                <TextView
+                                    android:id="@+id/text_bank_card_id"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="身份证号："
+                                    android:textColor="@color/input_hint"
+                                    android:textSize="14.7sp" />
+
+                                <EditText
+                                    android:id="@+id/edt_bank_card_id"
+                                    android:layout_width="185dp"
+                                    android:layout_height="32dp"
+                                    android:layout_marginLeft="6dp"
+                                    android:background="@drawable/sm_input_edit"
+                                    android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                    android:hint="开户时使用的身份证号"
+                                    android:imeOptions="flagNoExtractUi"
+                                    android:paddingLeft="7.3dp"
+                                    android:singleLine="true"
+                                    android:textColor="@color/input_edit_content"
+                                    android:textColorHint="@color/input_edit_hint"
+                                    android:textSize="14.7sp" />
+                                <!-- 身份证号 -->
+                            </LinearLayout>
+
+                            <!-- 开户地区 -->
+
+                            <LinearLayout
+                                android:id="@+id/ll_khdq"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal"
+                                android:paddingLeft="1dp"
+                                android:paddingTop="10dp" >
+
+                                <TextView
+                                    android:id="@+id/text_bank_card_area"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="开户地区："
+                                    android:textColor="@color/input_hint"
+                                    android:textSize="14.7sp" />
+
+                                <EditText
+                                    android:id="@+id/edt_bank_card_area"
+                                    android:layout_width="185dp"
+                                    android:layout_height="32dp"
+                                    android:layout_marginLeft="6dp"
+                                    android:background="@drawable/sm_input_edit"
+                                    android:hint="如：浙江杭州"
+                                    android:imeOptions="flagNoExtractUi"
+                                    android:paddingLeft="7.3dp"
+                                    android:singleLine="true"
+                                    android:textColor="@color/input_edit_content"
+                                    android:textColorHint="@color/input_edit_hint"
+                                    android:textSize="14.7sp" />
+                                <!-- 开户地区 -->
+                            </LinearLayout>
+
+                            <!-- 手机号码 -->
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal"
+                                android:paddingLeft="1dp"
+                                android:paddingTop="10dp" >
+
+                                <TextView
+                                    android:id="@+id/text_bank_card_phonenum"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="手机号码："
+                                    android:textColor="@color/input_hint"
+                                    android:textSize="14.7sp" />
+
+                                <EditText
+                                    android:id="@+id/edt_bank_card_phonenum"
+                                    android:layout_width="185dp"
+                                    android:layout_height="32dp"
+                                    android:layout_marginLeft="6dp"
+                                    android:background="@drawable/sm_input_edit"
+                                    android:digits="0123456789"
+                                    android:hint="开户时使用的手机号码"
+                                    android:imeOptions="flagNoExtractUi"
+                                    android:inputType="number"
+                                    android:paddingLeft="7.3dp"
+                                    android:singleLine="true"
+                                    android:textColor="@color/input_edit_content"
+                                    android:textColorHint="@color/input_edit_hint"
+                                    android:textSize="14.7sp" />
+                                <!-- 手机号码 -->
+                            </LinearLayout>
+
+                            <!-- 银行卡更多信息 -->
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/btn_continue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="14dp"
+                            android:background="@drawable/sm_main_menu_auth_button"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="继续输入用户信息"
+                            android:gravity="center"
+                            android:textSize="16sp"
+                            android:textColor="#ffffff" >
+                        </Button>
+
+                        <TextView
+                            android:id="@+id/text_card_hint_buttom"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="9.3dp"
+                            android:layout_marginTop="14dp"
+                            android:paddingLeft="12dp"
+                            android:paddingRight="12dp"
+                            android:text="欢迎使用指易付"
+                            android:textColor="#8b8b8b"
+                            android:textSize="13sp" />
+                        <!-- 银行卡布局 -->
+                    </LinearLayout>
+                    <!-- 滚动条 -->
+                </ScrollView>
+
+                <!-- 短信确定界面 -->
+
+                <LinearLayout
+                    android:id="@+id/bank_confirm_ll"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <!-- 手机短信验证码 -->
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="6dp"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/get_tip_hint"
+                            android:layout_width="285dp"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center"
+                            android:gravity="left"
+                            android:text="请输入本次支付的短信验证码："
+                            android:textColor="@color/input_hint"
+                            android:textSize="14.7sp" />
+
+                        <EditText
+                            android:id="@+id/edt_bank_card_confirm"
+                            android:layout_width="160dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="left"
+                            android:layout_marginTop="9dp"
+                            android:background="@drawable/sm_input_edit"
+                            android:digits="0123456789"
+                            android:hint="请输入验证码"
+                            android:imeOptions="flagNoExtractUi"
+                            android:paddingLeft="7.3dp"
+                            android:singleLine="true"
+                            android:textColor="@color/input_edit_content"
+                            android:textColorHint="@color/input_edit_hint"
+                            android:textSize="14.7sp" />
+                        <!-- 手机短信验证码 -->
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_confirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/sm_main_menu_auth_button"
+                        android:padding="10dp"
+                        android:text="确认支付"
+                        android:textSize="16sp"
+                        android:textColor="#ffffff" >
+                    </Button>
+
+                    <TextView
+                        android:id="@+id/text_card_hint_confirm"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="9.3dp"
+                        android:layout_marginTop="14dp"
+                        android:gravity="left"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="10dp"
+                        android:text="正在等待手机短信验证码，请稍候..."
+                        android:textColor="#4695E7"
+                        android:textSize="14.7sp" />
+                    <!-- 短信确定界面 -->
+                </LinearLayout>
+                <!-- 输入栏 -->
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

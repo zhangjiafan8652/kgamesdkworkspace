@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="cqsdk_update_nick_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/cqsdk_transparent</item>
+    </style>
+
+    <style name="cqsdk_inoutformbottom" parent="android:Animation" mce_bogus="1">
+        <item name="android:windowEnterAnimation">@anim/cqsdk_anim_entry_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/cqsdk_anim_leave_from_bottom</item>
+    </style>
+    <style name="cqsdk_lv_progress">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/cqsdk_lv_progress</item>
+        <item name="android:minHeight">5dip</item>
+        <item name="android:maxHeight">5dip</item>
+    </style>
+</resources>

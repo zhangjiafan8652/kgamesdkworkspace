@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 基本色 -->
+
+    <color name="cqsdk_title_bar_color">#86BF13</color>
+    <color name="cqsdk_main_color">#ffffff</color>
+    <color name="cqsdk_main_green">#86bf13</color>
+    <color name="cqsdk_main_bg">#f8f8f8</color>
+    <color name="cqsdk_main_txt">#333333</color>
+    <color name="cqsdk_transparent">#00000000</color>
+    <color name="cqsdk_transparent_75">#bf000000</color>
+    <color name="cqsdk_color_4">#727272</color>
+    <color name="cqsdk_gray">#888888</color>
+    <color name="cqsdk_gray_text">#cccccc</color>
+    <color name="cqsdk_black_text">#333333</color>
+    <color name="cqsdk_yellow_text">#ff8800</color>
+    <drawable name="cqsdk_item_gray">#efefef</drawable>
+    <drawable name="cqsdk_item_white">#ffffff</drawable>
+    <color name="cqsdk_light_black">#666666</color>
+    <!-- 个人中心 start -->
+    <!--<color name="sdk_gray_line">#ff8800</color>-->
+    <!-- 个人中心 end -->
+
+    <color name="cqsdk_dialog_login_title">#86bf13</color>
+    <color name="cqsdk_gray_line">#dddddd</color>
+    <color name="cqsdk_green_light">#86bf13</color>
+    <color name="cqsdk_orange_light">#ff8800</color>
+    <color name="cqsdk_while">#ffffff</color>
+    <color name="cqsdk_green_press">#6fa305</color>
+    <color name="cqsdk_orange_press">#C76D0A</color>
+    <color name="cqsdk_view_bg">#f8f8f8</color>
+
+    <color name="cqsdk_line">#eeeeee</color>
+
+    <color name="cqsdk_pay_center_text">#999999</color>
+    <color name="cqsdk_dialog_login_edit_text_color">#333333</color>
+
+    <color name="cqsdk_white">#ffffff</color>
+    <color name="cqsdk_bg_floder_press">#bdbdbd</color>
+
+</resources>

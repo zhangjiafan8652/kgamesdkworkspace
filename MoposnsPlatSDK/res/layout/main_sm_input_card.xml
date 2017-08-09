@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_input_card"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@+id/main_input_card_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/main_input_card_inside_ll"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/sm_main_menu_input_bg"
+            android:gravity="fill_horizontal"
+            android:orientation="vertical" >
+
+            <!-- 标题栏 -->
+
+            <FrameLayout
+                android:id="@+id/main_input_card_fl"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <RelativeLayout
+                    android:id="@+id/main_input_card_top_rl"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/sm_main_menu_input_top"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:id="@+id/main_input_card_img_card_hint_ll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:id="@+id/main_input_card_img_card_hint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="center"
+                            android:src="@drawable/sm_main_card_input_small_default" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/main_input_card_text_card_hint_ll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="58dp"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/main_input_card_text_card_hint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="欢迎使用指易付"
+                            android:textColor="@color/input_title"
+                            android:textSize="14.7sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/main_input_card_back_button_ll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical" >
+
+                        <Button
+                            android:id="@+id/main_input_card_back_button"
+                            android:layout_width="52dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/sm_cancel_btn"
+                            android:gravity="center"
+                            android:text="返 回"
+                            android:textColor="#6b6b6b"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/main_input_card_image_split"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="48dp"
+                        android:background="@drawable/sm_main_menu_split" />
+                </RelativeLayout>
+
+                <RadioGroup
+                    android:id="@+id/main_input_card_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="4dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone" >
+
+                    <RadioButton
+                        android:id="@+id/main_input_card_radio_button_one"
+                        style="@style/main_tab_bottom"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="5dp"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:tag="radio_button_day" />
+
+                    <RadioButton
+                        android:id="@+id/main_input_card_radio_button_two"
+                        style="@style/main_tab_bottom"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="4dp"
+                        android:gravity="center"
+                        android:tag="radio_button_week" />
+
+                    <RadioButton
+                        android:id="@+id/main_input_card_radio_button_three"
+                        style="@style/main_tab_bottom"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="4dp"
+                        android:gravity="center"
+                        android:tag="radio_button_month" />
+                </RadioGroup>
+            </FrameLayout>
+
+            <!-- 输入栏 -->
+
+            <WebView
+                android:id="@+id/main_input_card_webview"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:scrollbars="none"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/main_input_card_bottom_ll"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <!-- 面额 -->
+
+                <LinearLayout
+                    android:id="@+id/main_input_card_Spinner_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal" >
+
+                    <!-- 面额 -->
+
+                    <GridView
+                        android:id="@+id/main_input_card_gridview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="6dp"
+                        android:layout_marginTop="8dp"
+                        android:cacheColorHint="#00000000"
+                        android:columnWidth="50dp"
+                        android:fadingEdge="none"
+                        android:gravity="center"
+                        android:listSelector="#00000000"
+                        android:numColumns="auto_fit"
+                        android:scrollbars="none"
+                        android:verticalSpacing="8dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/other_amount_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp"
+                    android:visibility="gone" >
+
+                    <TextView
+                        android:id="@+id/text_other_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="12.7dp"
+                        android:text="其他金额:"
+                        android:textColor="@color/input_hint"
+                        android:textSize="14.7sp" />
+
+                    <EditText
+                        android:id="@+id/edt_other_amount"
+                        android:layout_width="175dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="12.7dp"
+                        android:layout_marginRight="12.7dp"
+                        android:background="@drawable/sm_input_edit"
+                        android:digits="0123456789"
+                        android:gravity="left|center_vertical"
+                        android:hint="请输入充值金额"
+                        android:imeOptions="flagNoExtractUi"
+                        android:inputType="numberSigned"
+                        android:paddingLeft="7.3dp"
+                        android:singleLine="true"
+                        android:textColor="@color/input_edit_content"
+                        android:textColorHint="@color/input_edit_hint"
+                        android:textSize="14.7sp" />
+                </LinearLayout>
+                <!-- 滚动条 -->
+
+                <ScrollView
+                    android:id="@+id/main_input_card_sv"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" 
+                    android:paddingBottom="4dp">
+
+                    <!-- 由于 ScrollView和FrameLayout冲突需要增加的布局套壳 -->
+
+                    <LinearLayout
+                        android:id="@+id/main_input_card_edit_ll"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <!-- 卡类型 -->
+
+                        <LinearLayout
+                            android:id="@+id/main_input_card_sp_ll"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:orientation="horizontal"
+                            android:paddingTop="8dp" >
+
+                            <TextView
+                                android:id="@+id/main_input_card_style_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="12.7dp"
+                                android:text="卡类型:"
+                                android:textColor="@color/input_hint"
+                                android:textSize="14.7sp" />
+
+                            <Spinner
+                                android:id="@+id/main_input_card_style_spinner"
+                                android:layout_width="209dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="12.7dp"
+                                android:layout_marginRight="12.7dp"
+                                android:background="@drawable/sm_input_spinner"
+                                android:gravity="fill_vertical"
+                                android:hint="卡类型:"
+                                android:paddingLeft="7.3dp"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <!-- 卡号 -->
+
+                        <LinearLayout
+                            android:id="@+id/Card_num_ll"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:orientation="horizontal"
+                            android:paddingTop="8dp" >
+
+                            <TextView
+                                android:id="@+id/text_card_number"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="12.7dp"
+                                android:text="卡    号:"
+                                android:textColor="@color/input_hint"
+                                android:textSize="14.7sp" />
+
+                            <EditText
+                                android:id="@+id/edt_card_num"
+                                android:layout_width="210dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="12.7dp"
+                                android:layout_marginRight="12.7dp"
+                                android:background="@drawable/sm_input_edit"
+                                android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                android:gravity="left|center_vertical"
+                                android:hint="请输入卡号"
+                                android:imeOptions="flagNoExtractUi"
+                                android:paddingLeft="7.3dp"
+                                android:singleLine="true"
+                                android:textColor="@color/input_edit_content"
+                                android:textColorHint="@color/input_edit_hint"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <!-- 密码 -->
+
+                        <LinearLayout
+                            android:id="@+id/Card_psw_ll"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:orientation="horizontal"
+                            android:paddingTop="8dp" >
+
+                            <TextView
+                                android:id="@+id/text_card_password"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="12.7dp"
+                                android:text="密    码:"
+                                android:textColor="@color/input_hint"
+                                android:textSize="14.7sp" />
+
+                            <EditText
+                                android:id="@+id/edt_card_psw"
+                                android:layout_width="210dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="12.7dp"
+                                android:layout_marginRight="12.7dp"
+                                android:background="@drawable/sm_input_edit"
+                                android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                android:gravity="left|center_vertical"
+                                android:hint="请输入密码"
+                                android:imeOptions="flagNoExtractUi"
+                                android:paddingLeft="7.3dp"
+                                android:singleLine="true"
+                                android:textColor="@color/input_edit_content"
+                                android:textColorHint="@color/input_edit_hint"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/main_input_card_submit_btn"
+                            android:layout_width="141.3dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="14dp"
+                            android:background="@drawable/sm_main_menu_auth_button"
+                            android:text="确   定"
+                            android:textColor="#ffffff" />
+
+                        <TextView
+                            android:id="@+id/text_card_hint_buttom"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="9.3dp"
+                            android:layout_marginTop="14dp"
+                            android:paddingLeft="12dp"
+                            android:paddingRight="12dp"
+                            android:text="欢迎使用指易付"
+                            android:textColor="#8b8b8b"
+                            android:textSize="13sp" />
+
+                        <!-- 由于 ScrollView和FrameLayout冲突需要增加的布局套壳 -->
+                    </LinearLayout>
+                    <!-- 滚动条 -->
+                </ScrollView>
+                <!-- 输入栏 -->
+
+            </LinearLayout> <!-- 聚焦区域布局 -->
+
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

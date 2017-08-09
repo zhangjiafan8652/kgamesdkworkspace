@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cqsdk_empty_str">honaf</string>
+    <string name="cqsdk_all_name">天天游戏中心</string>
+    <!-- 个人中心 start -->
+    <string name="cqsdk_userinfo_title">个人中心</string>
+    <string name="cqsdk_userinfo_userid">LV.%d</string>
+    <string name="cqsdk_userinfo_update_pwd">修改密码</string>
+    <string name="cqsdk_userinfo_bind_phone">绑定手机</string>
+    <string name="cqsdk_userinfo_mytrade">我的交易</string>
+    <string name="cqsdk_userinfo_change_account">切换账号</string>
+    <string name="cqsdk_userinfo_nick">昵称</string>
+    <string name="cqsdk_userinfo_cancel">取消</string>
+    <string name="cqsdk_userinfo_update">修改</string>
+    <string name="cqsdk_userinfo_nick_hint">请输入昵称</string>
+    <string name="cqsdk_userinfo_nick_default">加载中&#8230;</string>
+    <string name="cqsdk_userinfo_agreement">服务条款>></string>
+    <!-- 个人中心 end -->
+    <!-- 我的交易 start -->
+    <string name="cqsdk_mytrade_title">我的交易</string>
+    <string name="cqsdk_mytrade_all">全部</string>
+    <string name="cqsdk_mytrade_success">成功</string>
+    <string name="cqsdk_mytrade_fail">不成功</string>
+    <!-- 我的交易 end -->
+
+    <!-- 登录 start -->
+    <string name="cqsdk_warm_tip">温馨提示</string>
+    <string name="cqsdk_auto_login">登录</string>
+    <string name="cqsdk_auto_login_tip_start">检测到您已登录 </string>
+    <string name="cqsdk_auto_login_tip_appstore">应用市场</string>
+    <string name="cqsdk_auto_login_tip_end">，是否使用该账号自动登录游戏？</string>
+    <!-- 登录 end -->
+
+    <!-- 常见问题 start -->
+    <string name="cqsdk_faq_ask">Q：</string>
+    <string name="cqsdk_faq_answer">A：</string>
+    <!-- 常见问题 end -->
+
+    <!-- 修改密码 start -->
+    <string name="cqsdk_update_pwd_title">修改密码</string>
+    <string name="cqsdk_update_pwd_tip">请设置新密码。密码长度为6&#8211;20个字符，区分大小写。建议使用字母、数字与标点的组合，可大幅度提高账号安全度。</string>
+    <string name="cqsdk_bind_tip">游客账号可通过绑定手机号切换为正式账号,可通过手机验证码或手机号加密码方式登录,绑定手机号可提高账号安全性!</string>
+    <string name="cqsdk_update_pwd_old">请输入旧密码</string>
+    <string name="cqsdk_update_pwd_new">请输入新密码</string>
+    <string name="cqsdk_update_pwd_renew">请再次输入新密码</string>
+    <string name="cqsdk_update_pwd_finish">提交保存</string>
+    <string name="cqsdk_bind_phone_tip">请输入手机号</string>
+    <!-- 修改密码 end -->
+
+    <!-- 提交反馈 start -->
+    <string name="cqsdk_submit_feedback_title">我的反馈</string>
+    <string name="cqsdk_submit_feedback_submit">提交</string>
+    <string name="cqsdk_submit_feedback_tip">请输入您要反馈的问题描述</string>
+    <!-- 常见问题 end -->
+
+    <!-- loading start-->
+    <string name="cqsdk_later">加载中&#8230;</string>
+    <string name="cqsdk_patient">请耐心等待&#8230;</string>
+    <string name="cqsdk_overtime">加载超时</string>
+    <!-- loading end -->
+    <string name="cqsdk_viewpager_indicator">%1$d/%2$d</string>
+
+
+    <string name="cqsdk_photos_num">%1$d张</string>
+    <string name="cqsdk_msg_no_camera">没找到摄像头</string>
+    <string name="cqsdk_msg_maxi_capacity">已达到照片选择上限</string>
+    <string name="cqsdk_commit">确定</string>
+    <string name="cqsdk_commit_num">确定(%1$d/%2$d)</string>
+
+    <string name="cqsdk_pullable_pull_to_refresh">下拉立即刷新 </string>
+    <string name="cqsdk_pullable_release_to_refresh">松开马上刷新 </string>
+    <string name="cqsdk_pullable_refreshing">正在刷新&#8230;</string>
+    <string name="cqsdk_pullable_refresh_succeed">刷新成功   </string>
+    <string name="cqsdk_pullable_refresh_fail">刷新失败   </string>
+    <string name="cqsdk_pullable_pullup_to_load">上拉加载更多 </string>
+    <string name="cqsdk_pullable_release_to_load">松开马上加载 </string>
+    <string name="cqsdk_pullable_loading">努力加载中&#8230;</string>
+    <string name="cqsdk_pullable_load_succeed">加载成功  </string>
+    <string name="cqsdk_pullable_load_fail">加载失败  </string>
+
+</resources>
