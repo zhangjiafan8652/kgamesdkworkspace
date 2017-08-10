@@ -67,8 +67,8 @@ public class ChargerImpl implements YYWCharger {
 					String openid = ret.open_id;
 					// int flag = ret.flag;
 					// String msg = ret.msg;
-					Myconstants.mpayinfo.pf = ret.pf;
-					Myconstants.mpayinfo.pfKey = ret.pf_key;
+					Myconstants.mpayinfo.pf = YSDKApi.getPf();
+					Myconstants.mpayinfo.pfKey = YSDKApi.getPfKey();
 
 					ePlatform platform1 = QqYsdkHelp.getPlatform();
 					String logintype = "";

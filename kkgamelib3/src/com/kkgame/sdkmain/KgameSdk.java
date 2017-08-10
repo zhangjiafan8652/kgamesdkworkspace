@@ -27,6 +27,11 @@ import com.lidroid.jxutils.http.ResponseInfo;
 import com.lidroid.jxutils.http.callback.RequestCallBack;
 import com.lidroid.jxutils.http.client.HttpRequest.HttpMethod;
 
+/**
+ * sdk调用入口
+ * @author zhangjiafan
+ *
+ */
 public class KgameSdk {
 
 	public static KgameSdkUserCallback mUserCallback; // 登录的回调
@@ -121,16 +126,7 @@ public class KgameSdk {
 
 	}
 
-	/**
-	 * 支付接口
-	 * 
-	 * @param paramActivity
-	 * @param paramCallback
-	 */
-	public static void paymentLianhe(Activity paramActivity, Order paramOrder,
-			Boolean issinglepay, KgameSdkPaymentCallback paramCallback) {
 
-	}
 
 	/**
 	 * 个人中心
