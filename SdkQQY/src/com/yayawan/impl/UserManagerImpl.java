@@ -106,9 +106,18 @@ public class UserManagerImpl implements YYWUserManager {
 							@Override
 							public void run() {
 								// TODO Auto-generated method stub
-								dialog.dismiss();
-								callback.onExit();
-								activitiy.finish();
+								activitiy.runOnUiThread(new Runnable() {
+									
+									@Override
+									public void run() {
+										// TODO Auto-generated method stub
+										dialog.dismiss();
+										activitiy.finish();
+										//callback.onExit();
+										
+									}
+								});
+								
 							}
 						}, 1000);
 						
@@ -120,8 +129,9 @@ public class UserManagerImpl implements YYWUserManager {
 					public void onClick(DialogInterface dialog, int which) {
 						// TODO Auto-generated method stub
 						dialog.dismiss();
-						callback.onExit();
 						activitiy.finish();
+						//callback.onExit();
+						
 					}
 				}). create();
 

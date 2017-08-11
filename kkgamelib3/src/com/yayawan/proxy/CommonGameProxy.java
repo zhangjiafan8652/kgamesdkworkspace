@@ -97,6 +97,7 @@ public class CommonGameProxy implements YYWGameProxy {
 		// YYWMain.mUserCallBack=userCallBack;
 		Yayalog.logerlife("login");
 		Yayalog.loger("commmonGameproxylogin");
+		
 		if (ViewConstants.ISKGAME) {
 			Yayalog.loger("Kgamelogin");
 			YYWMain.mUserCallBack = userCallBack;

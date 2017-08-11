@@ -10,37 +10,76 @@ import com.kkgame.sdk.utils.Base64;
 import com.kkgame.sdk.utils.MD5;
 import com.kkgame.utils.DeviceUtil;
 import com.kkgame.utils.Sputils;
+import com.kkgame.utils.Yibuhttputils;
+import com.qq.e.track.GDTTracker;
+import com.qq.e.track.TrackConstants;
 
 
 
 public class GuangdiantongUtils {
 
 	
-	
-	
 	/**
-	 * 激活
+	 * 新激活
 	 * @param mcontext
 	 */
-	public static void guangDiantongActi(Context mcontext){
-		String sPstring = Sputils.getSPstring("MOBILEAPP_ACTIVITE", "no", mcontext);
-		if (sPstring.equals("no")) {
-			getGuangdiantong(mcontext, "MOBILEAPP_ACTIVITE");
+	public static void guangDiantongInit(Context mcontext){
+		String sPstring = DeviceUtil.getGameInfo(mcontext, "guangdiantong");
+		if (!sPstring.equals("no")) {
+
+			  /**
+	         * SDK初始化接口：必须在Application的onCreate中成功调用一次，否则其他接口都将无法使用。
+	         * 注意：只需要调用一次即可，第一次调用之后的任何调用都将无效。Logcat中会有初始化信息输出，请开发者注意。
+	         *
+	         * @param context   applicationContext
+	         * @param channel   渠道标识，注意：目前仅支持传入"TrackConstants.APP_CHANNEL"类中预定义的渠道标识，传入其他字符串代表的渠道将无法被统计。
+	         */
+	        GDTTracker.init(mcontext, TrackConstants.APP_CHANNEL.OPEN_APP);
+
+	        /**
+	         * SDK激活上报接口：Application创建的时候是激活接口调用的最佳时机，调用此接口会向广点通上报激活事件。
+	         * 注意：30天内App被打开只会被记录为一次激活。
+	         *
+	         * @param context   applicationContext
+	         */
+	        GDTTracker.activateApp(mcontext);
 		}
 		
 		
 	}
 	
 	/**
-	 * 注册激活
+	 * 注册
 	 * @param mcontext
 	 */
 	public static void guangDiantongRegister(Context mcontext){
-		String sPstring = Sputils.getSPstring("MOBILEAPP_REGISTER", "no", mcontext);
-		if (sPstring.equals("no")) {
-			getGuangdiantong(mcontext, "MOBILEAPP_REGISTER");
+		String sPstring = DeviceUtil.getGameInfo(mcontext, "guangdiantong");
+		if (!sPstring.equals("no")) {
+
+			 GDTTracker.logEvent(mcontext, TrackConstants.CONVERSION_TYPE.REGISTER);
 		}
+		
+		
 	}
+	
+	
+	/**
+	 * 交易额
+	 * @param mcontext
+	 */
+	public static void guangDiantongGiveMoney(Context mcontext,String money){
+		String sPstring = DeviceUtil.getGameInfo(mcontext, "guangdiantong");
+		if (!sPstring.equals("no")) {
+
+			 GDTTracker.logEvent(mcontext, TrackConstants.CONVERSION_TYPE.PURCHASE,Integer.parseInt(money));
+		}
+		
+		
+	}
+	
+	
+	
+	
 	
 	
 	/**
@@ -55,25 +94,31 @@ public class GuangdiantongUtils {
 			return;
 		}
 		long startPaintLogoTime=System.currentTimeMillis()/1000;
-		System.out.println(startPaintLogoTime+"");
-		String qqappid=DeviceUtil.getGameInfo(mcontext, "qqAppId");
+		//System.out.println("startPaintLogoTime="+startPaintLogoTime);
+		String qqappid=DeviceUtil.getGameInfo(mcontext, "androidAppId");
+		//System.out.println("appid="+qqappid);
 		String muid= pingjieMuid(DeviceUtil.getIMEI(mcontext));
 		String sign_key=DeviceUtil.getGameInfo(mcontext, "sign_key") ;
+		//System.out.println("sign_key="+sign_key);
 		String advertiser_id=DeviceUtil.getGameInfo(mcontext, "advertiser_id");
-		
-		String pingjieUrl = pingjieUrl(qqappid,muid, startPaintLogoTime+"", null,sign_key, conv_type, "ANDROID", advertiser_id, DeviceUtil.getGameInfo(mcontext, "encrypt_key"));
+		//System.out.println("advertiser_id="+advertiser_id);
+		//System.out.println("conv_type="+conv_type);
+		String encrypt_key=DeviceUtil.getGameInfo(mcontext, "encrypt_key");
+		//System.out.println("encrypt_key="+encrypt_key);
+		String pingjieUrl = pingjieUrl(qqappid,muid, startPaintLogoTime+"", null,sign_key, conv_type, "UNIONANDROID", advertiser_id, encrypt_key);
 		//return pingjieUrl;
 		Yibuhttputils yibuhttputils = new Yibuhttputils() {
 			
 			@Override
 			public void sucee(String str) {
 				// TODO Auto-generated method stub
-				System.out.println("上报数据返回结果"+str);
+				System.out.println("广点通上报数据返回结果"+str);
 				try {
 					JSONObject jsonObject = new JSONObject(str);
 					int int1 = jsonObject.getInt("ret");
 					if (int1==0) {
 						Sputils.putSPstring(conv_type, "yes", mcontext);
+						System.out.println("广点通激活成功"+str);
 					}
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
@@ -84,7 +129,7 @@ public class GuangdiantongUtils {
 			@Override
 			public void faile(String err, String rescode) {
 				// TODO Auto-generated method stub
-				System.out.println("上报数据失败返回结果"+err);
+				//System.out.println("广点通上报数据失败返回结果"+err);
 				
 			}
 		};
@@ -138,12 +183,13 @@ public class GuangdiantongUtils {
 				+ query_string;
 
 		String encode_page = java.net.URLEncoder.encode(page);
-		System.out.println("encode_page++++" + encode_page);
+		//System.out.println("encode_page=" + encode_page);
 
 		String property = sign_key + "&GET&" + encode_page;
-		System.out.println("property++++" + property);
+		//System.out.println("property=" + property);
 
 		String md5_property = "123";
+		
 		try {
 			md5_property = MD5.MD5(property);
 		} catch (Exception e) {
@@ -151,18 +197,18 @@ public class GuangdiantongUtils {
 			e.printStackTrace();
 		}
 
-		System.out.println("md5_property++++" + md5_property);
+		//System.out.println("md5_property=" + md5_property);
 
 		String base_data = query_string + "&sign=" + md5_property;
 		String en_base_data = xorEncryption(base_data, encrypt_key);
-		System.out.println("base_data++++" + en_base_data);
+		//System.out.println("base_data=" + en_base_data);
 
 		String finalurl = "http://t.gdt.qq.com/conv/app/" + appid + "/conv?v="
 				+ java.net.URLEncoder.encode(en_base_data) + "&conv_type="
 				+ conv_type + "&app_type=" + apptype + "&advertiser_id="
 				+ advertiser_id;
 
-		System.out.println("finalurl++++" + finalurl);
+		//System.out.println("finalurl=" + finalurl);
 		return finalurl;
 	}
 
@@ -180,13 +226,14 @@ public class GuangdiantongUtils {
 
 	public static String pingjieMuid(String IMEI) {
 		String md5 = "123";
+		//System.out.println("IMEI=" + IMEI);
 		try {
 			md5 = MD5.MD5(IMEI);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("muid++++" + md5);
+		//System.out.println("muid=" + md5);
 		return md5.toLowerCase();
 	}
 

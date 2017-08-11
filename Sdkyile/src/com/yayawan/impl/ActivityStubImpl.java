@@ -1,14 +1,11 @@
 package com.yayawan.impl;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 
 import com.kkgame.utils.Handle;
-import com.tencent.ysdk.api.YSDKApi;
-import com.yayawan.impl.qqhelper.QqYsdkHelp;
+import com.snowfish.cn.ganga.helper.SFOnlineHelper;
 import com.yayawan.proxy.YYWActivityStub;
-
 
 public class ActivityStubImpl implements YYWActivityStub {
 
@@ -18,53 +15,48 @@ public class ActivityStubImpl implements YYWActivityStub {
 
 	}
 
-	private Activity mActivity;
-	public static ProgressDialog mAutoLoginWaitingDlg;
-
 	@Override
 	public void onCreate(Activity paramActivity) {
 		// TODO Auto-generated method stub
-		Myconstants.mpayinfo=new Payinfo();
+
 		Handle.active_handler(paramActivity);
+		YaYawanconstants.inintsdk(paramActivity);
+		YaYawanconstants.onCreate(paramActivity);
+		SFOnlineHelper.onCreate(paramActivity);
 		
-		//广点通激活
-		GuangdiantongUtils.guangDiantongInit(paramActivity.getApplicationContext());
-		
-		mActivity = paramActivity;
-		QqYsdkHelp.onCreate(paramActivity);
-		QqYsdkHelp.inintsdk(paramActivity);
-		YSDKApi.handleIntent(paramActivity.getIntent());
 	}
 
 	@Override
 	public void onStop(Activity paramActivity) {
 		// TODO Auto-generated method stub
-		YSDKApi.onStop(paramActivity);
+		YaYawanconstants.onStop(paramActivity);
+		SFOnlineHelper.onStop(paramActivity);
 	}
 
 	@Override
 	public void onResume(Activity paramActivity) {
-		// TODO Auto-generated method stub
-		YSDKApi.onResume(paramActivity);
+		YaYawanconstants.onResume(paramActivity);
+		SFOnlineHelper.onResume(paramActivity);
 	}
 
 	@Override
 	public void onPause(Activity paramActivity) {
 		// TODO Auto-generated method stub
-		// Utilsjf.stopDialog();
-		YSDKApi.onPause(paramActivity);
+		YaYawanconstants.onPause(paramActivity);
+		SFOnlineHelper.onPause(paramActivity);
 	}
 
 	@Override
 	public void onRestart(Activity paramActivity) {
 		// TODO Auto-generated method stub
-		YSDKApi.onRestart(paramActivity);
+		YaYawanconstants.onRestart(paramActivity);
+		SFOnlineHelper.onRestart(paramActivity);
 	}
 
 	@Override
 	public void onDestroy(Activity paramActivity) {
-		//YSDKApi.logout();
-		YSDKApi.onDestroy(paramActivity);
+		YaYawanconstants.onDestroy(paramActivity);
+		SFOnlineHelper.onDestroy(paramActivity);
 	}
 
 	@Override
@@ -77,33 +69,27 @@ public class ActivityStubImpl implements YYWActivityStub {
 	public void onActivityResult(Activity paramActivity, int paramInt1,
 			int paramInt2, Intent paramIntent) {
 		// TODO Auto-generated method stub
-		YSDKApi.onActivityResult(paramInt1, paramInt2, paramIntent);
+		YaYawanconstants.onActivityResult(paramActivity);
+		
 	}
 
 	@Override
 	public void onNewIntent(Intent paramIntent) {
-
 		// TODO Auto-generated method stub
-		// Logger.d("onNewIntent");
-		System.out.println("onNewIntent");
-		// TODO GAME 处理游戏被拉起的情况
-		// launchActivity的onCreat()和onNewIntent()中必须调用
-		// YSDKApi.handleCallback()。否则会造成微信登录无回调
-		
-		YSDKApi.handleIntent(paramIntent);
-		
+		YaYawanconstants.onNewIntent(paramIntent);
 	}
 
 	@Override
 	public void initSdk(Activity arg0) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void onStart(Activity arg0) {
+	public void onStart(Activity mActivity) {
 		// TODO Auto-generated method stub
-		
+		YaYawanconstants.onStart(mActivity);
+		//SFOnlineHelper.onStop()
 	}
 
 }
