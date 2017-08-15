@@ -22,7 +22,7 @@ public class ActivityStubImpl implements YYWActivityStub {
 		Handle.active_handler(paramActivity);
 		YaYawanconstants.inintsdk(paramActivity);
 		YaYawanconstants.onCreate(paramActivity);
-		SFOnlineHelper.onCreate(paramActivity);
+		//SFOnlineHelper.onCreate(paramActivity);
 		
 	}
 

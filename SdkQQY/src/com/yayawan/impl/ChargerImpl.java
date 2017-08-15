@@ -3,6 +3,8 @@ package com.yayawan.impl;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -62,7 +64,9 @@ public class ChargerImpl implements YYWCharger {
 					Myconstants.ISFIRSTPAY = true;
 					UserLoginRet ret = new UserLoginRet();
 					int platform = YSDKApi.getLoginRecord(ret);
+
 					Myconstants.mpayinfo.openKey = ret.getAccessToken();
+
 					Myconstants.mpayinfo.qq_paytoken = ret.getPayToken();
 					String openid = ret.open_id;
 					// int flag = ret.flag;
@@ -76,8 +80,11 @@ public class ChargerImpl implements YYWCharger {
 						logintype = "qq";
 						Myconstants.mpayinfo.openId = ret.open_id;
 						Myconstants.mpayinfo.opentype = "qq";
+						Myconstants.mpayinfo.openKey = ret.getPayToken();
 					} else if (platform1 == ePlatform.WX) {
 						logintype = "wx";
+						Myconstants.mpayinfo.opentype = "wx";
+						Myconstants.mpayinfo.openKey = ret.getAccessToken();
 					}
 
 					System.out.println(Myconstants.mpayinfo.toString());
@@ -160,7 +167,8 @@ public class ChargerImpl implements YYWCharger {
 
 							// err_code = 11020 的时候 余额不足
 							if (err_code == 11020) {
-								
+
+								// 余额不足开启支付
 								new Handler(Looper.getMainLooper())
 										.post(new Runnable() {
 
@@ -172,32 +180,17 @@ public class ChargerImpl implements YYWCharger {
 
 											}
 										});
+							} else if (err_code == 10021) {
+								getmoneyTimer = 0;
+								// pf值有问题
+								ToastInmainthread(paramActivity,
+										"登陆过期，请按返回键，注销登陆，重新登陆充值");
+								payfail(paramActivity);
 
-							} else if (err_code==0) {
-								new Handler(Looper.getMainLooper())
-								.post(new Runnable() {
-
-									@Override
-									public void run() {
-										YYWMain.mPayCallBack
-												.onPaySuccess(
-														YYWMain.mUser,
-														YYWMain.mOrder,
-														"success");
-
-									}
-								});
-							}else {
-								new Handler(Looper.getMainLooper())
-								.post(new Runnable() {
-
-									@Override
-									public void run() {
-										YYWMain.mPayCallBack
-												.onPayFailed(null, null);
-
-									}
-								});
+							} else if (err_code == 0) {
+								paysucc(paramActivity);
+							} else {
+								payfail(paramActivity);
 							}
 
 						} catch (JSONException e) {
@@ -209,115 +202,103 @@ public class ChargerImpl implements YYWCharger {
 				});
 	}
 
-	/*
-	 * public void createOrder1(final Activity paramActivity) {
-	 * progress(paramActivity);
+	/**
 	 * 
-	 * AsyncHttpConnection http = AsyncHttpConnection.getInstance();
-	 * ParamsWrapper pay_data = new ParamsWrapper();
+	 * 支付成功后发起扣款
 	 * 
-	 * pay_data.put("game_id", DeviceUtil.getGameId(paramActivity));
-	 * 
-	 * pay_data.put("uid", YYWMain.mUser.uid);
-	 * 
-	 * System.out.println("支付传的" + YYWMain.mUser.uid);
-	 * 
-	 * pay_data.put("union_id", DeviceUtil.getUnionid(paramActivity));
-	 * 
-	 * pay_data.put("username", YYWMain.mUser.userName);
-	 * 
-	 * pay_data.put("order_id", YYWMain.mOrder.orderId);
-	 * 
-	 * pay_data.put("ext", YYWMain.mOrder.ext); pay_data.put("amount",
-	 * YYWMain.mOrder.money);
-	 * 
-	 * pay_data.put("openkey", Myconstants.mpayinfo.openKey);
-	 * 
-	 * System.out.println("支付传的openKey" + Myconstants.mpayinfo.openKey);
-	 * pay_data.put("opentype", Myconstants.mpayinfo.opentype);
-	 * 
-	 * pay_data.put("pay_token", Myconstants.mpayinfo.qq_paytoken);
-	 * pay_data.put("payitem", "123456" + "*" + (YYWMain.mOrder.money / 10) +
-	 * "*" + "" + 1); pay_data.put("goodsmeta", YYWMain.mOrder.goods + "*" +
-	 * "道具"); pay_data.put("goodsurl",
-	 * "http://img2.imgtn.bdimg.com/it/u=3188228834,2947524100&fm=21&gp=0.jpg");
-	 * pay_data.put("pf", Myconstants.mpayinfo.pf); pay_data.put("pfkey",
-	 * Myconstants.mpayinfo.pfKey); // pay_data.put("pfkey", "pfkey");
-	 * pay_data.put("zoneid", "1"); pay_data.put("amt", "" +
-	 * (YYWMain.mOrder.money / 10));
-	 * 
-	 * ParamsWrapper params = new ParamsWrapper(); //
-	 * System.out.println(pay_data.toString()); String hexString = null; try {
-	 * hexString = CryptoUtil.encodeHexString(RSACoder
-	 * .encryptByPublicKey(pay_data.toString().getBytes())); hexString =
-	 * URLEncoder.encode(hexString, "UTF-8"); } catch (Exception e) { // TODO
-	 * Auto-generated catch block e.printStackTrace(); }
-	 * 
-	 * params.put("data", hexString);
-	 * 
-	 * http.post("http://union.yayawan.com/pay_handler", params, new
-	 * StringResponseHandler() {
-	 * 
-	 * @Override public void onResponse(final String content, URL url, int code)
-	 * {
-	 * 
-	 * disprogress();
-	 * 
-	 * try { System.out.println("支付回来的结果" + content);
-	 * 
-	 * JSONObject json = new JSONObject(content);
-	 * 
-	 * int success = json.getInt("success");
-	 * 
-	 * if (success == 1) { // System.out.println("下订单支付失败"); //
-	 * Toastutils_jf.toastString(paramActivity, // "下订单支付失败"); //
-	 * pay_run(paramActivity); if (Myconstants.ISFIRSTPAY) { new
-	 * Handler(Looper.getMainLooper()) .post(new Runnable() {
-	 * 
-	 * @Override public void run() { System.out .println("支付回来的结果" + content);
-	 * pay_run(paramActivity);
-	 * 
-	 * } }); } else {
-	 * 
-	 * new Handler(Looper.getMainLooper()) .post(new Runnable() {
-	 * 
-	 * @Override public void run() { YYWMain.mPayCallBack .onPayFailed(null,
-	 * null);
-	 * 
-	 * } }); }
-	 * 
-	 * } else if (success == 0) { System.out.println("支付成功"); //
-	 * Toastutils_jf.toastString(paramActivity, // "支付成功"); //
-	 * YYWMain.mPayCallBack.onPaySuccess(arg0, arg1, // arg2); new
-	 * Handler(Looper.getMainLooper()) .post(new Runnable() {
-	 * 
-	 * @Override public void run() { YYWMain.mPayCallBack .onPaySuccess(
-	 * YYWMain.mUser, YYWMain.mOrder, "success");
-	 * 
-	 * } }); }
-	 * 
-	 * } catch (JSONException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); }
-	 * 
-	 * if (code != 200) {
-	 * 
-	 * new Handler(Looper.getMainLooper()) .post(new Runnable() {
-	 * 
-	 * @Override public void run() { Toast.makeText(paramActivity,
-	 * "订单处理失败，请重新支付", Toast.LENGTH_SHORT).show();
-	 * 
-	 * } });
-	 * 
-	 * } else {
-	 * 
-	 * }
-	 * 
-	 * }
-	 * 
-	 * });
-	 * 
-	 * }
+	 * @param paramActivity
 	 */
+	public void tokoukuan(final Activity paramActivity) {
+		
+		HttpUtils httpUtil = new HttpUtils();
+		RequestParams requestParams = new RequestParams();
+		requestParams.addBodyParameter("uid", YYWMain.mUser.yywuid);
+		requestParams.addBodyParameter("openid", Myconstants.mpayinfo.openId);
+		requestParams.addBodyParameter("app_id",
+				DeviceUtil.getAppid(paramActivity));
+		requestParams.addBodyParameter("openkey", Myconstants.mpayinfo.openKey);
+		requestParams.addBodyParameter("pay_token",
+				Myconstants.mpayinfo.qq_paytoken);
+		requestParams.addBodyParameter("amount", "" + YYWMain.mOrder.money);
+		requestParams.addBodyParameter("remark", YYWMain.mOrder.ext);
+		requestParams.addBodyParameter("transid", YYWMain.mOrder.orderId);
+		requestParams.addBodyParameter("username", YYWMain.mUser.userName);
+		requestParams.addBodyParameter("pf", Myconstants.mpayinfo.pf);
+		requestParams.addBodyParameter("pfkey", Myconstants.mpayinfo.pfKey);
+		requestParams.addBodyParameter("zoneid", "1");
+		requestParams.addBodyParameter("amt", "" + (YYWMain.mOrder.money / 10));
+		requestParams.addBodyParameter("opentype",
+				Myconstants.mpayinfo.opentype);
+
+		/*
+		 * System.out.println(Myconstants.mpayinfo.toString());
+		 * System.out.println(YYWMain.mOrder.toString());
+		 * System.out.println(YYWMain.mUser.toString());
+		 * System.out.println("payitem:" + "123456" + "*" +
+		 * (YYWMain.mOrder.money / 10) + "*" + "" + 1);
+		 * System.out.println("goodsmeta:" + YYWMain.mOrder.goods + "*" + "道具");
+		 * System.out .println("goodsurl:" + YYWMain.mOrder.goods + "*" +
+		 * "http://img2.imgtn.bdimg.com/it/u=3188228834,2947524100&fm=21&gp=0.jpg"
+		 * );
+		 */
+
+		requestParams.addBodyParameter("payitem", "123456" + "*"
+				+ (YYWMain.mOrder.money / 10) + "*" + "" + 1);
+		requestParams.addBodyParameter("goodsmeta", YYWMain.mOrder.goods + "*"
+				+ "道具");
+		requestParams
+				.addBodyParameter("goodsurl",
+						"http://img2.imgtn.bdimg.com/it/u=3188228834,2947524100&fm=21&gp=0.jpg");
+
+		httpUtil.send(HttpMethod.POST, ViewConstants.unionmakeorder,
+				requestParams, new RequestCallBack<String>() {
+
+					@Override
+					public void onFailure(HttpException arg0, String arg1) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void onSuccess(final ResponseInfo<String> arg0) {
+						// TODO Auto-generated method stub
+						
+						try {
+							JSONObject obj = new JSONObject(arg0.result);
+							int err_code = obj.optInt("err_code");
+							System.out.println("支付回来的结果++++++++++"
+									+ arg0.result);
+
+							// err_code = 11020 的时候 余额不足
+							if (err_code == 11020) {
+
+								ToastInmainthread(paramActivity,
+										"支付正在确认，请等待一分钟到账");
+								delayToGetMoney(paramActivity);
+
+								// pfkey不正确
+							} else if (err_code == 10021) {
+
+								getmoneyTimer = 0;
+								// pf值有问题
+								ToastInmainthread(paramActivity,
+										"登陆过期，请按返回键，注销登陆，重新登陆充值");
+								payfail(paramActivity);
+							} else if (err_code == 0) {
+								paysucc(paramActivity);
+							} else {
+								payfail(paramActivity);
+							}
+
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					}
+				});
+	}
+
 	private void pay_run(final Activity paramActivity) {
 
 		String zoneId = "1";
@@ -359,8 +340,8 @@ public class ChargerImpl implements YYWCharger {
 
 											@Override
 											public void run() {
-												Myconstants.ISFIRSTPAY = false;
-												createOrder(mactivity);
+												
+												tokoukuan(mactivity);
 											}
 										});
 
@@ -384,14 +365,7 @@ public class ChargerImpl implements YYWCharger {
 							}
 						} else {
 							switch (ret.flag) {
-							// case eFlag.User_LocalTokenInvalid:
-							// // 用户取消支付
-							// System.out.println("登陆态过期，请重新登陆："
-							// + ret.toString());
-							// // mMainActivity.letUserLogout();
-							// Toast.makeText(mactivity, "登陆时间过长，请新登陆游戏进行支付",
-							// 0).show();
-							// break;
+
 							case eFlag.Pay_User_Cancle:
 								// 用户取消支付
 								payFail();
@@ -413,6 +387,72 @@ public class ChargerImpl implements YYWCharger {
 					}
 				});
 
+	}
+
+	static int getmoneyTimer = 0;// 轮询时间，超过次，就停止扣款
+
+	/**
+	 * 延迟10秒去扣款
+	 */
+	private void delayToGetMoney(final Activity mactivity) {
+		new Timer().schedule(new TimerTask() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				mactivity.runOnUiThread(new Runnable() {
+
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						if (getmoneyTimer > 5) {
+							ToastInmainthread(mactivity, "如果没有到账，请联系游戏客服进行处理");
+							getmoneyTimer = 0;
+							return;
+						} else {
+							getmoneyTimer = getmoneyTimer + 1;
+							tokoukuan(mactivity);
+						}
+
+					}
+				});
+			}
+		}, 10000);
+	}
+
+	private void ToastInmainthread(final Activity mactivity, final String msg) {
+		mactivity.runOnUiThread(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Toast.makeText(mactivity, msg, Toast.LENGTH_SHORT).show();
+
+			}
+		});
+	}
+
+	private void paysucc(Activity mactivity) {
+		mactivity.runOnUiThread(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				YYWMain.mPayCallBack.onPaySuccess(YYWMain.mUser,
+						YYWMain.mOrder, "success");
+			}
+		});
+	}
+
+	private void payfail(Activity mactivity) {
+		mactivity.runOnUiThread(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				YYWMain.mPayCallBack.onPayFailed(null, "success");
+			}
+		});
 	}
 
 	ProgressDialog progressDialog = null;

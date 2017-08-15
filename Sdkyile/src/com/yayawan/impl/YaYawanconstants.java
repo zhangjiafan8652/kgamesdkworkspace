@@ -5,12 +5,14 @@ import java.util.HashMap;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.ToggleButton;
 
 import com.kkgame.utils.DeviceUtil;
 import com.kkgame.utils.Handle;
 import com.kkgame.utils.JSONUtil;
 import com.snowfish.cn.ganga.helper.SFOnlineExitListener;
 import com.snowfish.cn.ganga.helper.SFOnlineHelper;
+import com.snowfish.cn.ganga.helper.SFOnlineInitListener;
 import com.snowfish.cn.ganga.helper.SFOnlineLoginListener;
 import com.snowfish.cn.ganga.helper.SFOnlinePayResultListener;
 import com.snowfish.cn.ganga.helper.SFOnlineUser;
@@ -32,7 +34,16 @@ public class YaYawanconstants {
 	public static void inintsdk(final Activity mactivity) {
 		mActivity = mactivity;
 		Yayalog.loger("YaYawanconstants初始化sdk");
-		
+		SFOnlineHelper.onCreate(mactivity,new SFOnlineInitListener() {
+			
+			@Override
+			public void onResponse(String tag, String arg1) {
+				// TODO Auto-generated method stub
+				if (tag.equalsIgnoreCase("success")) {
+					com.kkgame.utils.Yayalog.loger("初始化成功");
+				}
+			}
+		});
 		SFOnlineHelper.setLoginListener(mactivity, new SFOnlineLoginListener() {
 			
 			@Override
@@ -149,6 +160,9 @@ public class YaYawanconstants {
 	public static void setData(Activity paramActivity, String roleId, String roleName,String roleLevel, String zoneId, String zoneName, String roleCTime,String ext){
 		// TODO Auto-generated method stub
 		Yayalog.loger("YaYawanconstants设置角色信息");
+		
+		
+		
 	}
 	public static void onResume(Activity paramActivity) {
 		// TODO Auto-generated method stub
