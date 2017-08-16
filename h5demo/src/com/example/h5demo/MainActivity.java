@@ -1,17 +1,14 @@
 package com.example.h5demo;
 
-import com.example.h5dem.R;
-import com.yayawan.main.Kgame;
-import com.yayawan.proxy.GameApi;
-import com.yayawan.proxy.GameProxy;
 
-import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
-import android.view.View;
+import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import com.yayawan.main.Kgame;
+import com.yayawan.proxy.GameApi;
 
 public class MainActivity extends Activity {
 

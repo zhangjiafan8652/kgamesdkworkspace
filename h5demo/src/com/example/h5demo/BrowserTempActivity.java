@@ -1,10 +1,12 @@
 package com.example.h5demo;
 
+import static java.lang.Integer.parseInt;
+
+import java.net.URL;
+import java.util.Timer;
+
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -12,7 +14,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
-import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebSettings.LayoutAlgorithm;
@@ -21,33 +22,23 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
-
-
-import com.example.h5dem.R;
 import com.yayawan.callback.YYWAnimCallBack;
 import com.yayawan.callback.YYWExitCallback;
 import com.yayawan.main.Kgame;
 import com.yayawan.proxy.GameApi;
 
-import java.net.URL;
-import java.util.Timer;
-
-
-
-import static java.lang.Integer.parseInt;
-
-
-public class BrowserTempActivity extends Activity  {
+public class BrowserTempActivity extends Activity {
 	/**
 	 * 作为一个浏览器的示例展示出来，采用android+web的模式
 	 */
 
-//private static final String mHomeUrl = "https://api.sdk.75757.com/web/profile/?uid=3867385116174336225&token=49651f5888ae6ae016669a8441873cc4&appid=2585027502";
-	//private static final String mHomeUrl = "http://jump.h5.jiulingwan.com:81/webserver/07073/android/index.html";
-	//http://h5cqllyx.jiulingwan.com/webserver/07073/android/index.html 
-		private static final String mHomeUrl = "http://h5cqllyx.jiulingwan.com/webserver/07073/android/index.html";
+	// private static final String mHomeUrl =
+	// "https://api.sdk.75757.com/web/profile/?uid=3867385116174336225&token=49651f5888ae6ae016669a8441873cc4&appid=2585027502";
+	// private static final String mHomeUrl =
+	// "http://jump.h5.jiulingwan.com:81/webserver/07073/android/index.html";
+	// http://h5cqllyx.jiulingwan.com/webserver/07073/android/index.html
+	private static final String mHomeUrl = "http://h5cqllyx.jiulingwan.com/webserver/07073/android/index.html";
 	private static final String TAG = "SdkDemo";
 	private static final int MAX_LENGTH = 14;
 	private boolean mNeedTestPage = false;
@@ -56,44 +47,12 @@ public class BrowserTempActivity extends Activity  {
 
 	private ProgressBar mPageLoadingProgressBar = null;
 
-	
-
 	private URL mIntentUrl;
 	private Timer mTimer;
-
-
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		Kgame.getInstance().anim(this, new YYWAnimCallBack() {
-			
-			@Override
-			public void onAnimSuccess(String arg0, Object arg1) {
-				// TODO Auto-generated method stub
-
-				init();
-			}
-			
-			@Override
-			public void onAnimFailed(String arg0, Object arg1) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void onAnimCancel(String arg0, Object arg1) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-
-		Kgame.getInstance().onCreate(this);
-
-
-
 
 		//
 		try {
@@ -105,48 +64,63 @@ public class BrowserTempActivity extends Activity  {
 			}
 		} catch (Exception e) {
 		}
-		/*getWindow().addFlags(
-				 android.view.WindowManager.LayoutParams.);*/
+		/*
+		 * getWindow().addFlags( android.view.WindowManager.LayoutParams.);
+		 */
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_x5view);
 
-		
-        rl_webview = (RelativeLayout) findViewById(R.id.rl_webview);
+		Kgame.getInstance().anim(this, new YYWAnimCallBack() {
 
-        rl_webview.setVisibility(View.GONE);
+			@Override
+			public void onAnimSuccess(String arg0, Object arg1) {
+				// TODO Auto-generated method stub
 
+				init();
+			}
 
+			@Override
+			public void onAnimFailed(String arg0, Object arg1) {
+				// TODO Auto-generated method stub
 
+			}
+
+			@Override
+			public void onAnimCancel(String arg0, Object arg1) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+
+		Kgame.getInstance().onCreate(this);
+
+		rl_webview = (RelativeLayout) findViewById(R.id.rl_webview);
+
+		rl_webview.setVisibility(View.GONE);
 
 	}
 
-
-    RelativeLayout rl_webview;
+	RelativeLayout rl_webview;
 	private WebView mWebView;
 
 	private void init() {
 
+		mWebView = (WebView) findViewById(R.id.webView1);
+		mWebView.addJavascriptInterface(new GameApi(this, mWebView), "GameApi");
 
-
-        mWebView = (WebView) findViewById(R.id.webView1);
-		mWebView.addJavascriptInterface(new GameApi(this,mWebView),
-				"GameApi");
-
-		
 		mWebView.setWebViewClient(new WebViewClient() {
 
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				System.out.println(url);
-                if (url.contains("uid=")){
-                	rl_webview.setVisibility(View.VISIBLE);
-                }
+				if (url.contains("uid=")) {
+					rl_webview.setVisibility(View.VISIBLE);
+				}
 
 				mWebView.loadUrl(url);
 				return false;
 
 			}
-
 
 			@Override
 			public void onPageFinished(WebView view, String url) {
@@ -154,12 +128,9 @@ public class BrowserTempActivity extends Activity  {
 
 			}
 
-
 		});
 
 		mWebView.setWebChromeClient(new WebChromeClient() {
-
-		
 
 			View myVideoView;
 			View myNormalView;
@@ -195,9 +166,7 @@ public class BrowserTempActivity extends Activity  {
 				}
 			}
 
-		
 		});
-
 
 		WebSettings webSetting = mWebView.getSettings();
 		webSetting.setAllowFileAccess(true);
@@ -223,7 +192,8 @@ public class BrowserTempActivity extends Activity  {
 		// webSetting.setRenderPriority(WebSettings.RenderPriority.HIGH);
 		// webSetting.setPreFectch(true);
 
-		//mWebView.addJavascriptInterface(new InJavaScriptLocalObj(), "local_obj");
+		// mWebView.addJavascriptInterface(new InJavaScriptLocalObj(),
+		// "local_obj");
 
 		mWebView.loadUrl(mHomeUrl);
 
@@ -231,18 +201,16 @@ public class BrowserTempActivity extends Activity  {
 		CookieSyncManager.getInstance().sync();
 	}
 
-
 	public void clearWebViewCache() {
-// 清除cookie即可彻底清除缓存
-		CookieSyncManager cookieSyncManager =  CookieSyncManager.createInstance(getApplicationContext());
+		// 清除cookie即可彻底清除缓存
+		CookieSyncManager cookieSyncManager = CookieSyncManager
+				.createInstance(getApplicationContext());
 		CookieManager cookieManager = CookieManager.getInstance();
 		cookieManager.setAcceptCookie(true);
 		cookieManager.removeSessionCookie();
 		cookieManager.removeAllCookie();
 
-
 	}
-
 
 	boolean[] m_selected = new boolean[] { true, true, true, true, false,
 			false, true };
@@ -257,17 +225,17 @@ public class BrowserTempActivity extends Activity  {
 					finish();
 				}
 			});
-				return super.onKeyDown(keyCode, event);
+			return super.onKeyDown(keyCode, event);
 		}
 		return super.onKeyDown(keyCode, event);
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		
 
-		Kgame.getInstance().onActivityResult(this,requestCode,resultCode,data);
-		
+		Kgame.getInstance().onActivityResult(this, requestCode, resultCode,
+				data);
+
 	}
 
 	@Override
@@ -280,9 +248,6 @@ public class BrowserTempActivity extends Activity  {
 
 	@Override
 	protected void onDestroy() {
-
-
-
 
 		if (mWebView != null)
 			mWebView.destroy();
@@ -320,13 +285,9 @@ public class BrowserTempActivity extends Activity  {
 		super.onActivityReenter(resultCode, data);
 	}
 
-
-
 	public static final int MSG_OPEN_TEST_URL = 0;
 	public static final int MSG_INIT_UI = 1;
 	private final int mUrlStartNum = 0;
 	private int mCurrentUrl = mUrlStartNum;
-
-
 
 }
