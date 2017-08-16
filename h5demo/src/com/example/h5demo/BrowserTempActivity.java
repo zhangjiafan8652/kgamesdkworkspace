@@ -45,7 +45,9 @@ public class BrowserTempActivity extends Activity  {
 	 */
 
 //private static final String mHomeUrl = "https://api.sdk.75757.com/web/profile/?uid=3867385116174336225&token=49651f5888ae6ae016669a8441873cc4&appid=2585027502";
-	private static final String mHomeUrl = "http://jump.h5.jiulingwan.com:81/webserver/07073/android/index.html";
+	//private static final String mHomeUrl = "http://jump.h5.jiulingwan.com:81/webserver/07073/android/index.html";
+	//http://h5cqllyx.jiulingwan.com/webserver/07073/android/index.html 
+		private static final String mHomeUrl = "http://h5cqllyx.jiulingwan.com/webserver/07073/android/index.html";
 	private static final String TAG = "SdkDemo";
 	private static final int MAX_LENGTH = 14;
 	private boolean mNeedTestPage = false;

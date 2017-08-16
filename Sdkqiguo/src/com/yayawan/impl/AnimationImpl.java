@@ -51,7 +51,7 @@ public class AnimationImpl implements YYWAnimation {
 			@Override
 			public void run() {
 				new LogoWindow(paramActivity);
-
+				//YYWMain.mAnimCallBack.onAnimSuccess("success", "");
 			}
 		});
 
