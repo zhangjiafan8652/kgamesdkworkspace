@@ -324,7 +324,7 @@ public class LoginImpl implements YYWLoginer {
 	 */
 	public static void loginFail() {
 		if (YYWMain.mUserCallBack != null) {
-			YYWMain.mUserCallBack.onLoginFailed("", "");
+			YYWMain.mUserCallBack.onLoginFailed("1232", "123");
 
 		}
 	}

@@ -9,6 +9,7 @@ import com.yayawan.callback.YYWPayCallBack;
 import com.yayawan.callback.YYWUserCallBack;
 import com.yayawan.domain.YYWOrder;
 import com.yayawan.domain.YYWUser;
+import com.yayawan.main.Kgame;
 import com.yayawan.main.YaYaWan;
 import com.yayawan.proxy.GameProxy;
 
@@ -122,7 +123,7 @@ public class MainActivity extends Activity {
 
 	public void login(View v) {
         System.out.println("登录");
-        GameProxy.getInstent().login(this, new YYWUserCallBack() {
+        Kgame.getInstance().login(this, new YYWUserCallBack() {
 
             @Override
             public void onLogout(Object arg0) {

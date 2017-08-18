@@ -150,6 +150,10 @@
             android:theme="@android:style/Theme.Dialog" />
         
 
+        
+        
+        
+        
         <meta-data
             android:name="com.tencent.rdm.uuid"
             android:value="55f4d74e-ce87-4cab-afc7-407814265410" />
@@ -170,7 +174,9 @@
             android:value="yes" />
        
 
-       
+        <meta-data
+            android:name="moneyrate"
+            android:value="string10" />
 
 
         <!-- 腾讯广点通上报方案最后一个是广告主id -->

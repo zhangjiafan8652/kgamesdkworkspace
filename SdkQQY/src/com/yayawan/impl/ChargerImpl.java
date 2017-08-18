@@ -48,6 +48,9 @@ public class ChargerImpl implements YYWCharger {
 
 	private Activity mactivity;
 
+	
+	private static int moneyrate=10;
+	
 	@Override
 	public void pay(final Activity paramActivity, final YYWOrder order,
 			YYWPayCallBack callback) {
@@ -57,6 +60,8 @@ public class ChargerImpl implements YYWCharger {
 			@Override
 			public void run() {
 				mactivity = paramActivity;
+				
+				moneyrate=100/Integer.parseInt(DeviceUtil.getGameInfo(paramActivity, "moneyrate"));
 				if (YYWMain.mUser != null) {
 					// System.out.println("我要创建订单了");
 					// 设置是第一次支付
@@ -83,6 +88,7 @@ public class ChargerImpl implements YYWCharger {
 						Myconstants.mpayinfo.openKey = ret.getPayToken();
 					} else if (platform1 == ePlatform.WX) {
 						logintype = "wx";
+						Myconstants.mpayinfo.openId = ret.open_id;
 						Myconstants.mpayinfo.opentype = "wx";
 						Myconstants.mpayinfo.openKey = ret.getAccessToken();
 					}
@@ -122,7 +128,7 @@ public class ChargerImpl implements YYWCharger {
 		requestParams.addBodyParameter("pf", Myconstants.mpayinfo.pf);
 		requestParams.addBodyParameter("pfkey", Myconstants.mpayinfo.pfKey);
 		requestParams.addBodyParameter("zoneid", "1");
-		requestParams.addBodyParameter("amt", "" + (YYWMain.mOrder.money / 10));
+		requestParams.addBodyParameter("amt", "" + (YYWMain.mOrder.money /moneyrate));
 		requestParams.addBodyParameter("opentype",
 				Myconstants.mpayinfo.opentype);
 
@@ -226,7 +232,7 @@ public class ChargerImpl implements YYWCharger {
 		requestParams.addBodyParameter("pf", Myconstants.mpayinfo.pf);
 		requestParams.addBodyParameter("pfkey", Myconstants.mpayinfo.pfKey);
 		requestParams.addBodyParameter("zoneid", "1");
-		requestParams.addBodyParameter("amt", "" + (YYWMain.mOrder.money / 10));
+		requestParams.addBodyParameter("amt", "" + (YYWMain.mOrder.money / moneyrate));
 		requestParams.addBodyParameter("opentype",
 				Myconstants.mpayinfo.opentype);
 
@@ -243,7 +249,7 @@ public class ChargerImpl implements YYWCharger {
 		 */
 
 		requestParams.addBodyParameter("payitem", "123456" + "*"
-				+ (YYWMain.mOrder.money / 10) + "*" + "" + 1);
+				+ (YYWMain.mOrder.money /moneyrate) + "*" + "" + 1);
 		requestParams.addBodyParameter("goodsmeta", YYWMain.mOrder.goods + "*"
 				+ "道具");
 		requestParams
@@ -302,7 +308,8 @@ public class ChargerImpl implements YYWCharger {
 	private void pay_run(final Activity paramActivity) {
 
 		String zoneId = "1";
-		String saveValue = "" + YYWMain.mOrder.money / 10;
+		String saveValue = "" + YYWMain.mOrder.money / moneyrate;
+		System.out.println("money++++++:"+saveValue);
 		boolean isCanChange = false;
 
 		AssetManager assetManager = paramActivity.getAssets();
