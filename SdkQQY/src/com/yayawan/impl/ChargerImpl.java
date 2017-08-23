@@ -509,7 +509,7 @@ public class ChargerImpl implements YYWCharger {
 	public static void payFail() {
 		// 支付成功
 		if (YYWMain.mPayCallBack != null) {
-			YYWMain.mPayCallBack.onPayFailed(null, null);
+			YYWMain.mPayCallBack.onPayFailed("", "");
 		}
 	}
 }

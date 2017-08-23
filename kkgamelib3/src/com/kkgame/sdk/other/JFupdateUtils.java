@@ -91,11 +91,11 @@ public class JFupdateUtils {
 		String url = ViewConstants.updateurl;
 		;
 		RequestParams requestParams = new RequestParams();
-		requestParams.addBodyParameter("appid", DeviceUtil.getAppid(mActivity));
+		requestParams.addBodyParameter("app_id", DeviceUtil.getAppid(mActivity));
 		requestParams.addBodyParameter("versioncode",
 				DeviceUtil.getVersionCode(mActivity));
 		Yayalog.loger("召唤神兽url:" + url);
-		httpUtils.send(HttpMethod.POST, "" + url,
+		httpUtils.send(HttpMethod.POST, "" + url,requestParams,
 				new RequestCallBack<String>() {
 
 					@Override

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ljxl.yyw.am"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+
+     <!-- 开始添加Amigo Play SDK 需要的权限,开发者重点关注 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 结束Amigo Play SDK 添加权限 -->
+
+    <application
+        android:allowBackup="true"
+        android:label="app_name"
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        <activity
+            android:name="com.yayawan.sdktemplate.MainActivity"
+            android:label="app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Amigo Play SDK 组件声明开始 -->
+        <service android:name="com.gionee.gsp.floatingwindow.FloatingWindowService" >
+            <intent-filter>
+                <action android:name="com.gionee.pay.ic.FloatingWindowService" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name="com.gionee.gsp.service.activity.AssistActivity"
+            android:configChanges="mcc|mnc|orientation|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- Amigo Play SDK 组件声明结束 -->
+
+        <meta-data
+            android:name="yayawan_game_id"
+            android:value="yaya600595554" />
+        <meta-data
+            android:name="union_id"
+            android:value="yaya495450117" />
+        
+        <meta-data
+            android:name="notifyURL"
+            android:value="http://union.yayawan.com/pay/notify/495450117/600595554/" />
+        
+        
+          <meta-data
+            android:name="addexit"
+            android:value="yes" />
+          
+        <meta-data
+            android:name="isLandscape"
+            android:value="false" />
+        <meta-data
+            android:name="API_KEY"
+            android:value="287E584F2E7C41FC9E376755CA421290" />
+        
+        
+        <meta-data
+            android:name="PRIVATE_KEY"
+            android:value="MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKm0Ahf+peEypHwJ/JhpJ2mrc7gzeA51Z0l7Lek72lNx7MuFO8TZJntGOBucnd/1xO/jUhFYpf7i02CwZkmCJnH1WvYdmIN8vg7Hmxb3iLv/3G19X1wua2Ea1TOGib2Gb20y8EqIck8H/BOQol6nzYXBzBnGvU/uyAvGWEnEggidAgMBAAECgYBtLY0HSOIJXt5pmrcyirw7hH1/bUV479lScfgYjFQqySmRyhaozxetyYBBa2I6etCHkNT0qfapY96f3vz/n8cBCzAicXUXJQ5GP0yuZw1ANfsiIeYWeF38CsfRo8XH9OTQgd1QzGvSYGxJUOoXxi3zNwpyMJA/fNC3ml0Fn0yx9QJBAPopE9ozTwrI7b2dHdIszkSip/DDl5Qs3Z0CKnrGJZoQnxoh6TtUKWSEav5FXNIHtaw/EWowI96qNzs/8x0C4D8CQQCtqiEn+O/rWh+aRhHxu9deMw/RWcK0lJIxRHhJnqSUI130fIrCnn3GAt8U/i6AsSeTunpNcUXAd5EqXQohiqAjAkEAznRuTOuBdU4kXxO3E8kkpqJy5ZIWnBR3BWhPNKopSEAlfoS0HuGzk6BxSM5n73Krba9TKQb344EpOf3qH2xLMwJAVzyEBUlWc7pE78FNGEpMqIQr6PUXCpErUtZbOlgXwlZ1xu+c4KCu+33LxAbfI0RaZiohb69742/smwQ7p5e0UwJAMB87417/ae+WnDLH+9AV67N4PV590NLU/8wG5jgk9LdNpVCUd//AhodnGhfJhs2eXYMFtzggUHhaalKTRJreMg==" />
+     	
+        <!--   6.13日编辑3.14.a -->
+    </application>
+
+</manifest>

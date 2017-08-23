@@ -181,7 +181,7 @@ public class CommonGameProxy implements YYWGameProxy {
 															userCallBack
 																	.onLoginSuccess(
 																			yywUser,
-																			"");
+																			"onLoginSuccess");
 															
 														}
 													});
@@ -197,7 +197,7 @@ public class CommonGameProxy implements YYWGameProxy {
 								@Override
 								public void onFail(String erro, String temp) {
 									// TODO Auto-generated method stub
-									userCallBack.onLoginFailed("登陆失败", null);
+									userCallBack.onLoginFailed("登陆失败", "onFail");
 								}
 							});
 				}
@@ -205,7 +205,7 @@ public class CommonGameProxy implements YYWGameProxy {
 				@Override
 				public void onLoginFailed(String paramString, Object paramObject) {
 					// TODO Auto-generated method stub
-					userCallBack.onLoginFailed("登陆失败", null);
+					userCallBack.onLoginFailed("登陆失败", "onLoginFailed");
 				}
 
 				@Override

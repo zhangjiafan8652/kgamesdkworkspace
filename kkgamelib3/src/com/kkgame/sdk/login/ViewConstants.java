@@ -13,7 +13,11 @@ import com.kkgame.utils.DeviceUtil;
 
 public class ViewConstants {
 
-	public static final String SDKVERSION = "2.1";
+	/*
+	 * 2,2.增加联合渠道游戏更新
+	 */
+
+	public static final String SDKVERSION = "2.2";
 	public static final int LOGIN_VIEW = 1;
 	public static final int REGISTER_VIEW = 2;
 	public static final int REGISTERACCOUNT_VIEW = 3;
