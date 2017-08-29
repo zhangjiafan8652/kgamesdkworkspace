@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.yayawan.huiyou"
+    package="com.yayawan.sdktemplate"
     android:versionCode="1"
     android:versionName="1.0" android:installLocation="auto">
 
@@ -44,26 +44,27 @@
         </activity>
       
         <!-- sdk -->
+          <!-- sdk -->
         <activity
             android:name="com.p75757.sdk.activities.LoginActivity"
-            android:configChanges="keyboardHidden|orientation"
             android:exported="false"
+            android:configChanges="keyboardHidden|orientation"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name="com.p75757.sdk.activities.TradeActivity"
-            android:configChanges="keyboardHidden|orientation"
             android:exported="false"
+            android:configChanges="keyboardHidden|orientation"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name="com.p75757.sdk.activities.LoggingInActivity"
-            android:configChanges="keyboardHidden|orientation"
             android:exported="false"
+            android:configChanges="keyboardHidden|orientation"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name="com.p75757.sdk.activities.UserInfoActivity"
-            android:configChanges="keyboardHidden|orientation"
             android:exported="false"
             android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!-- 支付宝 -->
         <activity

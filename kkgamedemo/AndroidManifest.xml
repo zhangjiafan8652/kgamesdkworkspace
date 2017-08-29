@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.kkgamedemo"
-    android:versionCode="1"
+    android:versionCode="2"
     android:versionName="1.0" >
 
     <uses-sdk
@@ -46,7 +46,7 @@
         android:smallScreens="true" />
 
     <application
-        android:name="com.yayawan.impl.YYApplication"
+        android:name="com.ddgame.impl.YYApplication"
         android:allowBackup="true"
         android:label="haha"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
@@ -72,6 +72,18 @@
           	android:theme="@android:style/Theme.Translucent" 
            >
         </activity>
+        
+          <!-- BaseLogin_Activity 登录 -->
+        <activity
+            android:name="com.ddgame.sdk.login.BaseLogin_Activity"
+            android:configChanges="keyboardHidden|navigation|orientation|screenSize"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name="com.ddgame.sdk.login.SmallHelpActivity"
+          	android:configChanges="keyboardHidden|navigation|orientation|screenSize"
+          	android:theme="@android:style/Theme.Translucent" 
+           >
+        </activity>
 
         <!-- yayawan_nochangecount设置为true这取消切换账号..除个别特殊游戏外.都不能取消切换账号这个选项 -->
         <meta-data
@@ -82,6 +94,11 @@
         <meta-data
             android:name="app_id"
             android:value="kk540353156" />
+        
+        <!-- 退出接口是否有弹框提示 -->
+        <meta-data
+            android:name="ddapp_id"
+            android:value="kk9826509" />
        
        
         <!--
