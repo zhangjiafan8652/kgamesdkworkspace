@@ -13,13 +13,15 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ddgame.callback.YYWAnimCallBack;
-import com.ddgame.callback.YYWExitCallback;
-import com.ddgame.callback.YYWPayCallBack;
-import com.ddgame.callback.YYWUserCallBack;
-import com.ddgame.domain.YYWOrder;
-import com.ddgame.domain.YYWUser;
-import com.ddgame.main.Kgame;
+import com.yayawan.callback.YYWAnimCallBack;
+import com.yayawan.callback.YYWExitCallback;
+import com.yayawan.callback.YYWPayCallBack;
+import com.yayawan.callback.YYWUserCallBack;
+import com.yayawan.domain.YYWOrder;
+import com.yayawan.domain.YYWUser;
+import com.yayawan.main.Kgame;
+
+
 
 
 
@@ -205,7 +207,7 @@ public class MainActivity extends Activity {
 
 	public void anim(View v) {
 
-		Kgame.getInstance().setData(this, "", "", "", "", "", "", "");
+		Kgame.getInstance().setData(this, "1", "1", "1", "1", "1", "1", "0");
 
 		Kgame.getInstance().anim(this, new YYWAnimCallBack() {
 
@@ -375,8 +377,9 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onDestroy() {
-		super.onDestroy();
 		Kgame.getInstance().onDestroy(this);
+		super.onDestroy();
+		
 	}
 
 	@Override

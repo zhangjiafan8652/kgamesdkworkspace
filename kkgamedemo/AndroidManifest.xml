@@ -46,7 +46,7 @@
         android:smallScreens="true" />
 
     <application
-        android:name="com.ddgame.impl.YYApplication"
+        android:name="com.yayawan.impl.YYApplication"
         android:allowBackup="true"
         android:label="haha"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
@@ -93,12 +93,12 @@
         <!-- 退出接口是否有弹框提示 -->
         <meta-data
             android:name="app_id"
-            android:value="kk540353156" />
+            android:value="kk767405254" />
         
         <!-- 退出接口是否有弹框提示 -->
         <meta-data
             android:name="ddapp_id"
-            android:value="kk9826509" />
+            android:value="kk767405254" />
        
        
         <!--

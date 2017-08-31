@@ -271,5 +271,11 @@ public class MainActivity extends Activity {
 		GameProxy.getInstent().onDestroy(this);
 
 	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		GameProxy.getInstent().onActivityResult(this, requestCode, resultCode, data);
+	}
 
 }
