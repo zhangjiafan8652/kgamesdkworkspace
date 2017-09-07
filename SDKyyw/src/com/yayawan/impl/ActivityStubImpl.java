@@ -18,6 +18,7 @@ public class ActivityStubImpl implements YYWActivityStub {
     public void applicationInit(Activity paramActivity) {
         // TODO Auto-generated method stub
 
+    	
     }
 
     @Override

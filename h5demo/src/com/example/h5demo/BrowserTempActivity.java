@@ -53,7 +53,7 @@ public class BrowserTempActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
 		//
 		try {
 			if (parseInt(android.os.Build.VERSION.SDK) >= 11) {
