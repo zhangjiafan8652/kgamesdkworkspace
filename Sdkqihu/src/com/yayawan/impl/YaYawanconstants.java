@@ -56,6 +56,7 @@ public class YaYawanconstants {
 		Yayalog.loger("YaYawanconstants初始化sdk");
 		Boolean isLandscape = DeviceUtil.isLandscape(mActivity)?true:false;
 		Matrix.setActivity(mactivity, mSDKCallback);
+		
 
 	}
 	protected static boolean getLandscape(Context context) {
