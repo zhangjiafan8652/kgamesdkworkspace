@@ -69,6 +69,7 @@ public class ChargerImpl implements YYWCharger {
 		requestParams.addBodyParameter("transid", YYWMain.mOrder.orderId);
 		requestParams.addBodyParameter("username", YYWMain.mUser.userName);
 		Yayalog.loger("uid:"+ YYWMain.mUser.yywuid);
+		Yayalog.loger("app_id:"+ DeviceUtil.getAppid(paramActivity));
 		Yayalog.loger("username:"+YYWMain.mUser.userName);
 		Yayalog.loger("app_id:"+DeviceUtil.getAppid(paramActivity));
 		Yayalog.loger("amount:"+YYWMain.mOrder.money);

@@ -368,6 +368,7 @@ public class CommonGameProxy implements YYWGameProxy {
 		new JFupdateUtils(paramActivity).startUpdate();
 
 		mStub.onCreate(paramActivity);
+		
 
 	}
 

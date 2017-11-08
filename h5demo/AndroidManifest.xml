@@ -81,6 +81,10 @@
             android:name="yayawan_nochangecount"
             android:value="false" />
 
+        <meta-data
+            android:name="isdebug"
+            android:value="true" />
+  
         <!-- 退出接口是否有弹框提示 -->
         <meta-data
             android:name="app_id"
