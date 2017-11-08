@@ -20,12 +20,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.kkgame.utils.DeviceUtil;
 import com.yayawan.main.YYWMain;
 import com.yayawan.proxy.YYWAnimation;
 
 public class AnimationImpl implements YYWAnimation {
 
-	@Override
 	public void anim(final Activity paramActivity) {
 		// TODO Auto-generated method stub
 		// Toast.makeText(paramActivity, "播放动画", Toast.LENGTH_SHORT).show();
@@ -42,7 +42,6 @@ public class AnimationImpl implements YYWAnimation {
 
 		new Handler(Looper.getMainLooper()).post(new Runnable() {
 
-			@Override
 			public void run() {
 				new LogoWindow(paramActivity);
 
@@ -111,7 +110,11 @@ class LogoWindow {
 		InputStream istr = null;
 		try {
 
-			istr = assetManager.open("sougou.png");
+			if(DeviceUtil.isLandscape(con)){
+				istr = assetManager.open("heng.png");
+			}else{
+				istr = assetManager.open("shu.png");
+			}
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

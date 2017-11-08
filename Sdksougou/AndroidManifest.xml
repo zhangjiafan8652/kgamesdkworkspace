@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yayawan.sdktemplate"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="386"
+    android:versionName="3.8.6" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -127,7 +127,7 @@
             android:name="com.sogou.gamecenter.sdk.activity.SogouPayActivity"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|orientation|screenSize"
             android:launchMode="singleTask"
-            android:screenOrientation="behind"
+            android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:windowBackground="@null"
             android:windowSoftInputMode="adjustPan" />
@@ -267,11 +267,12 @@
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="behind"
+            android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
+             android:screenOrientation="landscape"
             android:noHistory="true" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -284,7 +285,7 @@
         </activity>
         <activity
             android:name="com.sogou.passportsdk.activity.QQAssistActivity"
-            android:screenOrientation="behind"
+            android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoDisplay" >
         </activity>
         
@@ -312,20 +313,20 @@
         <activity
             android:name="com.gamecat.pay.action.activity.GameCatActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
-            android:screenOrientation="behind"
+            android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Translucent" />
         <activity
             android:name="com.alipay.sdk.auth.AuthActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
-            android:screenOrientation="behind" />
+            android:screenOrientation="landscape" />
 
         <!-- 支付宝必要声明 -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:exported="false"
-            android:screenOrientation="behind"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="adjustResize|stateHidden" >
         </activity>
 
@@ -335,7 +336,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:label="app_name"
-            android:screenOrientation="behind"
+            android:screenOrientation="landscape"
             android:theme="@style/Theme.UPPay"
             android:windowSoftInputMode="adjustResize" />
         <!-- 微信支付 -->
@@ -343,7 +344,7 @@
             android:name="com.ipaynow.wechatpay.plugin.inner_plugin.wechat_plugin.activity.WeChatNotifyActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|smallestScreenSize|locale|screenLayout|screenSize"
             android:label="@string/sogou_game_sdk_title_activity_we_chat_pay"
-            android:screenOrientation="behind"
+            android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Translucent" >
         </activity>
         
@@ -353,29 +354,29 @@
       
        <meta-data
             android:name="gid"
-            android:value="string16049" />
+            android:value="string16499" />
        
        <meta-data
             android:name="gamemoneyname"
             android:value="元寶" />
        <meta-data
             android:name="Appkey"
-            android:value="7ed5426d6970328278e2e3da13d88a49304c54ab89dfa96527e8cde9f9a38fd8" />
+            android:value="ef5bcbacc7ad74f6fee252ab44f349f0573b1f28d672049d5ae6c8e55e078883" />
        
        <meta-data
             android:name="gamename"
-            android:value="乱斗三国志" />
+            android:value="捕鱼风暴" />
        
 
        
         <meta-data
             android:name="app_id"
-            android:value="kk129463694" />
+            android:value="kk3302523257" />
         
         <meta-data
             android:name="islandscape"
             android:value="true" />
-    
+        
     </application>
-
-</manifest>
+    
+    </manifest>

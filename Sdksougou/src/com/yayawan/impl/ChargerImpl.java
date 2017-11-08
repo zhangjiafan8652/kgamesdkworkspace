@@ -32,19 +32,16 @@ import com.yayawan.sdktemplate.MainActivity;
 
 public class ChargerImpl implements YYWCharger {
 
-	@Override
 	public void charge(Activity paramActivity, YYWOrder order,
 			YYWPayCallBack callback) {
 
 	}
 
-	@Override
 	public void pay(final Activity paramActivity, final YYWOrder order,
 			YYWPayCallBack callback) {
 
 		new Handler(Looper.getMainLooper()).post(new Runnable() {
 
-			@Override
 			public void run() {
 					
 				createOrder(paramActivity);
@@ -102,7 +99,6 @@ public class ChargerImpl implements YYWCharger {
 								new Handler(Looper.getMainLooper())
 										.post(new Runnable() {
 
-											@Override
 											public void run() {
 												pay_run(paramActivity);
 

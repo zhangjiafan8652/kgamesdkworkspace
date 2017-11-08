@@ -54,13 +54,11 @@ public class YaYawanconstants {
 		// SDK初始化，整个接入流程只调用一次
 		mSogouGamePlatform.init(mactivity, new InitCallbackListener() {
 
-					@Override
 					public void initSuccess() {
 						isinit=true;
 						//login(mactivity);
 					}
 
-					@Override
 					public void initFail(int code, String msg) {
 						// SDK初始化失败再此关闭游戏即可
 						Toast.makeText(mactivity, msg, Toast.LENGTH_LONG).show();
@@ -88,26 +86,22 @@ public class YaYawanconstants {
 
 				
 
-				@Override
 				public void loginSuccess(int code, UserInfo userInfo) {
 					
 					mActivity.runOnUiThread(new Runnable() {
 						
-						@Override
 						public void run() {
 							// TODO Auto-generated method stub
 							mFloatMenu = mSogouGamePlatform.createFloatMenu(mactivity, true);
 							mFloatMenu.show();
 							// 浮动设置切换帐号监听器
 							mFloatMenu.setSwitchUserListener(new SwitchUserListener() {
-								@Override
 								public void switchSuccess(int code, UserInfo userInfo) {
 									Log.d(TAG, "FloatMenus witchSuccess code:" + code + " userInfo:" + userInfo);
 									System.out.println("搜狗切换账号成功");
 									YaYawanconstants.loginOut();
 								}
 
-								@Override
 								public void switchFail(int code, String msg) {
 									Log.e(TAG, "FloatMenus switchFail code:" + code + " msg:" + msg);
 								}
@@ -120,7 +114,6 @@ public class YaYawanconstants {
 					
 				}
 
-				@Override
 				public void loginFail(int code, String msg) {
 					//Log.d(TAG, "CP loginFail:" + msg);
 					YaYawanconstants.loginFail();
@@ -154,7 +147,7 @@ public class YaYawanconstants {
 		// 游戏货币名字（必传）
 		data.put("currency", DeviceUtil.getGameInfo(mactivity, "gamemoneyname"));
 		// 人民币兑换比例（必传）,小数 比例得加 f
-		data.put("rate", 1f);
+		data.put("rate", 10f);
 
 		// 购买商品名字（必传）
 		data.put("product_name", YYWMain.mOrder.goods);
@@ -168,14 +161,12 @@ public class YaYawanconstants {
 
 			// 支付成功回调,游戏方可以做后续逻辑处理
 			// 收到该回调说明提交订单成功，但成功与否要以服务器回调通知为准
-			@Override
 			public void paySuccess(String orderId, String appData) {
 				// orderId是订单号，appData是游戏方自己传的透传消息
 				Log.d(TAG, "paySuccess orderId:" + orderId + " appData:" + appData);
 				paySuce();
 			}
 
-			@Override
 			public void payFail(int code, String orderId, String appData) {
 				// 支付失败情况下,orderId可能为空
 				YaYawanconstants.payFail();
@@ -199,7 +190,6 @@ public class YaYawanconstants {
 		Yayalog.loger("sdk退出");
 		mActivity.runOnUiThread(new Runnable() {
 			
-			@Override
 			public void run() {
 				// TODO Auto-generated method stub
 				mSogouGamePlatform.exit(new OnExitListener(paramActivity) {

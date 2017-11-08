@@ -18,13 +18,11 @@ import com.yayawan.proxy.YYWLoginer;
 
 public class LoginImpl implements YYWLoginer {
 
-	@Override
 	public void login(final Activity paramActivity,
 			YYWUserCallBack userCallBack, String paramString) {
 
 		new Handler(Looper.getMainLooper()).post(new Runnable() {
 
-			@Override
 			public void run() {
 
 				YaYawanconstants.login(paramActivity);
@@ -33,7 +31,6 @@ public class LoginImpl implements YYWLoginer {
 
 	}
 
-	@Override
 	public void relogin(Activity paramActivity, YYWUserCallBack userCallBack,
 			String paramString) {
 
