@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.szyp.goldfish6s.byfb.mi"
+    package="com.syhl.bydsj.mi"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -39,22 +39,36 @@
       <!-- 手游互联配置 -->
      	 <meta-data
             android:name="app_id"
-            android:value="kk1202492644" />
+            android:value="kk915584500" />
         <meta-data
             android:name="isLandscape"
             android:value="true" />
         
         <meta-data
             android:name="AppID"
-            android:value="string2882303761517597936" />
+            android:value="string2882303761517674774" />
         
         <meta-data
             android:name="AppKey"
-            android:value="string5721759739936" />
+            android:value="string5121767480774" />
         
         <meta-data
             android:name="AppSecret"
-            android:value="2hDUTYIOgB5J0scDMb8bBQ==" />
+            android:value="bChAhYbdN7mvAKApIi68pA==" />
+        
+         <!-- 1有友盟  0没有 -->
+        <meta-data
+            android:name="isyoumeng"
+            android:value="string1" />
+        <meta-data
+            android:name="appid"
+            android:value="5a1cd194a40fa3409f000031" />
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="string_appid" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="小米" />
         
     </application>
 
