@@ -15,7 +15,7 @@ public class Yayalog {
 		
 		//DeviceUtil.isDebug(paramContext)
 		if (canlog) {
-			Log.e("Yayalog", msg);
+			Log.e("ddgameYayalog", msg);
 		}
 			
 		

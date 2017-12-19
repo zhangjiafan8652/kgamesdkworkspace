@@ -22,6 +22,7 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.yayawan.callback.YYWAnimCallBack;
 import com.yayawan.callback.YYWExitCallback;
@@ -38,7 +39,9 @@ public class BrowserTempActivity extends Activity {
 	// private static final String mHomeUrl =
 	// "http://jump.h5.jiulingwan.com:81/webserver/07073/android/index.html";
 	// http://h5cqllyx.jiulingwan.com/webserver/07073/android/index.html
-	private static final String mHomeUrl = "http://h5cqllyx.jiulingwan.com/webserver/07073/android/index.html";
+	//http://pulsdk.7724.com/bufanyouxi/loginback/game/jstl
+	//private static final String mHomeUrl = "http://h5cqllyx.jiulingwan.com/webserver/07073/android/index.html";//传奇
+	private static final String mHomeUrl = "http://pulsdk.7724.com/bufanyouxi/loginback/game/jstl";
 	private static final String TAG = "SdkDemo";
 	private static final int MAX_LENGTH = 14;
 	private boolean mNeedTestPage = false;
@@ -225,9 +228,12 @@ public class BrowserTempActivity extends Activity {
 					finish();
 				}
 			});
+			//Toast.makeText(getApplicationContext(), "退出窗口", 0).show();
+			return true;
+		}else {
 			return super.onKeyDown(keyCode, event);
 		}
-		return super.onKeyDown(keyCode, event);
+		//return super.onKeyDown(keyCode, event);
 	}
 
 	@Override
