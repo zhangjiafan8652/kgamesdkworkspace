@@ -4,27 +4,27 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 
+import com.kkgame.utils.DeviceUtil;
 import com.kkgame.utils.Handle;
 import com.kkgame.utils.Yayalog;
 import com.tencent.ysdk.api.YSDKApi;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.analytics.game.UMGameAgent;
 import com.yayawan.impl.qqhelper.QqYsdkHelp;
 import com.yayawan.proxy.YYWActivityStub;
 
 
 public class ActivityStubImpl implements YYWActivityStub {
 
-	@Override
 	public void applicationInit(Activity paramActivity) {
-		// TODO Auto-generated method stub
 
 	}
 
 	private Activity mActivity;
 	public static ProgressDialog mAutoLoginWaitingDlg;
+	public static int isyoumeng;
 
-	@Override
 	public void onCreate(Activity paramActivity) {
-		// TODO Auto-generated method stub
 		Myconstants.mpayinfo=new Payinfo();
 		Handle.active_handler(paramActivity);
 		
@@ -35,60 +35,58 @@ public class ActivityStubImpl implements YYWActivityStub {
 		QqYsdkHelp.onCreate(paramActivity);
 		QqYsdkHelp.inintsdk(paramActivity);
 		YSDKApi.handleIntent(paramActivity.getIntent());
+		
+		String youmeng = DeviceUtil.getGameInfo(paramActivity, "isyoumeng");
+		isyoumeng = Integer.parseInt(youmeng);
+		if (isyoumeng == 1) {
+			UMGameAgent.setDebugMode(true);
+			UMGameAgent.init(mActivity);
+		}
 	}
 
-	@Override
 	public void onStop(Activity paramActivity) {
-		// TODO Auto-generated method stub
 		YSDKApi.onStop(paramActivity);
 	}
 
-	@Override
 	public void onResume(Activity paramActivity) {
-		// TODO Auto-generated method stub
 		YSDKApi.onResume(paramActivity);
+		if (isyoumeng == 1) {
+			MobclickAgent.onResume(paramActivity);
+		}
 	}
 
-	@Override
 	public void onPause(Activity paramActivity) {
-		// TODO Auto-generated method stub
 		// Utilsjf.stopDialog();
 		YSDKApi.onPause(paramActivity);
+		if (isyoumeng == 1) {
+			MobclickAgent.onPause(paramActivity);
+		}
 	}
 
-	@Override
 	public void onRestart(Activity paramActivity) {
-		// TODO Auto-generated method stub
 		YSDKApi.onRestart(paramActivity);
 	}
 
-	@Override
 	public void onDestroy(Activity paramActivity) {
 		//YSDKApi.logout();
 		YSDKApi.onDestroy(paramActivity);
 	}
 
-	@Override
 	public void applicationDestroy(Activity paramActivity) {
-		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void onActivityResult(Activity paramActivity, int paramInt1,
 			int paramInt2, Intent paramIntent) {
-		// TODO Auto-generated method stub
 		Yayalog.loger("onActivityResult++++++++++++");
 		YSDKApi.onActivityResult(paramInt1, paramInt2, paramIntent);
 	}
 
-	@Override
 	public void onNewIntent(Intent paramIntent) {
 
-		// TODO Auto-generated method stub
 		// Logger.d("onNewIntent");
 		System.out.println("onNewIntent");
-		// TODO GAME 处理游戏被拉起的情况
+		//GAME 处理游戏被拉起的情况
 		// launchActivity的onCreat()和onNewIntent()中必须调用
 		// YSDKApi.handleCallback()。否则会造成微信登录无回调
 		
@@ -96,15 +94,11 @@ public class ActivityStubImpl implements YYWActivityStub {
 		
 	}
 
-	@Override
 	public void initSdk(Activity arg0) {
-		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void onStart(Activity arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 

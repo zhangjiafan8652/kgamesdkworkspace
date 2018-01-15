@@ -369,7 +369,7 @@ public class ResetPassword_ho_dialog extends Basedialogview {
 					Utilsjf.creDialogpro(mActivity, "正在获取验证码...");
 
 					RequestParams rps = new RequestParams();
-					rps.addBodyParameter("type", 2 + "");
+					rps.addBodyParameter("type", 1 + "");
 					rps.addBodyParameter("mobile", mUserName);
 
 					HttpUtils httpUtils = new HttpUtils();

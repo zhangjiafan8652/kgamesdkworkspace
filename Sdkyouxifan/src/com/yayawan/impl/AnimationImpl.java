@@ -31,7 +31,6 @@ import com.yayawan.proxy.YYWAnimation;
 
 public class AnimationImpl implements YYWAnimation {
 
-	@Override
 	public void anim(final Activity paramActivity) {
 		// TODO Auto-generated method stub
 		// Toast.makeText(paramActivity, "播放动画", Toast.LENGTH_SHORT).show();
@@ -48,7 +47,6 @@ public class AnimationImpl implements YYWAnimation {
 
 		new Handler(Looper.getMainLooper()).post(new Runnable() {
 
-			@Override
 			public void run() {
 				new LogoWindow(paramActivity);
 

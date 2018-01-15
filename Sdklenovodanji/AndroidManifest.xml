@@ -92,6 +92,33 @@
 
         <service android:name="com.ehoo.sms.receiver.SMSReceiveService" >
         </service>
+        
+         <meta-data
+            android:name="isguanggao"
+            android:value="string1" />
+        <meta-data
+            android:name="interstitial_id"
+            android:value="1603040292217.app.lno4jgzz" />
+
+        <service android:name="com.chance.engine.ChanceAdService" />
+        <service
+            android:name="com.qq.e.comm.DownloadService"
+            android:exported="false" >
+        </service>
+
+        <activity
+            android:name="com.qq.e.ads.ADActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" >
+        </activity>
+        <activity android:name="com.chance.ads.AdActivity" >
+        </activity>
+        <activity
+            android:name="com.chance.ads.VideoAdActivity"
+            android:configChanges="orientation|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
 
         <!-- 支付配置结束 -->
     </application>

@@ -12,7 +12,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
-import android.R.string;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -160,7 +159,9 @@ public class YaYawanconstants {
 
 			@Override
 			public void onSuccess(User arg0, int arg1) {
-				callback.onExit();
+//				callback.onExit();
+				mActivity.finish();
+				System.exit(0);
 			}
 
 			@Override
@@ -445,84 +446,101 @@ public class YaYawanconstants {
 	
 	private static int getPaycode(String goods) {
 		int paycode = 0 ;
-		if(goods.equals("100元宝")){
+		//决战九天
+//		if(goods.equals("100元宝")){
+//			paycode = 1;
+//		}else if(goods.equals("300元宝")){
+//			paycode = 2;
+//		}else if(goods.equals("500元宝")){
+//			paycode = 3;
+//		}else if(goods.equals("1000元宝")){
+//			paycode = 4;
+//		}else if(goods.equals("2000元宝")){
+//			paycode = 5;
+//		}else if(goods.equals("5000元宝")){
+//			paycode = 6;
+//		}else if(goods.equals("10000元宝")){
+//			paycode = 7;
+//		}else if(goods.equals("20000元宝")){
+//			paycode = 8;
+//		}else if(goods.equals("月卡")){
+//			paycode = 9;
+//		}else if(goods.equals("霸主特权")){
+//			paycode = 10;
+//		}else if(goods.equals("99元红装礼包")){
+//			paycode = 11;
+//		}else if(goods.equals("149元红装礼包")){
+//			paycode = 12;
+//		}else if(goods.equals("289元红装礼包")){
+//			paycode = 13;
+//		}else if(goods.equals("299元红装礼包")){
+//			paycode = 14;
+//		}else if(goods.equals("199元红装材料礼包")){
+//			paycode = 15;
+//		}else if(goods.equals("599元红装材料礼包")){
+//			paycode = 16;
+//		}else if(goods.equals("589元红装材料礼包")){
+//			paycode = 17;
+//		}else if(goods.equals("449元红装材料礼包")){
+//			paycode = 18;
+//		}else if(goods.equals("12元今日特惠礼包")){
+//			paycode = 19;
+//		}else if(goods.equals("20元今日特惠礼包")){
+//			paycode = 20;
+//		}else if(goods.equals("32元今日特惠礼包")){
+//			paycode = 21;
+//		}else if(goods.equals("56元今日特惠礼包")){
+//			paycode = 22;
+//		}else if(goods.equals("60元今日特惠礼包")){
+//			paycode = 23;
+//		}else if(goods.equals("86元今日特惠礼包")){
+//			paycode = 24;
+//		}else if(goods.equals("116元今日特惠礼包")){
+//			paycode = 25;
+//		}else if(goods.equals("118元今日特惠礼包")){
+//			paycode = 26;
+//		}else if(goods.equals("128元今日特惠礼包")){
+//			paycode = 27;
+//		}else if(goods.equals("130元今日特惠礼包")){
+//			paycode = 28;
+//		}else if(goods.equals("138元今日特惠礼包")){
+//			paycode = 29;
+//		}else if(goods.equals("226元今日特惠礼包")){
+//			paycode = 30;
+//		}else if(goods.equals("228元今日特惠礼包")){
+//			paycode = 31;
+//		}else if(goods.equals("238元今日特惠礼包")){
+//			paycode = 32;
+//		}else if(goods.equals("258元今日特惠礼包")){
+//			paycode = 33;
+//		}else if(goods.equals("538元今日特惠礼包")){
+//			paycode = 34;
+//		}else if(goods.equals("558元今日特惠礼包")){
+//			paycode = 35;
+//		}else if(goods.equals("1080元今日特惠礼包")){
+//			paycode = 36;
+//		}else if(goods.equals("2280元今日特惠礼包")){
+//			paycode = 37;
+//		}else if(goods.equals("108武器时装礼包")){
+//			paycode = 38;
+//		}else if(goods.equals("148坐骑幻化礼包")){
+//			paycode = 39;
+//		}
+		//无双战纪
+		if(goods.equals("600元宝")){
 			paycode = 1;
-		}else if(goods.equals("300元宝")){
+		}else if(goods.equals("3000元宝")){
 			paycode = 2;
-		}else if(goods.equals("500元宝")){
+		}else if(goods.equals("6800元宝")){
 			paycode = 3;
-		}else if(goods.equals("1000元宝")){
+		}else if(goods.equals("12800元宝")){
 			paycode = 4;
-		}else if(goods.equals("2000元宝")){
+		}else if(goods.equals("19800元宝")){
 			paycode = 5;
-		}else if(goods.equals("5000元宝")){
+		}else if(goods.equals("32800元宝")){
 			paycode = 6;
-		}else if(goods.equals("10000元宝")){
+		}else if(goods.equals("64800元宝")){
 			paycode = 7;
-		}else if(goods.equals("20000元宝")){
-			paycode = 8;
-		}else if(goods.equals("月卡")){
-			paycode = 9;
-		}else if(goods.equals("霸主特权")){
-			paycode = 10;
-		}else if(goods.equals("99元红装礼包")){
-			paycode = 11;
-		}else if(goods.equals("149元红装礼包")){
-			paycode = 12;
-		}else if(goods.equals("289元红装礼包")){
-			paycode = 13;
-		}else if(goods.equals("299元红装礼包")){
-			paycode = 14;
-		}else if(goods.equals("199元红装材料礼包")){
-			paycode = 15;
-		}else if(goods.equals("599元红装材料礼包")){
-			paycode = 16;
-		}else if(goods.equals("589元红装材料礼包")){
-			paycode = 17;
-		}else if(goods.equals("449元红装材料礼包")){
-			paycode = 18;
-		}else if(goods.equals("12元今日特惠礼包")){
-			paycode = 19;
-		}else if(goods.equals("20元今日特惠礼包")){
-			paycode = 20;
-		}else if(goods.equals("32元今日特惠礼包")){
-			paycode = 21;
-		}else if(goods.equals("56元今日特惠礼包")){
-			paycode = 22;
-		}else if(goods.equals("60元今日特惠礼包")){
-			paycode = 23;
-		}else if(goods.equals("86元今日特惠礼包")){
-			paycode = 24;
-		}else if(goods.equals("116元今日特惠礼包")){
-			paycode = 25;
-		}else if(goods.equals("118元今日特惠礼包")){
-			paycode = 26;
-		}else if(goods.equals("128元今日特惠礼包")){
-			paycode = 27;
-		}else if(goods.equals("130元今日特惠礼包")){
-			paycode = 28;
-		}else if(goods.equals("138元今日特惠礼包")){
-			paycode = 29;
-		}else if(goods.equals("226元今日特惠礼包")){
-			paycode = 30;
-		}else if(goods.equals("228元今日特惠礼包")){
-			paycode = 31;
-		}else if(goods.equals("238元今日特惠礼包")){
-			paycode = 32;
-		}else if(goods.equals("258元今日特惠礼包")){
-			paycode = 33;
-		}else if(goods.equals("538元今日特惠礼包")){
-			paycode = 34;
-		}else if(goods.equals("558元今日特惠礼包")){
-			paycode = 35;
-		}else if(goods.equals("1080元今日特惠礼包")){
-			paycode = 36;
-		}else if(goods.equals("2280元今日特惠礼包")){
-			paycode = 37;
-		}else if(goods.equals("108武器时装礼包")){
-			paycode = 38;
-		}else if(goods.equals("148坐骑幻化礼包")){
-			paycode = 39;
 		}
 		return paycode;
 	}

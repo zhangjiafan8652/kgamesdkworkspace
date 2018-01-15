@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.yayawan.sdktemplate"
+    package="com.yayawan.sdktemplate.m4399"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -48,7 +48,7 @@
         <!-- 手游互联配置 -->
         <meta-data
             android:name="app_id"
-            android:value="kk78087134" />
+            android:value="kk759836447" />
         <meta-data
             android:name="isLandscape"
             android:value="true" />

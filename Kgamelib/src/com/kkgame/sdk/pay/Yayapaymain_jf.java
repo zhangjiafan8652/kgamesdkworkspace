@@ -62,6 +62,7 @@ public class Yayapaymain_jf extends BaseView {
 	private static int WEIXINPAY = 2;
 	private static int YINLIANPAY = 3;
 	private static int WEIXINH5PAY = 4;
+//	private static int WEIXINH5PAY = 8;
 
 	public Yayapaymain_jf(Activity mContext) {
 		super(mContext);
@@ -144,7 +145,7 @@ public class Yayapaymain_jf extends BaseView {
 
 				Utilsjf.safePaydialog(mActivity, "初始化安全支付...");
 
-				//创建订单
+				// 创建订单
 				makeOrder(ALIPAY);
 			}
 
@@ -162,16 +163,15 @@ public class Yayapaymain_jf extends BaseView {
 				payclickcontrol = true;
 				Yayalog.loger("微信支付开始");
 				Utilsjf.safePaydialog(mActivity, "初始化安全支付...");
-				//创建订单
+				// 创建订单
 				makeOrder(WEIXINH5PAY);
 
 			}
 		});
 
-		
-		//隐藏银联支付
+		// 隐藏银联支付
 		rl_mYinlianpay.setVisibility(View.GONE);
-		
+
 		// 银联支付
 		rl_mYinlianpay.setOnClickListener(new OnClickListener() {
 
@@ -228,14 +228,12 @@ public class Yayapaymain_jf extends BaseView {
 		}
 		mActivity.finish();
 	}
-	
-	
 
 	private void makeOrder(final int paytype) {
 
 		// 进入支付流程
 		RequestParams rps = new RequestParams();
-		
+
 		rps.addBodyParameter("app_id", DeviceUtil.getAppid(mActivity));
 		rps.addBodyParameter("uid", AgentApp.mUser.uid + "");
 		rps.addBodyParameter("token", AgentApp.mUser.token);
@@ -243,7 +241,7 @@ public class Yayapaymain_jf extends BaseView {
 		rps.addBodyParameter("pay_type", paytype + "");
 		rps.addBodyParameter("ext", AgentApp.mPayOrder.ext);
 		rps.addBodyParameter("orderid", AgentApp.mPayOrder.orderId);
-		
+
 		Yayalog.loger("app_id", DeviceUtil.getAppid(mActivity));
 		Yayalog.loger("uid", AgentApp.mUser.uid + "");
 		Yayalog.loger("token", AgentApp.mUser.token);
@@ -259,9 +257,9 @@ public class Yayapaymain_jf extends BaseView {
 					@Override
 					public void onFailure(HttpException arg0, String arg1) {
 						// TODO Auto-generated method stub
-						payclickcontrol=false;
+						payclickcontrol = false;
 						Utilsjf.stopDialog();
-
+						Yayalog.loger("注册失败，请检查网络是否畅通");
 						Toast.makeText(mActivity, "注册失败，请检查网络是否畅通", 0).show();
 					}
 
@@ -269,16 +267,16 @@ public class Yayapaymain_jf extends BaseView {
 					public void onSuccess(ResponseInfo<String> result) {
 						// TODO Auto-generated method stub
 						Utilsjf.stopDialog();
-						payclickcontrol=false;
-						
+						payclickcontrol = false;
+						Yayalog.loger("paytype =" + paytype);
 						switch (paytype) {
 						case 1:
-							//解析支付宝下单结果
+							// 解析支付宝下单结果
 							Yayalog.loger("支付宝下单结果" + result.result);
 							alipayResult(result.result);
 							break;
 						case 2:
-							Yayalog.loger("微信下单结果" + result.result);	
+							Yayalog.loger("微信下单结果" + result.result);
 							alipayResult(result.result);
 							break;
 						case 3:
@@ -289,9 +287,13 @@ public class Yayapaymain_jf extends BaseView {
 							alipayResult(result.result);
 							break;
 						case 5:
-							//解析支付宝下单结果
+							// 解析支付宝下单结果
 							alipayResult(result.result);
-							//alipayResult(result.result);
+							// alipayResult(result.result);
+							break;
+						case 8:
+							Yayalog.loger("微信下单结果" + result.result);
+							alipayResult(result.result);
 							break;
 
 						default:
@@ -314,25 +316,26 @@ public class Yayapaymain_jf extends BaseView {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		int err_code=jsonstr.optInt("err_code");
-		String pay_str=jsonstr.optString("url");
-		if(err_code==0){
+		int err_code = jsonstr.optInt("err_code");
+		String pay_str = jsonstr.optString("url");
+		if (err_code == 0) {
 			try {
 				System.out.println(pay_str);
-				
+
 				Weixinpay_dialog weixinpay_dialog = new Weixinpay_dialog(
 						mActivity);
 				weixinpay_dialog.dialogShow();
 				WebView webView = weixinpay_dialog.getWebview();
 				webView.loadUrl(pay_str);
-				webView.setWebViewClient(new WebViewClient(){
-					
+				webView.setWebViewClient(new WebViewClient() {
+
 					@Override
-					public boolean shouldOverrideUrlLoading(WebView view, String url) {
-						Yayalog.loger("重复的url:"+url);
-						
+					public boolean shouldOverrideUrlLoading(WebView view,
+							String url) {
+						Yayalog.loger("重复的url:" + url);
+
 						if (url.startsWith("weixin://wap/pay?")) {
-		                    try {
+							try {
 								Intent intent = new Intent();
 								intent.setAction(Intent.ACTION_VIEW);
 								intent.setData(Uri.parse(url));
@@ -343,43 +346,44 @@ public class Yayapaymain_jf extends BaseView {
 								e.printStackTrace();
 							}
 
-		                    return true;
-		                }else if (parseScheme(url)) {
-		                    try {
-		                    	
-		                        Intent intent;
-		                        intent = Intent.parseUri(url,
-		                                Intent.URI_INTENT_SCHEME);
-		                        intent.addCategory("android.intent.category.BROWSABLE");
-		                        intent.setComponent(null);
-		                        // intent.setSelector(null);
-		                        mActivity.startActivity(intent);
-		//
-		                        return true;
-		                    } catch (Exception e) {
-		                        e.printStackTrace();
-		                    }
-		                }else if (url.contains("paysuccess")) {
-		                	onSuccess(AgentApp.mUser, AgentApp.mPayOrder, 1);
-		                }else {
-		                	view.loadUrl(url);
+							return true;
+						} else if (parseScheme(url)) {
+							try {
+								Intent intent;
+								intent = Intent.parseUri(url,
+										Intent.URI_INTENT_SCHEME);
+								intent.addCategory("android.intent.category.BROWSABLE");
+								intent.setComponent(null);
+								// intent.setSelector(null);
+								mActivity.startActivity(intent);
+								//
+								return true;
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						} else if (url.contains("paysuccess")) {
+							onSuccess(AgentApp.mUser, AgentApp.mPayOrder, 1);
+						} else {
+							view.loadUrl(url);
 						}
-					    return super.shouldOverrideUrlLoading(view, url);
-					    }
-					
+						return super.shouldOverrideUrlLoading(view, url);
+//						 return false;
+					}
+
 					@Override
-					public void onPageStarted(WebView view, String url, Bitmap favicon) {
+					public void onPageStarted(WebView view, String url,
+							Bitmap favicon) {
 						// TODO Auto-generated method stub
-						//Yayalog.loger("onPageStarted重复的url:"+url);
+						// Yayalog.loger("onPageStarted重复的url:"+url);
 						super.onPageStarted(view, url, favicon);
 					}
+
 					public void onPageFinished(WebView view, String url) {
-						//Yayalog.loger("onPageFinished重复的url:"+url);
+						// Yayalog.loger("onPageFinished重复的url:"+url);
 					};
-					
-					
-					});
-			
+
+				});
+
 			} catch (Exception e) {
 				System.out.println(e.toString());
 				mActivity.runOnUiThread(new Runnable() {
@@ -393,8 +397,7 @@ public class Yayapaymain_jf extends BaseView {
 				});
 			}
 		}
-	
-		
+
 	}
 
 	private String mhtml;
@@ -422,8 +425,6 @@ public class Yayapaymain_jf extends BaseView {
 		}
 
 	}
-	
-	
 
 	/**
 	 * 查看是否安装插件
@@ -437,11 +438,8 @@ public class Yayapaymain_jf extends BaseView {
 		return true;
 	}
 
-
-
 	// 丫丫玩
 
-	
 	private void AlipaypayNow() {
 		// 进入支付流程
 		/*
@@ -601,19 +599,19 @@ public class Yayapaymain_jf extends BaseView {
 		// 查询订单状态
 
 	}
-	
-	
+
 	public boolean parseScheme(String url) {
-		System.out.println("parseScheme的url："+url);
-		
-	    if (url.contains("platformapi/startApp")||url.contains("platformapi/startapp")) {
-	        return true;
-	    } else if ((Build.VERSION.SDK_INT > 19)
-	            && (url.contains("platformapi") && url.contains("startapp"))) {
-	        return true;
-	    } else {
-	        return false;
-	    }
+		System.out.println("parseScheme的url：" + url);
+
+		if (url.contains("platformapi/startApp")
+				|| url.contains("platformapi/startapp")) {
+			return true;
+		} else if ((Build.VERSION.SDK_INT > 19)
+				&& (url.contains("platformapi") && url.contains("startapp"))) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

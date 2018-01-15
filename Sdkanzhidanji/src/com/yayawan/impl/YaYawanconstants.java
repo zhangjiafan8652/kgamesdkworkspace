@@ -3,18 +3,12 @@ package com.yayawan.impl;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
-
 import javax.security.auth.callback.Callback;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
@@ -25,22 +19,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.widget.Toast;
-
 import com.anzhi.sdk.middle.single.manage.AnzhiSingleSDK;
 import com.anzhi.sdk.middle.single.manage.CPInfo;
 import com.anzhi.sdk.middle.single.manage.SingleGameCallBack;
 import com.anzhi.sdk.middle.single.util.MD5;
-import com.ipaynow.wechatpay.plugin.manager.route.dto.ResponseParams;
 import com.kkgame.utils.DeviceUtil;
 import com.kkgame.utils.Handle;
 import com.kkgame.utils.JSONUtil;
-import com.kkgame.utils.Sputils;
-import com.lidroid.jxutils.HttpUtils;
-import com.lidroid.jxutils.exception.HttpException;
-import com.lidroid.jxutils.http.ResponseInfo;
-import com.lidroid.jxutils.http.callback.RequestCallBack;
-import com.lidroid.jxutils.http.client.HttpRequest.HttpMethod;
 import com.yayawan.callback.YYWExitCallback;
 import com.yayawan.domain.YYWUser;
 import com.yayawan.main.YYWMain;
@@ -77,6 +62,7 @@ public class YaYawanconstants {
 		info.setSecret(AppSecret);
 		midManage = AnzhiSingleSDK.getInstance();
 		midManage.init(mactivity, Appkey, AppSecret, callback);
+		Log.i("tag", "初始化结束");
 	}
 
 	/**
@@ -108,6 +94,7 @@ public class YaYawanconstants {
 		@Override
 		public void callBack(final int type, final String result) {
 			Log.i("Anzhi_SDK_TEST", "code: " + type + ", result: " + result);
+			Log.i("tag", "code: " + type + ", result: " + result);
 			switch (type) {
 			case SingleGameCallBack.SDK_TYPE_INIT: // 初始化操作
 				midManage.login(mActivity);
@@ -158,7 +145,6 @@ public class YaYawanconstants {
 						            Log.i("tag","httpPost3");
 						            Log.i("tag","httpResponse.getStatusLine().getStatusCode()="+httpResponse.getStatusLine().getStatusCode());
 						            if(httpResponse.getStatusLine().getStatusCode() == 200){
-//						            if(){
 						            	String re = EntityUtils.toString(httpResponse.getEntity());
 						            	Log.i("tag","re="+re);
 						            	JSONObject js = new JSONObject(re);
@@ -193,7 +179,9 @@ public class YaYawanconstants {
 				JSONObject JS = null;
 				try {
 					JS = new JSONObject(result);
+					Log.i("tag", "paystatus+JS=: " + JS);
 					String paystatus = JS.getString("payStatus");
+					Log.i("tag", "paystatus: " + paystatus);
 					if(paystatus.equals("1")){
 						Log.i("tag", "支付成功");
 						paySuce();
@@ -259,7 +247,10 @@ public class YaYawanconstants {
 	 */
 	public static void applicationInit(Context applicationContext) {
 		// TODO Auto-generated method stub
-
+		String time = System.currentTimeMillis()+"";
+		String time1 = System.currentTimeMillis()%1000+"";
+		Log.i("tag","time="+time);
+		Log.i("tag","time=="+time1);
 	}
 
 	/**
@@ -282,9 +273,9 @@ public class YaYawanconstants {
 		JSONObject json = new JSONObject();
 		try {
 			// 游戏方生成的订单号,可以作为与安智订单进行关联
-			json.put("cpOrderId", "anzhi_"+morderid);
+			json.put("cpOrderId", morderid);
 			json.put("cpOrderTime", System.currentTimeMillis());// 下单时间
-			json.put("amount", YYWMain.mOrder.money/100+"");// 支付金额(单位：分)
+			json.put("amount", YYWMain.mOrder.money);// 支付金额(单位：分)
 			//json.put("cpCustomInfo", YYWMain.mOrder.goods);// 游戏方自定义数据
 			json.put("productCount", 1);// 商品数量
 			json.put("productName", YYWMain.mOrder.goods);// 游戏方商品名称

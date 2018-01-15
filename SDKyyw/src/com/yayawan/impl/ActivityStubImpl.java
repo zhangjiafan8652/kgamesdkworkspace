@@ -14,14 +14,11 @@ public class ActivityStubImpl implements YYWActivityStub {
 	
 	public static Activity mactivity;
 
-    @Override
     public void applicationInit(Activity paramActivity) {
         // TODO Auto-generated method stub
 
-    	
     }
 
-    @Override
     public void onCreate(Activity paramActivity) {
         // TODO Auto-generated method stub
     	GuangdiantongUtils.guangDiantongInit(paramActivity.getApplicationContext());
@@ -31,13 +28,11 @@ public class ActivityStubImpl implements YYWActivityStub {
     	Handle.active_handler(paramActivity);
     }
 
-    @Override
     public void onStop(Activity paramActivity) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onResume(Activity paramActivity) {
     	
     
@@ -45,49 +40,41 @@ public class ActivityStubImpl implements YYWActivityStub {
         KgameSdk.init(paramActivity);
     }
 
-    @Override
     public void onPause(Activity paramActivity) {
         KgameSdk.stop(paramActivity);
     }
 
-    @Override
     public void onRestart(Activity paramActivity) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onDestroy(Activity paramActivity) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void applicationDestroy(Activity paramActivity) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onActivityResult(Activity paramActivity, int paramInt1,
             int paramInt2, Intent paramIntent) {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void onNewIntent(Intent paramIntent) {
         // TODO Auto-generated method stub
 
     }
 
-	@Override
 	public void initSdk(Activity arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void onStart(Activity arg0) {
 		// TODO Auto-generated method stub
 		

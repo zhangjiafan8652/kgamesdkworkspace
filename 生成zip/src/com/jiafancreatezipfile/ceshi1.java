@@ -11,11 +11,9 @@ public class ceshi1 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 			//企业
-		  ceshi("123", "1234");
-	}
-	
-	public static void ceshi(String kzhi,Object k){
-		System.err.println(k.toString());
+		String uidtemp=System.currentTimeMillis()+"kk";
+		String uid=uidtemp.substring(4, uidtemp.length())+new Random().nextInt(10);
+		System.out.println(uid);   
 	}
 
 }

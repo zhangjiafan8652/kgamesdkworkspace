@@ -153,7 +153,7 @@ public class Help_dissmiss_dialog extends Basedialogview {
 				0, "", tv_textsize, mLinearLayout, 0, 0, 0, 0);
 		tv_userid.setTextColor(Color.parseColor("#ec7600"));
 
-		// TODO
+		
 		ll_textline.addView(tv_message1);
 		ll_textline.addView(tv_userid);
 

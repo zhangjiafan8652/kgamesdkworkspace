@@ -40,7 +40,6 @@ public class MainActivity1 extends Activity {
 		animButton.setText("anim");
 		animButton.setOnClickListener(new OnClickListener() {
 
-			@Override
 			public void onClick(View v) {
 				anim(mLinearLayout);
 
@@ -53,7 +52,6 @@ public class MainActivity1 extends Activity {
 		lgoinButton.setText("login");
 		lgoinButton.setOnClickListener(new OnClickListener() {
 
-			@Override
 			public void onClick(View v) {
 				login(mLinearLayout);
 
@@ -66,7 +64,6 @@ public class MainActivity1 extends Activity {
 		payButton.setText("pay");
 		payButton.setOnClickListener(new OnClickListener() {
 
-			@Override
 			public void onClick(View v) {
 				pay(mLinearLayout);
 
@@ -79,7 +76,6 @@ public class MainActivity1 extends Activity {
 		extButton.setText("exit");
 		extButton.setOnClickListener(new OnClickListener() {
 
-			@Override
 			public void onClick(View v) {
 				exit(mLinearLayout);
 
@@ -95,20 +91,17 @@ public class MainActivity1 extends Activity {
 		System.out.println("登录");
 		GameProxy.getInstent().anim(this, new YYWAnimCallBack() {
 
-			@Override
 			public void onAnimSuccess(String arg0, Object arg1) {
 				// TODO Auto-generated method stub
 				Toast.makeText(MainActivity1.this, "播放动画回调", Toast.LENGTH_SHORT)
 						.show();
 			}
 
-			@Override
 			public void onAnimFailed(String arg0, Object arg1) {
 				// TODO Auto-generated method stub
 
 			}
 
-			@Override
 			public void onAnimCancel(String arg0, Object arg1) {
 				// TODO Auto-generated method stub
 
@@ -120,13 +113,11 @@ public class MainActivity1 extends Activity {
 		System.out.println("登录");
 		GameProxy.getInstent().login(this, new YYWUserCallBack() {
 
-			@Override
 			public void onLogout(Object arg0) {
 				System.out.println("登出");
 
 			}
 
-			@Override
 			public void onLoginSuccess(YYWUser user, Object arg1) {
 				// TODO Auto-generated method stub
 				System.out.println(user);
@@ -134,13 +125,11 @@ public class MainActivity1 extends Activity {
 						Toast.LENGTH_SHORT).show();
 			}
 
-			@Override
 			public void onLoginFailed(String arg0, Object arg1) {
 				// TODO Auto-generated method stub
 				System.out.println("登录失败");
 			}
 
-			@Override
 			public void onCancel() {
 				// TODO Auto-generated method stub
 				
@@ -153,20 +142,17 @@ public class MainActivity1 extends Activity {
 				100l, "xxxx");
 		GameProxy.getInstent().pay(this, order, new YYWPayCallBack() {
 
-			@Override
 			public void onPaySuccess(YYWUser arg0, YYWOrder arg1, Object arg2) {
 				// TODO Auto-generated method stub
 				Toast.makeText(MainActivity1.this, "充值成功回调", Toast.LENGTH_SHORT)
 						.show();
 			}
 
-			@Override
 			public void onPayFailed(String arg0, Object arg1) {
 				// TODO Auto-generated method stub
 				System.out.println("支付失败");
 			}
 
-			@Override
 			public void onPayCancel(String arg0, Object arg1) {
 				// TODO Auto-generated method stub
 				System.out.println("支付退出");
@@ -178,7 +164,6 @@ public class MainActivity1 extends Activity {
 		System.out.println("退出");
 		GameProxy.getInstent().exit(this, new YYWExitCallback() {
 
-			@Override
 			public void onExit() {
 				Toast.makeText(MainActivity1.this, "退出回调", Toast.LENGTH_SHORT)
 						.show();

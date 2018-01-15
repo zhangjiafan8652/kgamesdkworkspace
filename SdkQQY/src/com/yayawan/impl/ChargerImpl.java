@@ -17,7 +17,6 @@ import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
-
 import com.kkgame.sdk.login.ViewConstants;
 import com.kkgame.utils.DeviceUtil;
 import com.lidroid.jxutils.HttpUtils;
@@ -47,7 +46,6 @@ public class ChargerImpl implements YYWCharger {
 	}
 
 	private Activity mactivity;
-
 	
 	private static int moneyrate=10;
 	
@@ -509,7 +507,7 @@ public class ChargerImpl implements YYWCharger {
 	public static void payFail() {
 		// 支付成功
 		if (YYWMain.mPayCallBack != null) {
-			YYWMain.mPayCallBack.onPayFailed("", "");
+			YYWMain.mPayCallBack.onPayFailed(null, null);
 		}
 	}
 }

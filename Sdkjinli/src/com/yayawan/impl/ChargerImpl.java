@@ -1,18 +1,11 @@
 package com.yayawan.impl;
 
-import java.net.URL;
-import java.net.URLEncoder;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Handler;
 import android.os.Looper;
-import android.widget.Toast;
-
-
 import com.kkgame.sdk.login.ViewConstants;
 import com.kkgame.utils.DeviceUtil;
 import com.lidroid.jxutils.HttpUtils;
@@ -23,12 +16,8 @@ import com.lidroid.jxutils.http.callback.RequestCallBack;
 import com.lidroid.jxutils.http.client.HttpRequest.HttpMethod;
 import com.yayawan.callback.YYWPayCallBack;
 import com.yayawan.domain.YYWOrder;
-import com.yayawan.domain.YYWUser;
 import com.yayawan.main.YYWMain;
-import com.yayawan.main.YaYaWan;
 import com.yayawan.proxy.YYWCharger;
-import com.yayawan.sdktemplate.MainActivity;
-
 
 public class ChargerImpl implements YYWCharger {
 
@@ -56,6 +45,7 @@ public class ChargerImpl implements YYWCharger {
 	}
 
 	String orderId = null;
+	String orderstring = null;
 
 	public void createOrder(final Activity paramActivity) {
 		progress(paramActivity);
@@ -68,6 +58,8 @@ public class ChargerImpl implements YYWCharger {
 		requestParams.addBodyParameter("remark", YYWMain.mOrder.ext);
 		requestParams.addBodyParameter("transid", YYWMain.mOrder.orderId);
 		requestParams.addBodyParameter("username", YYWMain.mUser.userName);
+		requestParams.addBodyParameter("userId", YaYawanconstants.userId);
+		requestParams.addBodyParameter("goods", YYWMain.mOrder.goods);
 		Yayalog.loger("uid:"+ YYWMain.mUser.yywuid);
 		Yayalog.loger("username:"+YYWMain.mUser.userName);
 		Yayalog.loger("app_id:"+DeviceUtil.getAppid(paramActivity));
@@ -75,6 +67,7 @@ public class ChargerImpl implements YYWCharger {
 		Yayalog.loger("remark:"+YYWMain.mOrder.ext);
 		Yayalog.loger("transid:"+YYWMain.mOrder.orderId);
 		Yayalog.loger("url:"+ ViewConstants.unionmakeorder);
+		Yayalog.loger("userId:"+ YaYawanconstants.userId);
 		httpUtil.send(HttpMethod.POST, ViewConstants.unionmakeorder,requestParams,
 				new RequestCallBack<String>() {
 
@@ -96,6 +89,7 @@ public class ChargerImpl implements YYWCharger {
 							if (err_code == 0) {
 								JSONObject data = obj.getJSONObject("data");
 								orderId = data.optString("id");
+								orderstring = data.optString("rs_data");
 
 								new Handler(Looper.getMainLooper())
 										.post(new Runnable() {
@@ -118,7 +112,7 @@ public class ChargerImpl implements YYWCharger {
 
 	private void pay_run(final Activity paramActivity) {
 
-		YaYawanconstants.pay(paramActivity, orderId);
+		YaYawanconstants.pay(paramActivity, orderId,orderstring);
 
 	}
 

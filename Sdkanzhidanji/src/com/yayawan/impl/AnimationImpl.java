@@ -25,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kkgame.utils.DeviceUtil;
 import com.yayawan.main.YYWMain;
 import com.yayawan.proxy.YYWAnimation;
 
@@ -49,8 +50,9 @@ public class AnimationImpl implements YYWAnimation {
 
 			@Override
 			public void run() {
-//				new LogoWindow(paramActivity);
-				YYWMain.mAnimCallBack.onAnimSuccess("success", "");
+				new LogoWindow(paramActivity);
+//				YYWMain.mAnimCallBack.onAnimSuccess("success", "");
+				
 			}
 		});
 
@@ -116,7 +118,11 @@ class LogoWindow {
 		InputStream istr = null;
 		try {
 
-			istr = assetManager.open("yaya_logo_start.png");
+			if(DeviceUtil.isLandscape(con)){
+				istr = assetManager.open("heng.png");
+			}else{
+				istr = assetManager.open("shu.png");
+			}
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

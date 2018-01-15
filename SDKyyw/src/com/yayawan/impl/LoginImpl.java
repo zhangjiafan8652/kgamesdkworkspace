@@ -14,18 +14,15 @@ import com.yayawan.proxy.YYWLoginer;
 
 public class LoginImpl implements YYWLoginer {
 
-    @Override
     public void login(final Activity paramActivity, YYWUserCallBack userCallBack, String paramString) {
 
     	new Handler(Looper.getMainLooper()).post(new Runnable() {
 
-            @Override
             public void run() {
 
 
 			        KgameSdk.login(paramActivity, new KgameSdkUserCallback() {
 
-			            @Override
 			            public void onSuccess(User user, int arg1) {
 			                if (YYWMain.mUserCallBack != null) {
 
@@ -47,7 +44,6 @@ public class LoginImpl implements YYWLoginer {
 			                }
 			            }
 
-			            @Override
 			            public void onLogout() {
 			            	//YayaWan.stop(paramActivity);
 			                if (YYWMain.mUserCallBack != null) {
@@ -57,7 +53,6 @@ public class LoginImpl implements YYWLoginer {
 			                
 			            }
 
-			            @Override
 			            public void onError(int arg0) {
 			            	
 			                if (YYWMain.mUserCallBack != null) {
@@ -65,7 +60,6 @@ public class LoginImpl implements YYWLoginer {
 			                }
 			            }
 
-			            @Override
 			            public void onCancel() {
 			                // TODO Auto-generated method stub
 			            	if (YYWMain.mUserCallBack != null) {
@@ -80,7 +74,6 @@ public class LoginImpl implements YYWLoginer {
 
     }
 
-    @Override
     public void relogin(Activity paramActivity, YYWUserCallBack userCallBack,
             String paramString) {
 

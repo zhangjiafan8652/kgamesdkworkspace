@@ -13,7 +13,6 @@ public class Mainthread {
 		uishow = new Uishow();
 		uishow.but_fanbianyi.addActionListener(new ActionListener() {
 			
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				//System.out.println(uishow.tx_sdkworkspace.getText());
@@ -26,7 +25,6 @@ public class Mainthread {
 		});
 		uishow.but_tozip.addActionListener(new ActionListener() {
 			
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				Mainthread2.createZip(uishow.jLabel4);
@@ -35,7 +33,6 @@ public class Mainthread {
 		
 		uishow.but_root.addActionListener(new ActionListener() {
 			
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				Cmd.startApkroot();

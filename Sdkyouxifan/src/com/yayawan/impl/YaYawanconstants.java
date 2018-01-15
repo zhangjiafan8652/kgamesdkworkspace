@@ -5,6 +5,7 @@ import java.util.HashMap;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.game.sdk.YXFSDKManager;
@@ -42,15 +43,25 @@ public class YaYawanconstants {
 
 	private static boolean isinit=false;
 	private static boolean islogin=false;
+	
+//	info.setRoleName(roleName);// 角色名
+//	info.setRoleVIP("");// 角色VIP
+//	info.setRoleLevel(roleLevel);// 角色等级
+//	info.setServerID(zoneId);// 区服id
+//	info.setServerName(zoneName);// 区服名
+	private static String role_Id = "123";
+	private static String role_Name = "123";
+	private static String role_Level = "123";
+	private static String zone_Id = "123";
+	private static String zone_Name = "123";
 
-	private static YXFSDKManager manager;
 	/**
 	 * 初始化sdk
 	 */
 	public static void inintsdk(Activity mactivity) {
 		mActivity = mactivity;
 		Yayalog.loger("YaYawanconstants初始化sdk");
-		manager = YXFSDKManager.getInstance(mactivity);
+		YXFSDKManager.getInstance(mactivity);
 		if (DeviceUtil.isLandscape(mactivity)) {
 			YXFSDKManager.setIsLandscape(true);// false: 竖屏 true：横屏
 		}else {
@@ -74,7 +85,6 @@ public class YaYawanconstants {
 		Yayalog.loger("YaYawanconstantssdk登录");
 		YXFSDKManager.getInstance(mactivity).showLogin(
 				mactivity, true, new OnLoginListener() {
-					@Override
 					public void loginSuccess(LogincallBack logincallback) {
 						/*Toast.makeText(mactivity,
 								logincallback.toString(),
@@ -85,7 +95,6 @@ public class YaYawanconstants {
 						loginSuce(mactivity, logincallback.userId, logincallback.username, logincallback.sign);
 					}
 
-					@Override
 					public void loginError(LoginErrorMsg errorMsg) {
 						/*Toast.makeText(mactivity, errorMsg.msg,
 								Toast.LENGTH_SHORT).show();*/
@@ -102,19 +111,23 @@ public class YaYawanconstants {
 	public static void pay(final Activity mactivity, String morderid) {
 
 		Yayalog.loger("YaYawanconstantssdk支付");
+		Log.i("tag","role_Id="+role_Id);
+		Log.i("tag","zone_Id="+zone_Id);
+		if(role_Id.equals("")){
+			role_Id = "123";
+		}
 		YXFSDKManager.getInstance(mactivity).showPay(
-				mactivity, ""+YYWMain.mRole.getRoleId(), YYWMain.mOrder.money/100+"", ""+YYWMain.mRole.getZoneId(), YYWMain.mOrder.goods, DeviceUtil.getGameInfo(mactivity, "goodsname"),
+				mactivity, role_Id, YYWMain.mOrder.money/100+"", zone_Id, YYWMain.mOrder.goods, DeviceUtil.getGameInfo(mactivity, "goodsname"),
 				morderid,
 				new OnPaymentListener() {
-					@Override
 					public void paymentSuccess(PaymentCallback callbackInfo) {
 						
 						paySuce();
 					}
 
-					@Override
 					public void paymentError(PaymentErrorMsg errorMsg) {
-						
+						Log.i("tag","errorMsg="+errorMsg);
+//						Toast.makeText(mactivity, "errorMsg="+errorMsg, Toast.LENGTH_SHORT).show();
 						payFail();
 					}
 				});
@@ -132,25 +145,21 @@ public class YaYawanconstants {
 
 		KgameSdk.Exitgame(paramActivity, new KgameSdkCallback() {
 			
-			@Override
 			public void onSuccess(User arg0, int arg1) {
 				// TODO Auto-generated method stub
 				callback.onExit();
 			}
 			
-			@Override
 			public void onLogout() {
 				// TODO Auto-generated method stub
 				
 			}
 			
-			@Override
 			public void onError(int arg0) {
 				// TODO Auto-generated method stub
 				
 			}
 			
-			@Override
 			public void onCancel() {
 				// TODO Auto-generated method stub
 				
@@ -168,24 +177,27 @@ public class YaYawanconstants {
 	public static void setData(Activity paramActivity, String roleId, String roleName,String roleLevel, String zoneId, String zoneName, String roleCTime,String ext){
 		// TODO Auto-generated method stub
 		Yayalog.loger("YaYawanconstants设置角色信息");
+		role_Id = roleId;
+		role_Name = roleName;
+		role_Level = roleLevel;
+		zone_Id = zoneId;
+		zone_Name = zoneName;
 		if (YYWMain.mRole!=null) {
 			RoleInfo info = new RoleInfo();
-			info.setRoleName(""+YYWMain.mRole.getRoleName());// 角色名
+			info.setRoleName(role_Name);// 角色名
 			info.setRoleVIP("");// 角色VIP
-			info.setRoleLevel(""+YYWMain.mRole.getRoleLevel());// 角色等级
-			info.setServerID(""+YYWMain.mRole.getZoneId());// 区服id
-			info.setServerName(YYWMain.mRole.getZoneName());// 区服名
+			info.setRoleLevel(role_Level);// 角色等级
+			info.setServerID(zone_Id);// 区服id
+			info.setServerName(zone_Name);// 区服名
 		if (Integer.parseInt(ext)==1) {
 			
 			YXFSDKManager.getInstance(paramActivity).getRoleInfo(paramActivity, info,
 					Constants.TYPE_LOGIN_SUCCESS, new onRoleListener() {
-						@Override
 						public void onSuccess(RolecallBack rolecallBack) {
 							LogUtils.i(TAG + "提交用户信息成功 = "
 									+ rolecallBack.toString());
 						}
 
-						@Override
 						public void onError(RolecallBack rolecallBack) {
 							LogUtils.i(TAG + "提交用户信息失败 = "
 									+ rolecallBack.toString());
@@ -193,13 +205,11 @@ public class YaYawanconstants {
 					});
 			YXFSDKManager.getInstance(paramActivity).getRoleInfo(paramActivity, info,
 					Constants.TYPE_SELECT_SERVER, new onRoleListener() {
-						@Override
 						public void onSuccess(RolecallBack rolecallBack) {
 							LogUtils.i(TAG + "提交用户信息成功 = "
 									+ rolecallBack.toString());
 						}
 
-						@Override
 						public void onError(RolecallBack rolecallBack) {
 							LogUtils.i(TAG + "提交用户信息失败 = "
 									+ rolecallBack.toString());
@@ -208,13 +218,11 @@ public class YaYawanconstants {
 		}else if(Integer.parseInt(ext)==2) {
 			YXFSDKManager.getInstance(paramActivity).getRoleInfo(paramActivity, info,
 					Constants.TYPE_CREATE_ROLE, new onRoleListener() {
-						@Override
 						public void onSuccess(RolecallBack rolecallBack) {
 							LogUtils.i(TAG + "提交用户信息成功 = "
 									+ rolecallBack.toString());
 						}
 
-						@Override
 						public void onError(RolecallBack rolecallBack) {
 							LogUtils.i(TAG + "提交用户信息失败 = "
 									+ rolecallBack.toString());
@@ -223,13 +231,11 @@ public class YaYawanconstants {
 		}else if(Integer.parseInt(ext)==3){
 			YXFSDKManager.getInstance(paramActivity).getRoleInfo(paramActivity, info,
 					Constants.TYPE_LEVEL_UP, new onRoleListener() {
-						@Override
 						public void onSuccess(RolecallBack rolecallBack) {
 							LogUtils.i(TAG + "提交用户信息成功 = "
 									+ rolecallBack.toString());
 						}
 
-						@Override
 						public void onError(RolecallBack rolecallBack) {
 							LogUtils.i(TAG + "提交用户信息失败 = "
 									+ rolecallBack.toString());
@@ -262,13 +268,11 @@ public class YaYawanconstants {
 			info.setServerName(YYWMain.mRole.getZoneName());// 区服名
 			YXFSDKManager.getInstance(paramActivity).LoginOut(info,
 					Constants.TYPE_EXIT_GAME, new onRoleListener() {
-						@Override
 						public void onSuccess(RolecallBack rolecallBack) {
 							LogUtils.i(TAG + "提交用户信息成功 = "
 									+ rolecallBack.toString());
 						}
 
-						@Override
 						public void onError(RolecallBack rolecallBack) {
 							LogUtils.i(TAG + "提交用户信息失败 = "
 									+ rolecallBack.toString());

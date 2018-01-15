@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.syhl.tulongll"
+    package="com.bjay.jzjt.huawei"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -85,7 +85,7 @@
         <!-- 退出接口是否有弹框提示 -->
         <meta-data
             android:name="app_id"
-            android:value="kk2940071042" />
+            android:value="kk312132570" />
   
   
           <!-- 竖屏设置 -->

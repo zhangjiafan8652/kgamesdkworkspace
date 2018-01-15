@@ -26,7 +26,6 @@ public class Toastxml_po extends Basexml implements Layoutxml {
 
 	}
 
-	@Override
 	public View initViewxml() {
 
 		// 基类布局

@@ -23,9 +23,7 @@ import com.yayawan.proxy.YYWAnimation;
 
 public class AnimationImpl implements YYWAnimation {
 
-	@Override
 	public void anim(Activity paramActivity) {
-		// TODO Auto-generated method stub
 		// Toast.makeText(paramActivity, "播放动画", Toast.LENGTH_SHORT).show();
 
 		YYWMain.mAnimCallBack.onAnimSuccess("success", "");
@@ -79,7 +77,6 @@ class LogoWindow {
 			try {
 				istr = assetManager.open("logo_start.png");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			Bitmap bitmap = BitmapFactory.decodeStream(istr);

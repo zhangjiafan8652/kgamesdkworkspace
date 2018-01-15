@@ -16,6 +16,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.kkgame.sdk.login.ViewConstants;
@@ -40,7 +41,6 @@ import com.yayawan.proxy.YYWCharger;
 
 public class ChargerImpl implements YYWCharger {
 
-	@Override
 	public void charge(Activity paramActivity, YYWOrder order,
 			YYWPayCallBack callback) {
 
@@ -51,13 +51,11 @@ public class ChargerImpl implements YYWCharger {
 	
 	private static int moneyrate=10;
 	
-	@Override
 	public void pay(final Activity paramActivity, final YYWOrder order,
 			YYWPayCallBack callback) {
 
 		new Handler(Looper.getMainLooper()).post(new Runnable() {
 
-			@Override
 			public void run() {
 				mactivity = paramActivity;
 				
@@ -177,7 +175,6 @@ public class ChargerImpl implements YYWCharger {
 								new Handler(Looper.getMainLooper())
 										.post(new Runnable() {
 
-											@Override
 											public void run() {
 												System.out.println("支付回来的结果"
 														+ arg0.result);
@@ -332,9 +329,13 @@ private void pay_run(final Activity paramActivity, String orderid2, String url_p
 
 		String ysdkExt = ""+orderid2;
 		String midasExt = ""+orderid2;
+		Log.i("tag","zoneId="+zoneId);
+		Log.i("tag","goodsTokenUrl="+goodsTokenUrl);
+		Log.i("tag","appResData = "+appResData);
+		Log.i("tag","ysdkExt ="+ysdkExt);
 		YSDKApi.buyGoods(zoneId, goodsTokenUrl,appResData,ysdkExt,new PayListener() {
-		    @Override
 		    public void OnPayNotify(PayRet ret) {
+		    	Log.i("tag","ret.ret="+ret.ret);
 		        if(PayRet.RET_SUCC == ret.ret){
 		            //支付流程成功
 		            switch (ret.payState){
@@ -385,7 +386,6 @@ private void pay_run(final Activity paramActivity, String orderid2, String url_p
 		        }
 		    }
 		});
-
 	}
 
 
@@ -402,7 +402,6 @@ private void pay_run(final Activity paramActivity, String orderid2, String url_p
 				// TODO Auto-generated method stub
 				mactivity.runOnUiThread(new Runnable() {
 
-					@Override
 					public void run() {
 						// TODO Auto-generated method stub
 						if (getmoneyTimer > 5) {
@@ -423,7 +422,6 @@ private void pay_run(final Activity paramActivity, String orderid2, String url_p
 	private void ToastInmainthread(final Activity mactivity, final String msg) {
 		mactivity.runOnUiThread(new Runnable() {
 
-			@Override
 			public void run() {
 				// TODO Auto-generated method stub
 				Toast.makeText(mactivity, msg, Toast.LENGTH_SHORT).show();
@@ -435,7 +433,6 @@ private void pay_run(final Activity paramActivity, String orderid2, String url_p
 	private void paysucc(Activity mactivity) {
 		mactivity.runOnUiThread(new Runnable() {
 
-			@Override
 			public void run() {
 				// TODO Auto-generated method stub
 				YYWMain.mPayCallBack.onPaySuccess(YYWMain.mUser,
@@ -447,7 +444,6 @@ private void pay_run(final Activity paramActivity, String orderid2, String url_p
 	private void payfail(Activity mactivity) {
 		mactivity.runOnUiThread(new Runnable() {
 
-			@Override
 			public void run() {
 				// TODO Auto-generated method stub
 				YYWMain.mPayCallBack.onPayFailed(null, "success");

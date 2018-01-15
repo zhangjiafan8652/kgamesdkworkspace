@@ -115,8 +115,6 @@ public class YSDKCallback implements UserListener, BuglyListener, PayListener {
 			// mainActivity.letUserLogout();
 			break;
 		default:
-			showToastTips("未知错误原因");
-			loginFail();
 			// 显示登录界面
 			// mainActivity.letUserLogout();
 			break;

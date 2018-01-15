@@ -14,66 +14,56 @@ import com.yayawan.proxy.YYWUserManager;
 
 public class UserManagerImpl implements YYWUserManager {
 
-	@Override
 	public void manager(Activity paramActivity) {
 		// TODO Auto-generated method stub
 		KgameSdk.accountManager(paramActivity);
 	}
 
-	@Override
 	public void login(Activity paramActivity, String paramString,
 			Object paramObject) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void logout(Activity paramActivity, String paramString,
 			Object paramObject) {
 		KgameSdk.stop(paramActivity);
 		
 	}
 
-	@Override
 	public void setUserListener(Activity paramActivity,
 			YYWUserManagerCallBack paramXMUserListener) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void exit(final Activity paramActivity,
 			final YYWExitCallback callback) {
 		// TODO Auto-generated method stub
 		// Toast.makeText(paramActivity, "退出游戏", Toast.LENGTH_SHORT).show();
 		paramActivity.runOnUiThread(new Runnable() {
 
-			@Override
 			public void run() {
 				// TODO Auto-generated method stub
 				KgameSdk.Exitgame(paramActivity, new KgameSdkCallback() {
 
 					
 
-					@Override
 					public void onCancel() {
 						// TODO Auto-generated method stub
 						
 					}
 
-					@Override
 					public void onError(int arg0) {
 						// TODO Auto-generated method stub
 						
 					}
 
-					@Override
 					public void onLogout() {
 						// TODO Auto-generated method stub
 						
 					}
 
-					@Override
 					public void onSuccess(User arg0, int arg1) {
 						// TODO Auto-generated method stub
 						callback.onExit();
@@ -84,7 +74,6 @@ public class UserManagerImpl implements YYWUserManager {
 
 	}
 
-	@Override
 	public void setRoleData(Activity arg0) {
 		// TODO Auto-generated method stub
 		KgameSdk.setRoleData(arg0, YYWMain.mRole.getRoleId(),

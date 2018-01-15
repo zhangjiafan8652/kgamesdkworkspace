@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.yayawan.sdktemplate"
+    package="com.hulian.wszj.lenovo"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -11,7 +11,6 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -41,11 +40,11 @@
     <!-- 易联 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <!-- 广告 -->
-     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
- <uses-permission android:name="android.permission.WAKE_LOCK" />
- <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-  <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" />
-  <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <!-- pay end -->
 
@@ -62,10 +61,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.lenovo.lsf.gamesdk.ui.WelcomeActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:windowSoftInputMode="stateHidden" >
             <intent-filter>
@@ -78,32 +78,21 @@
         <!-- 手游互联配置 -->
         <meta-data
             android:name="app_id"
-            android:value="kk2650477484" />
+            android:value="kk634605720" />
         <meta-data
             android:name="isLandscape"
             android:value="true" />
         <meta-data
             android:name="appid"
-            android:value="1711140601648.app.ln" />
+            android:value="1712210948519.app.ln" />
         <meta-data
             android:name="appkey"
-            android:value="MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAKQLNg04FZh14mNC4JeQFAGC+4U7
-zTWqOhwUuGSf/OR4ya8Jlbqrd0JAhVkud73XOLrGnDehZSihEEFhzeKImEU3D4IyMlbvu3GpctCc
-a+cqwmZZrEMTA/Lzu9zMVmpZyjZT0U5qLw7f481SivWVHy3hKAPOITJHxQQV6vKyLT1nAgMBAAEC
-gYBk4kArgQJG8Lh5MvfMPd8Pzu2/0jcxea6i9lswBvQPzfi6nLpoQmrlY6ieX+Vj6qgItXv8+lSr
-1+GXU/66Aich6OD0wCpI0zi75XylgcPBmM1CWF5G74XunPOL+qXDE+BOPjEavi9RqaTKLeCWWvhS
-GgVrW7ldFFC6Lzi77Q5hAQJBAPnrivIr5vSmKoKcw+WymGf56tlfwQdLHLcfS8ZvHbJjphKhaa5q
-LHZVzZrlp6OJ7A28TSrSCniInPhfs7j/pYkCQQCoCNinLu4D0C0/ejXICxi3gn3njG+qR/C+RlRc
-4r2aROlKPHBF0S6tgKlRIv2vopbFjTdkkzCqde7961Ceqf9vAkEAtCwyRHqQC0oMFZOMyvjhVPxg
-agvVLjvhXMdsKoeK4kNiw8WoWbxjh4A+NPBh1c2l5xUckMVSFSlv+MON3s42+QJBAJENwejgTDsi
-dEz9tHuRiK6xiPpfcu2t2JaIo77jRQVtQ24AKnM6lm7USFVwPUpmsnyq4QyDO1mLINo1To0I9yUC
-QQCHJ6jWWPGXESHCjp3NDbgkAydkRTDgq/BYhZW1sLNnR9Jl4sOWdGMbN8eq5hsmqZnha+vHkAkd
-rpvVZKCkqt/Q" />
+            android:value="MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBALgyY7+CDhjQsUcW04P3XaQkA1XPe4QGEDPqCcWx1ten4pX3XVyQkylqWYY/co6ImZXqo4EPkTBkBxLnAsAYxkru2K1CsbASMscP6OSMvafk7uNXYxGWRfdWOYpAD1jRwIGEgZcPDCWMNPXxuuawZ4z/7mSS1x9CvjtngsykE0PXAgMBAAECgYEAr7+MgxaRYsYE0CKMcJbeZxXhhMeyP3cVkKMW7eVQa3YJcTOThhWABH0vrDLvl+XoPS2jEiqLSpO2WCfI7Qb2crjN3xbGn7v1sq0WdbWOGmhspMJ3eazuMGMQflWUguqnPau/+kcEZx2ZPtzFfR2BPxoRijV6hHFNtBjjwZVSEKECQQD30qxCakrkia3NkjkJf5b3MRgX6MuiQQAp63fiEoVPdqZYh3TuUqlDokw1ZJndBsyGzCBer3stI5CBjvZ5rr7RAkEAvkZGi/qEPr87brAetGIUt7BBIiOoFHPO9ggd0EaGGGwBt298oQ88uowrCRO+sgTPo9oPWK6vWP6RJQ66WdGSJwJAGpCBmIjuSDsd30hKRuNfWlXv4Dg7A8R18QhljF0x3we34wt6FEXWEQLnql2DRLcC23wsCBpFWNxUFB8v+nEp0QJBAKukG1mEaC1uNn+4EkqoO4YkUe0o+yNQAL9CPRq3s5luPPIreOKVKzQg42Vx0VEnM+Pb/oICOp1uLqKeMY56lXsCQQC11YKY9q5S22zZ8l7ZPG2CSGQHKzE+opJVBWQSKNv04gR4oh6vy5YZnzfv1tAbw5fP2bZlD/BErLzc7lSr1opA" />
 
         <!--
               <meta-data
             android:name="callback"
-            android:value="https://api.sdk.75757.com/pay/notify/2462235735/" />
+            android:value="https://api.sdk.75757.com/pay/notify/2462235735/" />
         -->
 
 
@@ -149,8 +138,8 @@ rpvVZKCkqt/Q" />
         <!-- 登录配置开始 -->
         <meta-data
             android:name="lenovo.open.appid"
-            android:value="1711140601648.app.ln" />
- <!-- 在此处填入申请的lenovo open AppID -->
+            android:value="1712210948519.app.ln" />
+        <!-- 在此处填入申请的lenovo open AppID -->
 
         <meta-data
             android:name="lenovo.gamesdk.new"
@@ -313,9 +302,9 @@ rpvVZKCkqt/Q" />
                 </action>
                 <action android:name="string_appid" >
                 </action>
- <!-- 在此处填入申请的lenovo open AppID -->
+                <!-- 在此处填入申请的lenovo open AppID -->
                 <category android:name="string_package" />
- <!-- 在此处填入Package Name -->
+                <!-- 在此处填入Package Name -->
             </intent-filter>
         </receiver>
         <receiver android:name="com.lenovo.lsf.gamesdk.receiver.GameSdkAndroidLReceiver" >
@@ -324,7 +313,7 @@ rpvVZKCkqt/Q" />
                 </action>
 
                 <category android:name="string_package" />
- <!-- 在此处填入Package Name -->
+                <!-- 在此处填入Package Name -->
             </intent-filter>
         </receiver>
         <receiver
@@ -583,17 +572,17 @@ rpvVZKCkqt/Q" />
         <!--
              <meta-data
             android:name="lenovo.open.appid"
-            android:value="1604060160327.app.ln" />
+            android:value="1604060160327.app.ln" />
         -->
         <!-- 应用此处填写分配给应用的token,如不接入avatar,请直接复制此行 -->
         <!--
              <meta-data
             android:name="lenovo:applicationToken"
-            android:value="BGWJ03ZCYLCQ" />
+            android:value="BGWJ03ZCYLCQ" />
         -->
         <!-- 应用此处填写分配给应用的标示，zuk请填写“zuk”,用户中心不需要填写 -->
         <!-- <meta-data android:name="lenovo.paysdk.from" android:value="zuk"/> -->
-<!--  		<meta-data android:name="lenovo.paysdk.from" android:value="payplugin"/> -->
+        <!-- <meta-data android:name="lenovo.paysdk.from" android:value="payplugin"/> -->
         <!--
         <activity
             android:name="com.lenovo.lsf.wxapi.WXPayEntryActivity"
@@ -605,7 +594,7 @@ rpvVZKCkqt/Q" />
             <intent-filter>
                 <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />
             </intent-filter>
-        </receiver>
+        </receiver>
         -->
 
 
@@ -614,39 +603,13 @@ rpvVZKCkqt/Q" />
             android:name="com.lenovo.lsf.wxapi.WXPayEntryActivity"
             android:exported="true"
             android:theme="@style/lsf_pay_ui.translate"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop" />
         -->
         <!--
         此处fileprovider 的authorities 必须是包名+“.fileprovider” 
-        举例：如果demo包名是com.pay.sample.lenovo，那么此处authorities的值应为com.pay.sample.lenovo.fileprovider
+        举例：如果demo包名是com.pay.sample.lenovo，那么此处authorities的值应为com.pay.sample.lenovo.fileprovider
         -->
 
-        <meta-data
-            android:name="isguanggao"
-            android:value="string1" />
-        <meta-data
-            android:name="interstitial_id"
-            android:value="1603040292217.app.lno4jgzz" />
-
-        <service android:name="com.chance.engine.ChanceAdService" />
-        <service
-            android:name="com.qq.e.comm.DownloadService"
-            android:exported="false" >
-        </service>
-
-        <activity
-            android:name="com.qq.e.ads.ADActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" >
-        </activity>
-        <activity android:name="com.chance.ads.AdActivity" >
-        </activity>
-        <activity
-            android:name="com.chance.ads.VideoAdActivity"
-            android:configChanges="orientation|screenSize"
-            android:launchMode="singleTask"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
     </application>
 
 </manifest>

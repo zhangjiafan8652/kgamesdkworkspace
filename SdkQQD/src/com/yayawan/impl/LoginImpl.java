@@ -50,8 +50,8 @@ public class LoginImpl implements YYWLoginer {
 	private ProgressDialog mAutoLoginWaitingDlg;
 
 	private LoginImpl mloimpl;
+	public static String uid;
 
-	@Override
 	public void login(final Activity paramActivity,
 			YYWUserCallBack userCallBack, String paramString) {
 
@@ -62,17 +62,16 @@ public class LoginImpl implements YYWLoginer {
 
 			private BroadcastReceiver mReceiver;
 
-			@Override
 			public void run() {
 				mActivity = paramActivity;
 				
 				
 				QqYsdkHelp.Login(paramActivity, new QqYsdkUserCallback() {
 					
-					@Override
 					public void onSuccess(QQUser paramUser, int paramInt) {
 						// TODO Auto-generated method stub
 						//YSDKCallback.loginSuce(paramActivity, Myconstants.openId, Myconstants.nickname, Myconstants.accessToken);
+						uid  = paramUser.getOpenid();
 						if (DeviceUtil.getGameInfo(paramActivity, "NO_USERNAME").equals("yes")) {
 							loginSuce(paramActivity, paramUser.getOpenid(),  paramUser.getOpenid(),paramUser.getAccessToken());
 						}else {
@@ -82,7 +81,6 @@ public class LoginImpl implements YYWLoginer {
 						Yayalog.loger("qq登陆成功"+paramUser.getOpenid());
 					}
 					
-					@Override
 					public void onError(int paramInt) {
 						// TODO Auto-generated method stub
 						loginFail();
@@ -130,7 +128,6 @@ public class LoginImpl implements YYWLoginer {
 		YYWMain.mUser=null;
 		qq.setOnClickListener(new OnClickListener() {
 
-			@Override
 			public void onClick(View v) {
 				// Utilsjf.creDialogpro(paramActivity, "正在启动登陆...");
 				
@@ -144,7 +141,6 @@ public class LoginImpl implements YYWLoginer {
 
 		weixin.setOnClickListener(new OnClickListener() {
 
-			@Override
 			public void onClick(View v) {
 				// Utilsjf.creDialogpro(paramActivity, "正在启动登陆...");
 				// TODO Auto-generated method stub
@@ -234,7 +230,6 @@ public class LoginImpl implements YYWLoginer {
 
 	}
 
-	@Override
 	public void relogin(Activity paramActivity, YYWUserCallBack userCallBack,
 			String paramString) {
 

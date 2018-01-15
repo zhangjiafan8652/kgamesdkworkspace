@@ -282,6 +282,7 @@ public class YaYawanconstants {
 		// paycode = "a30";
 		// }
 		String paycode = "";
+		//捕鱼大世界
 		if (goods.equals("首充特惠礼包")) {
 			paycode = "a1";
 		} else if (goods.equals("贵族礼包")) {

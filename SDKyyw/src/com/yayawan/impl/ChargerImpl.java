@@ -17,18 +17,15 @@ import com.yayawan.proxy.YYWCharger;
 
 public class ChargerImpl implements YYWCharger {
 
-    @Override
     public void charge(Activity paramActivity, YYWOrder order,
             YYWPayCallBack callback) {
     }
 
-    @Override
     public void pay(final Activity paramActivity, final YYWOrder order, YYWPayCallBack callback) {
 
 
     	new Handler(Looper.getMainLooper()).post(new Runnable() {
 
-            @Override
             public void run() {
 
 				    	Order order2 = new Order();
@@ -40,21 +37,18 @@ public class ChargerImpl implements YYWCharger {
 
 				        KgameSdk.payment(paramActivity, order2,false, new KgameSdkPaymentCallback() {
 
-				            @Override
 				            public void onCancel() {
 				                if (YYWMain.mPayCallBack != null) {
 				                    YYWMain.mPayCallBack.onPayCancel("cancel", "");
 				                }
 				            }
 
-				            @Override
 				            public void onError(int arg0) {
 				                if (YYWMain.mPayCallBack != null) {
 				                    YYWMain.mPayCallBack.onPayFailed("failed", "");
 				                }
 				            }
 
-				            @Override
 				            public void onSuccess(User user, Order order, int arg2) {
 				                if (YYWMain.mPayCallBack != null) {
 				                	

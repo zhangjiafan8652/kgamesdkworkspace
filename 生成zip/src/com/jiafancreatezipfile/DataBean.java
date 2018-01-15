@@ -98,7 +98,6 @@ public class DataBean implements Comparable<DataBean>{
          this.uid = uid;
      }
 
-     @Override
      public int compareTo(DataBean dataBean) {
          if (this.id.equals(dataBean.getId())){
              System.out.println("相同："+this.id+"=="+dataBean.getId());

@@ -324,10 +324,10 @@
         <!-- meta-data需要写在application中 -->
         <meta-data
             android:name="YXF_APPID"
-            android:value="928" />
+            android:value="1500" />
         <meta-data
             android:name="YXF_GAMEID"
-            android:value="729" />
+            android:value="2261" />
         <meta-data
             android:name="YXF_AGENT"
             android:value="default" />
@@ -339,7 +339,7 @@
       <!-- 手游互联配置 -->
      	 <meta-data
             android:name="app_id"
-            android:value="kk1398168118" />
+            android:value="kk533035839" />
         <meta-data
             android:name="isLandscape"
             android:value="false" />

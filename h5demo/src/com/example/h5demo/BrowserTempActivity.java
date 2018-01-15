@@ -5,9 +5,13 @@ import static java.lang.Integer.parseInt;
 import java.net.URL;
 import java.util.Timer;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,13 +26,15 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
+import com.nzhy.cqll.jinli.R;
 import com.yayawan.callback.YYWAnimCallBack;
 import com.yayawan.callback.YYWExitCallback;
 import com.yayawan.main.Kgame;
 import com.yayawan.proxy.GameApi;
 
+@SuppressLint("Override")
+@TargetApi(21)
 public class BrowserTempActivity extends Activity {
 	/**
 	 * 作为一个浏览器的示例展示出来，采用android+web的模式
@@ -39,9 +45,9 @@ public class BrowserTempActivity extends Activity {
 	// private static final String mHomeUrl =
 	// "http://jump.h5.jiulingwan.com:81/webserver/07073/android/index.html";
 	// http://h5cqllyx.jiulingwan.com/webserver/07073/android/index.html
-	//http://pulsdk.7724.com/bufanyouxi/loginback/game/jstl
-	//private static final String mHomeUrl = "http://h5cqllyx.jiulingwan.com/webserver/07073/android/index.html";//传奇
-	private static final String mHomeUrl = "http://pulsdk.7724.com/bufanyouxi/loginback/game/jstl";
+	
+	private static final String mHomeUrl = "http://h5cqllyx.jiulingwan.com/webserver/07073/android/index.html"; //测试
+//	private static final String mHomeUrl = "http://h5cqllyx.jiulingwan.com/webserver/07073/androidNew/index.html"; //带logo
 	private static final String TAG = "SdkDemo";
 	private static final int MAX_LENGTH = 14;
 	private boolean mNeedTestPage = false;
@@ -56,7 +62,7 @@ public class BrowserTempActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		//
 		try {
 			if (parseInt(android.os.Build.VERSION.SDK) >= 11) {
@@ -75,20 +81,17 @@ public class BrowserTempActivity extends Activity {
 
 		Kgame.getInstance().anim(this, new YYWAnimCallBack() {
 
-			@Override
 			public void onAnimSuccess(String arg0, Object arg1) {
 				// TODO Auto-generated method stub
-
+                Log.i("tag","1");
 				init();
 			}
 
-			@Override
 			public void onAnimFailed(String arg0, Object arg1) {
 				// TODO Auto-generated method stub
 
 			}
 
-			@Override
 			public void onAnimCancel(String arg0, Object arg1) {
 				// TODO Auto-generated method stub
 
@@ -107,10 +110,11 @@ public class BrowserTempActivity extends Activity {
 	private WebView mWebView;
 
 	private void init() {
-
+		Log.i("tag","登陆1");
 		mWebView = (WebView) findViewById(R.id.webView1);
 		mWebView.addJavascriptInterface(new GameApi(this, mWebView), "GameApi");
 
+		//登录
 		mWebView.setWebViewClient(new WebViewClient() {
 
 			@Override
@@ -119,7 +123,6 @@ public class BrowserTempActivity extends Activity {
 				if (url.contains("uid=")) {
 					rl_webview.setVisibility(View.VISIBLE);
 				}
-
 				mWebView.loadUrl(url);
 				return false;
 
@@ -134,7 +137,6 @@ public class BrowserTempActivity extends Activity {
 		});
 
 		mWebView.setWebChromeClient(new WebChromeClient() {
-
 			View myVideoView;
 			View myNormalView;
 			CustomViewCallback callback;
@@ -147,6 +149,7 @@ public class BrowserTempActivity extends Activity {
 			@Override
 			public void onShowCustomView(View view,
 					CustomViewCallback customViewCallback) {
+				Log.i("tag","4");
 				FrameLayout normalView = (FrameLayout) findViewById(R.id.web_filechooser);
 				ViewGroup viewGroup = (ViewGroup) normalView.getParent();
 				viewGroup.removeView(normalView);
@@ -158,6 +161,7 @@ public class BrowserTempActivity extends Activity {
 
 			@Override
 			public void onHideCustomView() {
+				Log.i("tag","5");
 				if (callback != null) {
 					callback.onCustomViewHidden();
 					callback = null;
@@ -199,13 +203,14 @@ public class BrowserTempActivity extends Activity {
 		// "local_obj");
 
 		mWebView.loadUrl(mHomeUrl);
-
+		Log.i("tag","7");
 		CookieSyncManager.createInstance(this);
 		CookieSyncManager.getInstance().sync();
 	}
 
 	public void clearWebViewCache() {
 		// 清除cookie即可彻底清除缓存
+		Log.i("tag","12");
 		CookieSyncManager cookieSyncManager = CookieSyncManager
 				.createInstance(getApplicationContext());
 		CookieManager cookieManager = CookieManager.getInstance();
@@ -218,25 +223,22 @@ public class BrowserTempActivity extends Activity {
 	boolean[] m_selected = new boolean[] { true, true, true, true, false,
 			false, true };
 
-	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			Log.i("tag","退出");
 			Kgame.getInstance().exit(this, new YYWExitCallback() {
-				@Override
 				public void onExit() {
+					Log.i("tag","退出2");
 					finish();
 				}
 			});
-			//Toast.makeText(getApplicationContext(), "退出窗口", 0).show();
 			return true;
-		}else {
-			return super.onKeyDown(keyCode, event);
 		}
-		//return super.onKeyDown(keyCode, event);
+		return super.onKeyDown(keyCode, event);
+		
 	}
 
-	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		Kgame.getInstance().onActivityResult(this, requestCode, resultCode,
@@ -249,6 +251,7 @@ public class BrowserTempActivity extends Activity {
 		Kgame.getInstance().onNewIntent(intent);
 		if (intent == null || mWebView == null || intent.getData() == null)
 			return;
+		Log.i("tag","11");
 		mWebView.loadUrl(intent.getData().toString());
 	}
 
@@ -286,7 +289,6 @@ public class BrowserTempActivity extends Activity {
 		Kgame.getInstance().onStop(this);
 	}
 
-	@Override
 	public void onActivityReenter(int resultCode, Intent data) {
 		super.onActivityReenter(resultCode, data);
 	}

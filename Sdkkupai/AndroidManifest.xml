@@ -55,7 +55,7 @@
       <!-- 手游互联配置 -->
      	 <meta-data
             android:name="app_id"
-            android:value="kk76763328" />
+            android:value="kk2273051381" />
         <meta-data
             android:name="isLandscape"
             android:value="true" />
@@ -67,10 +67,10 @@
         
      	 <meta-data
             android:name="appid"
-            android:value="string5000008907" />
+            android:value="string5000009236" />
      	 <meta-data
             android:name="paykey"
-            android:value="OUM4MUY2QUFEQTg0ODIyMjdBRjMzMDU5MUZFNzQzNjczQjI1OUEyN09UZ3pNekU1TnpjMU5UTXhNVEkyT1RFMU1Tc3hNamN5TnpZME5UUTROVEF4TnpneE1qTXlOVFU0TURVek5qSTVPVFkxTkRNeE1qQTBPRGs9" />
+            android:value="NkJEQ0Q3RUQ0RTBBQkY4QzVBMEFENjlFRjVDRkMyMzk1OTVFRTlERU1USTVNek0wTWpRNE1qYzNOVGt3TWpRMU1qRXJNVGcwTlRZeE56VTNORFF5T0RFd01USTRNRFl3T1RBM05ERTVOekV5T1RjME1UTTFNVFl4" />
         
         <!-- local jar -->
 

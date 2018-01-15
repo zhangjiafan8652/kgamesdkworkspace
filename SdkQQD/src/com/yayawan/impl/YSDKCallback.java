@@ -137,7 +137,6 @@ public class YSDKCallback implements UserListener, BuglyListener {
 		}
 	}
 
-	@Override
 	public void OnRelationNotify(UserRelationRet relationRet) {
 		
 		//String result = relationRet.toString();
@@ -188,7 +187,6 @@ public class YSDKCallback implements UserListener, BuglyListener {
 		// mainActivity.sendResult(result);
 	}
 
-	@Override
 	public String OnCrashExtMessageNotify() {
 		// 此处游戏补充crash时上报的额外信息
 		Log.d("yaya",
@@ -199,7 +197,6 @@ public class YSDKCallback implements UserListener, BuglyListener {
 				+ time.format(nowTime);
 	}
 
-	@Override
 	public byte[] OnCrashExtDataNotify() {
 		// TODO Auto-generated method stub
 		return null;

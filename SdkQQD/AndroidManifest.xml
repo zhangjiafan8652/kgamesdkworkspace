@@ -176,7 +176,7 @@
             android:configChanges="keyboardHidden|navigation|orientation|screenSize"
             android:theme="@android:style/Theme.Dialog" />
 
-    <meta-data
+        <meta-data
             android:name="com.tencent.rdm.uuid"
             android:value="55f4d74e-ce87-4cab-afc7-407814265410" />
         <meta-data
@@ -194,27 +194,20 @@
         <meta-data
             android:name="addexit"
             android:value="yes" />
-       
-
         <meta-data
             android:name="moneyrate"
             android:value="string10" />
-
 
         <!-- 腾讯广点通上报方案最后一个是广告主id -->
         <meta-data
             android:name="guangdiantong"
             android:value="yes" />
-
-         <meta-data
+        <meta-data
             android:name="app_id"
             android:value="kk2594202898" />
-       
         <meta-data
             android:name="isLandscape"
             android:value="false" />
-
-      
 
         <!-- 是否为调试模式 -->
         <meta-data
@@ -222,7 +215,16 @@
             android:value="false" />
         <meta-data
             android:name="USE_DEFALUT_LOGIN"
-            android:value="yes" />F
+            android:value="yes" />
+        <meta-data
+            android:name="isyoumeng"
+            android:value="string1" />
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5a1e71aab27b0a3b68000111" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="应用宝" />
     </application>
 
 </manifest>

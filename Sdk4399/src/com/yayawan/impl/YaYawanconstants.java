@@ -13,11 +13,6 @@ import cn.m4399.operate.OperateCenter.OnRechargeFinishedListener;
 import cn.m4399.operate.OperateCenterConfig;
 import cn.m4399.operate.OperateCenterConfig.PopLogoStyle;
 import cn.m4399.operate.OperateCenterConfig.PopWinPosition;
-
-import com.kkgame.sdk.bean.User;
-import com.kkgame.sdk.callback.KgameSdkCallback;
-import com.kkgame.sdk.login.InitSdk;
-import com.kkgame.sdkmain.KgameSdk;
 import com.kkgame.utils.DeviceUtil;
 import com.kkgame.utils.Handle;
 import com.kkgame.utils.JSONUtil;
@@ -102,12 +97,16 @@ public class YaYawanconstants {
 		//充值金额（元）
 		//游戏方订单号
 		//商品名称
+		Log.i("tag","money = "+money);
+		Log.i("tag","morderid = "+morderid);
+		Log.i("tag","YYWMain.mOrder.goods = "+YYWMain.mOrder.goods);
 		mOpeCenter.recharge(mactivity,money,morderid,YYWMain.mOrder.goods,new OnRechargeFinishedListener() {
 
 			@Override
 			public void onRechargeFinished(boolean success, int resultCode,String msg){
 				Log.i("tag","支付resultCode = "+resultCode);
 				Log.i("tag","支付msg = "+msg);
+				Log.i("tag","success = "+success);
 				if(success){
 					// 请求游戏服，获取充值结果
 					paySuce();
