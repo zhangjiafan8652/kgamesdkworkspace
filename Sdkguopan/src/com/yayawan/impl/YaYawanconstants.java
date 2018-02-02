@@ -32,9 +32,9 @@ import com.yayawan.main.YYWMain;
 
 public class YaYawanconstants {
 
-//	private static final Context mactivity = null;
-//
-//	private static HashMap<String, String> mGoodsid;
+	//	private static final Context mactivity = null;
+	//
+	//	private static HashMap<String, String> mGoodsid;
 
 	private static Activity mActivity;
 
@@ -63,14 +63,14 @@ public class YaYawanconstants {
 		GPApiFactory.getGPApiForMarshmellow(mactivity, new Callback() {
 			@Override
 			public void onCallBack(IGPApi igpApi) {
-				
+
 				mIGPApi = igpApi;
-				
+
 				//打开日志、发布状态切记不要打开
 				mIGPApi.setLogOpen(false);
-				
+
 				mIGPApi.onCreate(mactivity);
-				
+
 				// sdk内部事件回调接口
 				mIGPApi.setSDKInnerEventObserver(new IGPSDKInnerEventObserver() {
 					@Override
@@ -80,7 +80,7 @@ public class YaYawanconstants {
 						// mIGPApi.login(mactivity, mUserObsv);
 						Log.i("tag","注销1");
 						loginOut();
-//						GPApiFactory.getGPApi().reLogin(mActivity, mUserObsv);
+						//						GPApiFactory.getGPApi().reLogin(mActivity, mUserObsv);
 					}
 
 					@Override
@@ -90,7 +90,7 @@ public class YaYawanconstants {
 						// writeLog("可通过getLoginUin获取用户唯一uid");
 						// writeLog("可通过getLoginToken获取用户的令牌");
 						loginOut();
-//						loginSuce(mActivity, mIGPApi.getLoginUin(), mIGPApi.getAccountName(), mIGPApi.getLoginToken());
+						//						loginSuce(mActivity, mIGPApi.getLoginUin(), mIGPApi.getAccountName(), mIGPApi.getLoginToken());
 						Log.i("tag","切换了账号2");
 					}
 				});
@@ -114,7 +114,7 @@ public class YaYawanconstants {
 	 */
 	public static void login(final Activity mactivity) {
 		Yayalog.loger("YaYawanconstantssdk登录");
-		
+
 		if (isinit) {
 			GPApiFactory.getGPApi().login(mactivity, mUserObsv);
 		} else {
@@ -160,8 +160,13 @@ public class YaYawanconstants {
 	public static void exit(Activity paramActivity,
 			final YYWExitCallback callback) {
 		Yayalog.loger("YaYawanconstantssdk退出");
+		paramActivity.runOnUiThread(new Runnable() {
 
-		GPApiFactory.getGPApi().exit(mExitObsv);
+			@Override
+			public void run() {
+				GPApiFactory.getGPApi().exit(mExitObsv);
+			}
+		});
 
 	}
 
@@ -179,6 +184,15 @@ public class YaYawanconstants {
 		zone_Name = zoneName;
 		if(role_Id.equals("")){
 			role_Id = "9527";
+		}
+		if(role_Name.equals("")){
+			role_Id = "007";
+		}
+		if(zone_Id.equals("")){
+			zone_Id = "1";
+		}
+		if(zone_Name.equals("")){
+			zone_Name = "1";
 		}
 		if (Integer.parseInt(ext) == 1){
 			GPSDKPlayerInfo gpsdkPlayerInfo = new GPSDKPlayerInfo();
@@ -403,7 +417,7 @@ public class YaYawanconstants {
 				Log.i("tag","初始化回调:初始化成功");
 				isinit = true;
 				//                    mGoToLogin.performClick();
-				login(mActivity);
+//				login(mActivity);
 				break;
 			}
 		}

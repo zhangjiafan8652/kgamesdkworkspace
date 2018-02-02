@@ -47,22 +47,22 @@
             android:value="北京奥优科技有限公司" />
         <meta-data
             android:name="appid"
-            android:value="string100178189" />
+            android:value="string100163729" />
         <meta-data
             android:name="cpid"
-            android:value="string890086000102098025" />
+            android:value="string890086000102062327" />
         
    <!-- 接入HMSSDK 需要注册的appid参数。value的值“appid”用实际申请的应用ID替换，来源于开发者联盟网站应用的权益详情。
             格式 android:value="appid=xxxxxx" -->
         <meta-data
             android:name="com.huawei.hms.client.appid"
-            android:value="appid=100178189"/>
+            android:value="appid=100163729"/>
 
         <!-- 接入HMSSDK 游戏或支付时需要注册的cpid参数。value的值“cpid”用实际申请的应用cpID替换，来源于开发者联盟网站应用的权益详情。
             格式 android:value="cpid=xxxxxx" -->
         <meta-data
             android:name="com.huawei.hms.client.cpid"
-            android:value="cpid=890086000102098025"/>
+            android:value="cpid=890086000102062327"/>
 
         <!-- 接入HMSSDK 需要注册的provider，authorities 一定不能与其他应用一样，所以这边 ${PACKAGE_NAME} 要替换上您应用的包名 -->
         <provider

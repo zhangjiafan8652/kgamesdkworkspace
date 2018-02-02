@@ -60,7 +60,7 @@ public class YaYawanconstants {
 	private static String bufanuid;
 	private static String bufantoken;
 
-	private static String sign;
+//	private static String sign;
 
 	private static int isyoumeng;
 
@@ -421,7 +421,7 @@ public class YaYawanconstants {
 				public void run() {
 					// startGame();
 					isinit = true;
-					login(mActivity);
+//					login(mActivity);
 				}
 			});
 		}

@@ -1,13 +1,11 @@
 package com.yayawan.impl;
 
 import java.util.HashMap;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
-
 import com.kkgame.utils.DeviceUtil;
 import com.kkgame.utils.Handle;
 import com.kkgame.utils.JSONUtil;
@@ -18,9 +16,10 @@ import com.zqhy.sdk.callback.ExitCallBack;
 import com.zqhy.sdk.callback.InitCallBack;
 import com.zqhy.sdk.callback.LoginCallBack;
 import com.zqhy.sdk.callback.PayCallBack;
+import com.zqhy.sdk.callback.ReLoginCallBack;
 import com.zqhy.sdk.model.PayParams;
-import com.zqhy.sdk.platform.lehihi.LehihiSDKApi;
-import com.zqhy.sdk.ui.FloatViewManager;
+import com.zqhy.sdk.platform.LehihiGameSDKApi;
+import com.zqhy.sdk.ui.FloatWindowManager;
 
 
 public class YaYawanconstants {
@@ -38,6 +37,11 @@ public class YaYawanconstants {
 	private static String Uid;
 
 	private static String UserName;
+	
+	private static String zonename = "1";
+	
+	private static String role_id = "1";
+	private static String role_name = "1";
 
 	private static String UserToken;
 	/**
@@ -49,16 +53,16 @@ public class YaYawanconstants {
 		pid = ""+DeviceUtil.getGameInfo(mactivity, "pid");
 		appkey = ""+DeviceUtil.getGameInfo(mactivity, "appkey");
 		int strPid = Integer.parseInt(pid);
-		Log.i("tag","pid="+pid);
+		Log.i("tag","strPid="+strPid);
 		Log.i("tag","appkey="+appkey);
-		LehihiSDKApi.getInstance().init(mactivity, strPid, appkey, new InitCallBack() {
+		LehihiGameSDKApi.getInstance().init(mactivity, strPid, appkey, new InitCallBack() {
 			@Override
 			public void onInitSuccess() {
 				//                LoggerE("init Success");
 				isinit = true;
 				Log.i("tag","初始化成功");
 				//                Toast.makeText(mActivity, "初始化成功", Toast.LENGTH_SHORT).show();
-				//                LehihiSDKApi.getInstance().registerReLoginCallBack(reLoginCallBack);
+				LehihiGameSDKApi.getInstance().registerReLoginCallBack(reLoginCallBack);
 			}
 
 			@Override
@@ -68,6 +72,14 @@ public class YaYawanconstants {
 			}
 		});
 	}
+	
+	static ReLoginCallBack reLoginCallBack = new ReLoginCallBack() {
+		
+		@Override
+		public void onReLogin() {
+			login(mActivity);
+		};
+	};
 
 	/**
 	 * application初始化
@@ -85,7 +97,7 @@ public class YaYawanconstants {
 		Log.i("tag","isinit="+isinit);
 		if(isinit){
 			Log.i("tag","登录");
-			LehihiSDKApi.getInstance().login(mactivity, new LoginCallBack() {
+			LehihiGameSDKApi.getInstance().login(mactivity, new LoginCallBack() {
 				@Override
 				public void onLoginSuccess(String uid, String username, String token) {
 					Uid = uid;
@@ -120,15 +132,24 @@ public class YaYawanconstants {
 	public static void pay(Activity mactivity, String morderid) {
 
 		Yayalog.loger("YaYawanconstantssdk支付");
+		if(role_name.equals("")){
+			role_name = "1";
+		}
+		if(zonename.equals("")){
+			zonename = "1";
+		}
 
 		PayParams payParams = new PayParams();
 		payParams.extendsinfo = morderid;
 		payParams.username = UserName;
 		payParams.token = UserToken;
 		payParams.serverid = "1";
+		payParams.role_name = role_name;
+		payParams.servername = zonename;
+		payParams.product_name = YYWMain.mOrder.goods;
 		payParams.amount = YYWMain.mOrder.money/100;
 
-		LehihiSDKApi.getInstance().pay(mactivity, payParams, new PayCallBack() {
+		LehihiGameSDKApi.getInstance().pay(mactivity, payParams, new PayCallBack() {
 			@Override
 			public void onPaySuccess(String message) {
 				//                LoggerE("onPaySuccess message:" + message);
@@ -164,21 +185,24 @@ public class YaYawanconstants {
 			final YYWExitCallback callback) {
 		Yayalog.loger("YaYawanconstantssdk退出");
 
-		LehihiSDKApi.getInstance().exit(paramActivity, new ExitCallBack() {
+		LehihiGameSDKApi.getInstance().exit(paramActivity, DeviceUtil.isLandscape(mActivity)?0:1, new ExitCallBack() {
+			
 			@Override
 			public void onExit() {
-				Log.i("tag","onExit");
+				// TODO Auto-generated method stub
 				callback.onExit();
 			}
-
+			
 			@Override
 			public void onContinueGame() {
-				Log.i("tag","onContinueGame");
+				// TODO Auto-generated method stub
+				
 			}
-
+			
 			@Override
 			public void onCancel() {
-				Log.i("tag","onCancel");
+				// TODO Auto-generated method stub
+				
 			}
 		}, null);
 	}
@@ -191,20 +215,28 @@ public class YaYawanconstants {
 	public static void setData(Activity paramActivity, String roleId, String roleName,String roleLevel, String zoneId, String zoneName, String roleCTime,String ext){
 		// TODO Auto-generated method stub
 		Yayalog.loger("YaYawanconstants设置角色信息");
+		Log.i("tag","roleId:" + roleId);
+		Log.i("tag","roleName:" + roleName);
+		Log.i("tag","roleLevel:" + roleLevel);
+		Log.i("tag","zoneId:" + zoneId);
+		Log.i("tag","zoneName:" + zoneName);
+		zonename = zoneName;
+		role_id = roleId;
+		role_name = roleName;
 	}
 	public static void onResume(Activity paramActivity) {
 		// TODO Auto-generated method stub
-		FloatViewManager.getInstance(paramActivity).showFloat();
+//		FloatViewManager.getInstance(paramActivity).showFloat();
+		FloatWindowManager.getInstance(paramActivity).showFloat();
 	}
 
 	public static void onPause(Activity paramActivity) {
 		// TODO Auto-generated method stub
-
 	}
 
 	public static void onDestroy(Activity paramActivity) {
 		// TODO Auto-generated method stub
-		FloatViewManager.getInstance(paramActivity).destroyFloat();
+		FloatWindowManager.getInstance(paramActivity).destroyFloat();
 	}
 
 	public static void onActivityResult(Activity paramActivity) {
@@ -234,7 +266,7 @@ public class YaYawanconstants {
 
 	public static void onStop(Activity paramActivity) {
 		// TODO Auto-generated method stub
-		FloatViewManager.getInstance(paramActivity).hideFloat();
+		FloatWindowManager.getInstance(paramActivity).hideFloat();
 	}
 
 
