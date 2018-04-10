@@ -56,7 +56,7 @@ public class YaYawanconstants {
 
 	public static boolean mRepeatCreate = false;
 
-	private static String uid;
+	public static String uid;
 	private static String bufanuid;
 	private static String bufantoken;
 

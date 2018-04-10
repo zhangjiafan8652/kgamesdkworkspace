@@ -294,60 +294,92 @@ public class YaYawanconstants {
 //			waresid = 188951;
 //		}
 		//我的便利店
-		if(goods.equals("10钻石")){
-			waresid = 191630;
-		}else if(goods.equals("32钻石")){
-			waresid = 191631;
-		}else if(goods.equals("57钻石")){
-			waresid = 191632;
-		}else if(goods.equals("120钻石")){
-			waresid = 191633;
-		}else if(goods.equals("390钻石")){
-			waresid = 191634;
-		}else if(goods.equals("680钻石")){
-			waresid = 191635;
-		}else if(goods.equals("1450钻石")){
-			waresid = 191636;
+//		if(goods.equals("10钻石")){
+//			waresid = 191630;
+//		}else if(goods.equals("32钻石")){
+//			waresid = 191631;
+//		}else if(goods.equals("57钻石")){
+//			waresid = 191632;
+//		}else if(goods.equals("120钻石")){
+//			waresid = 191633;
+//		}else if(goods.equals("390钻石")){
+//			waresid = 191634;
+//		}else if(goods.equals("680钻石")){
+//			waresid = 191635;
+//		}else if(goods.equals("1450钻石")){
+//			waresid = 191636;
+//		}
+//		else if(goods.equals("首冲390钻石")){
+//			waresid = 191637;
+//		}
+//		else if(goods.equals("每日钻石套餐")){
+//			waresid = 191638;
+//		}
+//		else if(goods.equals("新手套餐")){
+//			waresid = 191639;
+//		}
+//		else if(goods.equals("实惠套餐")){
+//			waresid = 191640;
+//		}
+//		else if(goods.equals("高级套餐")){
+//			waresid = 191641;
+//		}
+//		else if(goods.equals("每日特惠周一")){
+//			waresid = 191642;
+//		}
+//		else if(goods.equals("每日特惠周二")){
+//			waresid = 191643;
+//		}
+//		else if(goods.equals("每日特惠周三")){
+//			waresid = 191644;
+//		}
+//		else if(goods.equals("每日特惠周四")){
+//			waresid = 191645;
+//		}
+//		else if(goods.equals("每日特惠周五")){
+//			waresid = 191646;
+//		}
+//		else if(goods.equals("每日特惠周六")){
+//			waresid = 191647;
+//		}
+//		else if(goods.equals("每日特惠周日")){
+//			waresid = 191648;
+//		}
+//		else if(goods.equals("首充礼包")){
+//			waresid = 191649;
+//		}
+		
+		//萌斗魏蜀吴
+		if(goods.equals("60元宝")){
+			waresid = 198672;
+		}else if(goods.equals("280元宝")){
+			waresid = 198673;
+		}else if(goods.equals("680元宝")){
+			waresid = 198674;
+		}else if(goods.equals("1280元宝")){
+			waresid = 198675;
+		}else if(goods.equals("3280元宝")){
+			waresid = 198676;
+		}else if(goods.equals("6480元宝")){
+			waresid = 198677;
+		}else if(goods.equals("9980元宝")){
+			waresid = 198678;
 		}
-		else if(goods.equals("首冲390钻石")){
-			waresid = 191637;
+		else if(goods.equals("20480元宝")){
+			waresid = 198679;
 		}
-		else if(goods.equals("每日钻石套餐")){
-			waresid = 191638;
+		else if(goods.equals("周卡")){
+			waresid = 198680;
 		}
-		else if(goods.equals("新手套餐")){
-			waresid = 191639;
+		else if(goods.equals("月卡")){
+			waresid = 198681;
 		}
-		else if(goods.equals("实惠套餐")){
-			waresid = 191640;
+		else if(goods.equals("至尊卡")){
+			waresid = 198682;
 		}
-		else if(goods.equals("高级套餐")){
-			waresid = 191641;
-		}
-		else if(goods.equals("每日特惠周一")){
-			waresid = 191642;
-		}
-		else if(goods.equals("每日特惠周二")){
-			waresid = 191643;
-		}
-		else if(goods.equals("每日特惠周三")){
-			waresid = 191644;
-		}
-		else if(goods.equals("每日特惠周四")){
-			waresid = 191645;
-		}
-		else if(goods.equals("每日特惠周五")){
-			waresid = 191646;
-		}
-		else if(goods.equals("每日特惠周六")){
-			waresid = 191647;
-		}
-		else if(goods.equals("每日特惠周日")){
-			waresid = 191648;
-		}
-		else if(goods.equals("首充礼包")){
-			waresid = 191649;
-		}
+		else if(goods.equals("一元礼包")){
+			waresid = 198683;
+		}		
 		return waresid;
 	}
 

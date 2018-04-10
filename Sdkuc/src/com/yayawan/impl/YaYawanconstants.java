@@ -2,6 +2,7 @@ package com.yayawan.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -12,15 +13,12 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.app.ActionBar;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -37,39 +35,40 @@ import cn.uc.gamesdk.open.OrderInfo;
 import cn.uc.gamesdk.open.UCOrientation;
 import cn.uc.gamesdk.param.SDKParamKey;
 import cn.uc.gamesdk.param.SDKParams;
-import com.kkgame.sdk.bean.User;
-import com.kkgame.sdk.callback.KgameSdkCallback;
-import com.kkgame.sdkmain.KgameSdk;
 import com.kkgame.utils.DeviceUtil;
 import com.kkgame.utils.Handle;
 import com.kkgame.utils.JSONUtil;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.analytics.game.UMGameAgent;
 import com.yayawan.callback.YYWExitCallback;
 import com.yayawan.domain.YYWUser;
 import com.yayawan.main.YYWMain;
 
-@SuppressWarnings({ "deprecation", "unused" })
 public class YaYawanconstants {
 
-	//	private static HashMap<String, String> mGoodsid;
+	// private static HashMap<String, String> mGoodsid;
 
 	private static Activity mActivity;
 
 	private static boolean isinit = false;
-	
+
 	private static Handler handler;
-	
+
 	public static boolean mRepeatCreate = false;
-	
-	private static YYWExitCallback ExitCallback;
-	
-	private static String paystatus = "1";// 订单状态
-	
-	private static String uid;
+
+	public static String uid;
 	private static String bufanuid;
 	private static String bufantoken;
-	
+
+//	private static String sign;
+
+	private static int isyoumeng;
+
+	private static YYWExitCallback ExitCallback;
+
 	private static String token;
-	
+
+	private static String paystatus = "1";// 订单状态
 
 	/**
 	 * 初始化sdk
@@ -77,25 +76,32 @@ public class YaYawanconstants {
 	public static void inintsdk(Activity mactivity) {
 		mActivity = mactivity;
 		Yayalog.loger("YaYawanconstants初始化sdk");
-		
-		if ((mactivity.getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
-            Log.i("tag", "onCreate with flag FLAG_ACTIVITY_BROUGHT_TO_FRONT");
-            mRepeatCreate = true;
-            mActivity.finish();
-            return;
-        }
-//        ButterKnife.bind(this);
-        ucNetworkAndInitUCGameSDK(getPullupInfo(mActivity.getIntent()));
-        handler = new Handler(Looper.getMainLooper());
-        UCGameSdk.defaultSdk().registerSDKEventReceiver(receiver);
-	}
+		if ((mActivity.getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
+			// Log.i(TAG, "onCreate with flag FLAG_ACTIVITY_BROUGHT_TO_FRONT");
+			mRepeatCreate = true;
+			mActivity.finish();
+			return;
+		}
+		// ButterKnife.bind(mactivity);
 
+		ucNetworkAndInitUCGameSDK((getPullupInfo(mActivity.getIntent())));
+		handler = new Handler(Looper.getMainLooper());
+		UCGameSdk.defaultSdk().registerSDKEventReceiver(receiver);
+
+		String youmeng = DeviceUtil.getGameInfo(mActivity, "isyoumeng");
+		isyoumeng = Integer.parseInt(youmeng);
+		if (isyoumeng == 1) {
+			UMGameAgent.setDebugMode(true);
+			UMGameAgent.init(mActivity);
+		}
+
+		isinit = true;
+	}
 
 	/**
 	 * application初始化
 	 */
 	public static void applicationInit(Context applicationContext) {
-
 
 	}
 
@@ -104,7 +110,7 @@ public class YaYawanconstants {
 	 */
 	public static void login(final Activity mactivity) {
 		Yayalog.loger("YaYawanconstantssdk登录");
-		if(isinit){
+		if (isinit) {
 			try {
 				UCGameSdk.defaultSdk().login(mactivity, null);
 			} catch (AliLackActivityException e) {
@@ -112,7 +118,7 @@ public class YaYawanconstants {
 			} catch (AliNotInitException e) {
 				e.printStackTrace();
 			}
-		}else{
+		} else {
 			inintsdk(mactivity);
 		}
 	}
@@ -143,6 +149,7 @@ public class YaYawanconstants {
 		} catch (Exception e) {
 			// 未初始化或正在初始化时，异常处理
 		}
+
 	}
 
 	/**
@@ -171,10 +178,10 @@ public class YaYawanconstants {
 	 * 设置角色信息
 	 * 
 	 */
-	public static void setData(Activity paramActivity, String roleId, String roleName,String roleLevel, String zoneId, String zoneName, String roleCTime,String ext){
+	public static void setData(Activity paramActivity, String roleId,
+			String roleName, String roleLevel, String zoneId, String zoneName,
+			String roleCTime, String ext) {
 		Yayalog.loger("YaYawanconstants设置角色信息");
-		//角色创建时间
-//		HttpPost(roleId,roleName,roleLevel,zoneId,zoneName,roleCTime);
 		SDKParams sdkParams = new SDKParams();
 		sdkParams.put(SDKParamKey.STRING_ROLE_ID, roleId);
 		sdkParams.put(SDKParamKey.STRING_ROLE_NAME, roleName);
@@ -184,10 +191,10 @@ public class YaYawanconstants {
 		sdkParams.put(SDKParamKey.STRING_ZONE_NAME, zoneName);
 		// 1为角色登陆成功 2为角色创建 3为角色升级。
 		if (Integer.parseInt(ext) == 1) {
-//			if (isyoumeng == 1) {
-//				Log.i("tag", "友盟进入游戏");
-//				MobclickAgent.onProfileSignIn(uid);
-//			}
+			if (isyoumeng == 1) {
+				Log.i("tag", "友盟进入游戏");
+				MobclickAgent.onProfileSignIn(uid);
+			}
 			try {
 				UCGameSdk.defaultSdk().submitRoleData(paramActivity, sdkParams);
 				Log.i("tag", "登陆成功,数据已提交,查看数据是否正确，请到开放平台接入联调工具查看");
@@ -216,158 +223,64 @@ public class YaYawanconstants {
 			}
 		}
 	}
-	
-	
-	static SDKEventReceiver receiver = new SDKEventReceiver() {
-
-		@Subscribe(event = SDKEventKey.ON_INIT_SUCC)
-		private void onInitSucc() {
-			// 初始化成功
-			handler.post(new Runnable() {
-
-				@Override
-				public void run() {
-					isinit = true;
-					login(mActivity);
-				}
-			});
-		}
-
-		@Subscribe(event = SDKEventKey.ON_INIT_FAILED)
-		private void onInitFailed(String data) {
-			// 初始化失败
-			Toast.makeText(mActivity, "init failed", Toast.LENGTH_SHORT).show();
-			ucNetworkAndInitUCGameSDK(null);
-		}
-
-		@Subscribe(event = SDKEventKey.ON_LOGIN_SUCC)
-		private void onLoginSucc(String sid) {
-			Log.i("tag", "sid = " + sid);
-			HttpPost(sid);
-		}
-
-		@Subscribe(event = SDKEventKey.ON_LOGIN_FAILED)
-		private void onLoginFailed(String desc) {
-			Toast.makeText(mActivity, desc, Toast.LENGTH_SHORT).show();
-			loginFail();
-		}
-
-		@Subscribe(event = SDKEventKey.ON_CREATE_ORDER_SUCC)
-		private void onCreateOrderSucc(OrderInfo orderInfo) {
-			if (orderInfo != null) {
-				StringBuilder sb = new StringBuilder();
-				sb.append(String.format("'orderId':'%s'",
-						orderInfo.getOrderId()));
-				sb.append(String.format("'orderAmount':'%s'",
-						orderInfo.getOrderAmount()));
-				sb.append(String.format("'payWay':'%s'", orderInfo.getPayWay()));
-				sb.append(String.format("'payWayName':'%s'",
-						orderInfo.getPayWayName()));
-				Log.i("tag",
-						"此处为订单生成回调，客户端无支付成功回调，订单是否成功以服务端回调为准: callback orderInfo = "
-								+ sb);
-				
-				
-			}
-		}
-
-		@Subscribe(event = SDKEventKey.ON_PAY_USER_EXIT)
-		private void onPayUserExit(OrderInfo orderInfo) {
-			if (orderInfo != null) {
-				StringBuilder sb = new StringBuilder();
-				sb.append(String.format("'orderId':'%s'",
-						orderInfo.getOrderId()));
-				sb.append(String.format("'orderAmount':'%s'",
-						orderInfo.getOrderAmount()));
-				sb.append(String.format("'payWay':'%s'", orderInfo.getPayWay()));
-				sb.append(String.format("'payWayName':'%s'",
-						orderInfo.getPayWayName()));
-				final String orderid = orderInfo.getOrderId();
-				HttpPost(uid, token, orderid);
-				Log.i("tag", "支付界面关闭: callback orderInfo = " + sb);
-			}
-		}
-
-		@Subscribe(event = SDKEventKey.ON_LOGOUT_SUCC)
-		private void onLogoutSucc() {
-			Toast.makeText(mActivity, "logout succ", Toast.LENGTH_SHORT).show();
-			loginOut();
-		}
-
-		@Subscribe(event = SDKEventKey.ON_LOGOUT_FAILED)
-		private void onLogoutFailed() {
-			Toast.makeText(mActivity, "logout failed", Toast.LENGTH_SHORT)
-					.show();
-		}
-
-		@Subscribe(event = SDKEventKey.ON_EXIT_SUCC)
-		private void onExit(String desc) {
-			// if (isyoumeng == 1) {
-			// Log.i("tag", "友盟退出");
-			// MobclickAgent.onProfileSignOff();
-			// MobclickAgent.onKillProcess(mActivity);
-			// }
-			// mActivity.finish();
-			ExitCallback.onExit();
-		}
-
-		@Subscribe(event = SDKEventKey.ON_EXIT_CANCELED)
-		private void onExitCanceled(String desc) {
-			Toast.makeText(mActivity, desc, Toast.LENGTH_SHORT).show();
-		}
-	};
 
 	public static void onResume(Activity paramActivity) {
 		if (mRepeatCreate) {
-	        Log.i("tag", "onResume is repeat activity!");
-	        return;
-	    }
+			Log.i("tag", "onResume is repeat activity!");
+			return;
+		}
+		if (isyoumeng == 1) {
+			MobclickAgent.onResume(paramActivity);
+		}
 	}
 
 	public static void onPause(Activity paramActivity) {
-		 if (mRepeatCreate) {
-		        Log.i("tag", "AppActivity:onPause is repeat activity!");
-		        return;
-		    }
+		if (mRepeatCreate) {
+			Log.i("tag", "AppActivity:onPause is repeat activity!");
+			return;
+		}
+		if (isyoumeng == 1) {
+			MobclickAgent.onPause(paramActivity);
+		}
 	}
 
 	public static void onDestroy(Activity paramActivity) {
 		if (mRepeatCreate) {
-	        Log.i("tag", "onDestroy is repeat activity!");
-	        return;
-	    }
+			Log.i("tag", "onDestroy is repeat activity!");
+			return;
+		}
+
 	}
 
-	public static void onActivityResult(Activity paramActivity, int paramInt1,
-			int paramInt2, Intent paramIntent) {
+	public static void onActivityResult(Activity paramActivity) {
 		if (mRepeatCreate) {
-	        Log.i("tag", "onActivityResult is repeat activity!");
-	        return;
-	    }
+			Log.i("tag", "onActivityResult is repeat activity!");
+			return;
+		}
 
 	}
 
 	public static void onNewIntent(Intent paramIntent) {
 		if (mRepeatCreate) {
-	        Log.i("tag", "onNewIntent is repeat activity!");
-				return;
-	    }
+			Log.i("tag", "onNewIntent is repeat activity!");
+			return;
+		}
 
 	}
 
 	public static void onStart(Activity paramActivity) {
-		 if (mRepeatCreate) {
-		        Log.i("tag", "onStart is repeat activity!");
-		        return;
-		    }
+		if (mRepeatCreate) {
+			Log.i("tag", "onStart is repeat activity!");
+			return;
+		}
 
 	}
 
 	public static void onRestart(Activity paramActivity) {
 		if (mRepeatCreate) {
-	        Log.i("tag", "onRestart is repeat activity!");
-				return;
-	    }
+			Log.i("tag", "onRestart is repeat activity!");
+			return;
+		}
 
 	}
 
@@ -377,9 +290,9 @@ public class YaYawanconstants {
 
 	public static void onStop(Activity paramActivity) {
 		if (mRepeatCreate) {
-	        Log.i("tag", "onStop is repeat activity!");
-	        return;
-	    }
+			Log.i("tag", "onStop is repeat activity!");
+			return;
+		}
 
 	}
 
@@ -400,6 +313,7 @@ public class YaYawanconstants {
 		YYWMain.mUser = new YYWUser();
 
 		YYWMain.mUser.uid = DeviceUtil.getGameId(mactivity) + "-" + uid + "";
+		;
 		if (username != null) {
 			YYWMain.mUser.userName = DeviceUtil.getGameId(mactivity) + "-"
 					+ username + "";
@@ -419,7 +333,6 @@ public class YaYawanconstants {
 		}
 	}
 
-
 	/**
 	 * 登出
 	 */
@@ -429,6 +342,7 @@ public class YaYawanconstants {
 
 		}
 	}
+
 	/**
 	 * 登录失败
 	 */
@@ -443,10 +357,16 @@ public class YaYawanconstants {
 	 * 
 	 */
 	public static void paySuce() {
-		if (YYWMain.mPayCallBack != null) {
-			YYWMain.mPayCallBack.onPaySuccess(YYWMain.mUser, YYWMain.mOrder,
-					"success");
-		}
+		mActivity.runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				if (YYWMain.mPayCallBack != null) {
+					YYWMain.mPayCallBack.onPaySuccess(YYWMain.mUser, YYWMain.mOrder,
+							"success");
+				}
+			}
+		});
 	}
 
 	/**
@@ -454,80 +374,30 @@ public class YaYawanconstants {
 	 * 
 	 */
 	public static void payFail() {
-		if (YYWMain.mPayCallBack != null) {
-			YYWMain.mPayCallBack.onPayFailed(null, null);
-		}
+		mActivity.runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				if (YYWMain.mPayCallBack != null) {
+					YYWMain.mPayCallBack.onPayFailed(null, null);
+				}
+			}
+		});
 	}
 
 	/*
 	 * Toast提示
 	 */
-	public static void Toast(final String msg){
+	public static void Toast(final String msg) {
 		mActivity.runOnUiThread(new Runnable() {
 
 			@Override
 			public void run() {
-				Toast.makeText(mActivity, msg, Toast.LENGTH_SHORT).show();	
+				Toast.makeText(mActivity, msg, Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
-	/**
-	 * 
-	 * 请求上报角色信息
-	 * 
-	 */
-	private static void HttpPost(final String roleId, final String roleName,final String roleLevel, final String zoneId, final String zoneName, final String roleCTime) {
-		new Thread(new Runnable() {
 
-			@Override
-			public void run() {
-				try {
-					HttpPost httpPost = new HttpPost("https://api.sdk.75757.com/user/roleinfo/");
-					List<NameValuePair> params = new ArrayList<NameValuePair>();
-					params.add(new BasicNameValuePair("roleId", roleId));
-					params.add(new BasicNameValuePair("roleName", roleName));
-					params.add(new BasicNameValuePair("roleLevel", roleLevel));
-					params.add(new BasicNameValuePair("zoneId", zoneId));
-					params.add(new BasicNameValuePair("zoneName", zoneName));
-					params.add(new BasicNameValuePair("roleCTime", roleCTime));
-
-					Log.i("tag", "params=" + params);
-					try {
-						// 设置httpPost请求参数
-						httpPost.setEntity(new UrlEncodedFormEntity(params,
-								HTTP.UTF_8));
-						HttpResponse httpResponse = new DefaultHttpClient()
-								.execute(httpPost);
-						Log.i("tag",
-								"httpResponse.getStatusLine().getStatusCode()="
-										+ httpResponse.getStatusLine()
-												.getStatusCode());
-						if (httpResponse.getStatusLine().getStatusCode() == 200) {
-//							String re = EntityUtils.toString(httpResponse
-//									.getEntity());
-//							Log.i("tag", "re=" + re);
-//							JSONObject js = new JSONObject(re);
-//							Log.i("tag", "js=" + js);
-//							uid = js.getString("uid");
-//							Log.i("tag", "uid=" + uid);
-//							Log.i("tag", "token=" + token);
-//							loginSuce(mActivity, uid, uid, token);
-							Toast("角色上报成功");
-						}
-
-					} catch (ClientProtocolException e) {
-						e.printStackTrace();
-					}
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}).start();
-	}
-
-	
-	
 	private static String getPullupInfo(Intent intent) {
 		if (intent == null) {
 			return null;
@@ -539,7 +409,118 @@ public class YaYawanconstants {
 
 		return pullupInfo;
 	}
-	
+
+	static SDKEventReceiver receiver = new SDKEventReceiver() {
+
+		@Subscribe(event = SDKEventKey.ON_INIT_SUCC)
+		private void onInitSucc() {
+			// 初始化成功
+			handler.post(new Runnable() {
+
+				@Override
+				public void run() {
+					// startGame();
+					isinit = true;
+//					login(mActivity);
+				}
+			});
+		}
+
+		@Subscribe(event = SDKEventKey.ON_INIT_FAILED)
+		private void onInitFailed(String data) {
+			// 初始化失败
+			Toast.makeText(mActivity, "init failed", Toast.LENGTH_SHORT).show();
+			ucNetworkAndInitUCGameSDK(null);
+		}
+
+		@Subscribe(event = SDKEventKey.ON_LOGIN_SUCC)
+		private void onLoginSucc(String sid) {
+			// Toast.makeText(mActivity, "login succ,sid=" + sid,
+			// Toast.LENGTH_SHORT).show();
+			Log.i("tag", "sid = " + sid);
+			HttpPost(sid);
+		}
+
+		@Subscribe(event = SDKEventKey.ON_LOGIN_FAILED)
+		private void onLoginFailed(String desc) {
+			Toast.makeText(mActivity, desc, Toast.LENGTH_SHORT).show();
+			loginFail();
+			// printMsg(desc);
+		}
+
+		@SuppressWarnings("unchecked")
+		@Subscribe(event = SDKEventKey.ON_CREATE_ORDER_SUCC)
+		private void onCreateOrderSucc(OrderInfo orderInfo) {
+			// dumpOrderInfo(orderInfo);
+			if (orderInfo != null) {
+				StringBuilder sb = new StringBuilder();
+				sb.append(String.format("'orderId':'%s'",
+						orderInfo.getOrderId()));
+				sb.append(String.format("'orderAmount':'%s'",
+						orderInfo.getOrderAmount()));
+				sb.append(String.format("'payWay':'%s'", orderInfo.getPayWay()));
+				sb.append(String.format("'payWayName':'%s'",
+						orderInfo.getPayWayName()));
+				Log.i("tag",
+						"此处为订单生成回调，客户端无支付成功回调，订单是否成功以服务端回调为准: callback orderInfo = "
+								+ sb);
+				
+				
+			}
+		}
+
+		@Subscribe(event = SDKEventKey.ON_PAY_USER_EXIT)
+		private void onPayUserExit(OrderInfo orderInfo) {
+			// dumpOrderInfo(orderInfo);
+			if (orderInfo != null) {
+				StringBuilder sb = new StringBuilder();
+				sb.append(String.format("'orderId':'%s'",
+						orderInfo.getOrderId()));
+				sb.append(String.format("'orderAmount':'%s'",
+						orderInfo.getOrderAmount()));
+				sb.append(String.format("'payWay':'%s'", orderInfo.getPayWay()));
+				sb.append(String.format("'payWayName':'%s'",
+						orderInfo.getPayWayName()));
+				final String orderid = orderInfo.getOrderId();
+				HttpPost(uid, token, orderid);
+				Log.i("tag", "支付界面关闭: callback orderInfo = " + sb);
+			}
+		}
+
+		@Subscribe(event = SDKEventKey.ON_LOGOUT_SUCC)
+		private void onLogoutSucc() {
+			Toast.makeText(mActivity, "logout succ", Toast.LENGTH_SHORT).show();
+			// AccountInfo.instance().setSid("");
+			// ucSdkLogin();
+			loginOut();
+		}
+
+		@Subscribe(event = SDKEventKey.ON_LOGOUT_FAILED)
+		private void onLogoutFailed() {
+			Toast.makeText(mActivity, "logout failed", Toast.LENGTH_SHORT)
+					.show();
+			// printMsg("注销失败");
+		}
+
+		@Subscribe(event = SDKEventKey.ON_EXIT_SUCC)
+		private void onExit(String desc) {
+			// Toast.makeText(mActivity, desc, Toast.LENGTH_SHORT).show();
+			// if (isyoumeng == 1) {
+			// Log.i("tag", "友盟退出");
+			// MobclickAgent.onProfileSignOff();
+			// MobclickAgent.onKillProcess(mActivity);
+			// }
+			// mActivity.finish();
+			ExitCallback.onExit();
+		}
+
+		@Subscribe(event = SDKEventKey.ON_EXIT_CANCELED)
+		private void onExitCanceled(String desc) {
+			Toast.makeText(mActivity, desc, Toast.LENGTH_SHORT).show();
+		}
+
+	};
+
 	public static void ucNetworkAndInitUCGameSDK(String pullUpInfo) {
 		// !!!在调用SDK初始化前进行网络检查
 		// 当前没有拥有网络
@@ -564,7 +545,8 @@ public class YaYawanconstants {
 			ucSdkInit(pullUpInfo);// 执行UCGameSDK初始化
 		}
 	}
-	
+
+
 	private static void ucSdkInit(String pullUpInfo) {
 		GameParamInfo gameParamInfo = new GameParamInfo();
 		// gameParamInfo.setCpId(UCSdkConfig.cpId);已废用
@@ -591,8 +573,7 @@ public class YaYawanconstants {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	/**
 	 * 
 	 * 请求获取用户uid
@@ -716,4 +697,6 @@ public class YaYawanconstants {
 			}
 		}).start();
 	}
+
+
 }

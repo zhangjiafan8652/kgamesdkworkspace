@@ -557,60 +557,91 @@ paramActivity.runOnUiThread(new Runnable() {
 //		}
 		
 		//我的便利店
-				if(goods.equals("10钻石")){
-					paycode = 2;
-				}else if(goods.equals("32钻石")){
-					paycode = 3;
-				}else if(goods.equals("57钻石")){
-					paycode = 4;
-				}else if(goods.equals("120钻石")){
-					paycode = 5;
-				}else if(goods.equals("390钻石")){
-					paycode = 6;
-				}else if(goods.equals("680钻石")){
-					paycode = 7;
-				}else if(goods.equals("1450钻石")){
-					paycode = 8;
-				}
-				else if(goods.equals("首冲390钻石")){
-					paycode = 9;
-				}
-				else if(goods.equals("每日钻石套餐")){
-					paycode = 10;
-				}
-				else if(goods.equals("新手套餐")){
-					paycode = 11;
-				}
-				else if(goods.equals("实惠套餐")){
-					paycode = 12;
-				}
-				else if(goods.equals("高级套餐")){
-					paycode = 13;
-				}
-				else if(goods.equals("每日特惠周一")){
-					paycode = 14;
-				}
-				else if(goods.equals("每日特惠周二")){
-					paycode = 15;
-				}
-				else if(goods.equals("每日特惠周三")){
-					paycode = 16;
-				}
-				else if(goods.equals("每日特惠周四")){
-					paycode = 17;
-				}
-				else if(goods.equals("每日特惠周五")){
-					paycode = 18;
-				}
-				else if(goods.equals("每日特惠周六")){
-					paycode = 19;
-				}
-				else if(goods.equals("每日特惠周日")){
-					paycode = 20;
-				}
-				else if(goods.equals("首充礼包")){
-					paycode = 21;
-				}
+//				if(goods.equals("10钻石")){
+//					paycode = 2;
+//				}else if(goods.equals("32钻石")){
+//					paycode = 3;
+//				}else if(goods.equals("57钻石")){
+//					paycode = 4;
+//				}else if(goods.equals("120钻石")){
+//					paycode = 5;
+//				}else if(goods.equals("390钻石")){
+//					paycode = 6;
+//				}else if(goods.equals("680钻石")){
+//					paycode = 7;
+//				}else if(goods.equals("1450钻石")){
+//					paycode = 8;
+//				}
+//				else if(goods.equals("首冲390钻石")){
+//					paycode = 9;
+//				}
+//				else if(goods.equals("每日钻石套餐")){
+//					paycode = 10;
+//				}
+//				else if(goods.equals("新手套餐")){
+//					paycode = 11;
+//				}
+//				else if(goods.equals("实惠套餐")){
+//					paycode = 12;
+//				}
+//				else if(goods.equals("高级套餐")){
+//					paycode = 13;
+//				}
+//				else if(goods.equals("每日特惠周一")){
+//					paycode = 14;
+//				}
+//				else if(goods.equals("每日特惠周二")){
+//					paycode = 15;
+//				}
+//				else if(goods.equals("每日特惠周三")){
+//					paycode = 16;
+//				}
+//				else if(goods.equals("每日特惠周四")){
+//					paycode = 17;
+//				}
+//				else if(goods.equals("每日特惠周五")){
+//					paycode = 18;
+//				}
+//				else if(goods.equals("每日特惠周六")){
+//					paycode = 19;
+//				}
+//				else if(goods.equals("每日特惠周日")){
+//					paycode = 20;
+//				}
+//				else if(goods.equals("首充礼包")){
+//					paycode = 21;
+//				}
+		
+		if(goods.equals("60元宝")){
+			paycode = 1;
+		}else if(goods.equals("280元宝")){
+			paycode = 2;
+		}else if(goods.equals("680元宝")){
+			paycode = 3;
+		}else if(goods.equals("1280元宝")){
+			paycode = 4;
+		}else if(goods.equals("3280元宝")){
+			paycode = 5;
+		}else if(goods.equals("6480元宝")){
+			paycode = 6;
+		}else if(goods.equals("9980元宝")){
+			paycode = 7;
+		}
+		else if(goods.equals("20480元宝")){
+			paycode = 8;
+		}
+		else if(goods.equals("周卡")){
+			paycode = 9;
+		}
+		else if(goods.equals("月卡")){
+			paycode = 10;
+		}
+		else if(goods.equals("至尊卡")){
+			paycode = 11;
+		}
+		else if(goods.equals("一元礼包")){
+			paycode = 12;
+		}
 		return paycode;
 	}
 

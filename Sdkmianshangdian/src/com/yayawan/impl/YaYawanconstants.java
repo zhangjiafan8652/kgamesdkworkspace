@@ -62,7 +62,6 @@ public class YaYawanconstants {
 		Yayalog.loger("YaYawanconstants初始化sdk");
 		init();
 		SnailCommplatform.getInstance().createFloatView(mactivity, true, 0.3f);
-		SnailCommplatform.getInstance().showFloatView(true);
 	}
 
 	/**
@@ -189,7 +188,9 @@ paramActivity.runOnUiThread(new Runnable() {
 					public void close() {
 						Log.i("tag", "用户退出游戏！！！！");
 						// finish();
-						callback.onExit();
+//						callback.onExit();
+						mActivity.finish();
+						System.exit(0);
 					}
 				});
 	}
@@ -243,6 +244,7 @@ paramActivity.runOnUiThread(new Runnable() {
 	}
 
 	public static void onStart(Activity paramActivity) {
+		SnailCommplatform.getInstance().showFloatView(true);
 		SnailCommplatform.getInstance().onStart();
 
 	}

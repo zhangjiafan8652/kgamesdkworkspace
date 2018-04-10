@@ -45,6 +45,7 @@ public class YaYawanconstants {
 	private static String uid;
 	private static String username;
 	private static String token;
+	private static YYWExitCallback exitcallback;
 
 	private static String role_Level = "1";
 	private static String role_Id = "1";
@@ -160,6 +161,7 @@ public class YaYawanconstants {
 	public static void exit(Activity paramActivity,
 			final YYWExitCallback callback) {
 		Yayalog.loger("YaYawanconstantssdk退出");
+		exitcallback = callback;
 		paramActivity.runOnUiThread(new Runnable() {
 
 			@Override
@@ -182,18 +184,18 @@ public class YaYawanconstants {
 		role_Level = roleLevel;
 		zone_Id =zoneId;
 		zone_Name = zoneName;
-		if(role_Id.equals("")){
-			role_Id = "9527";
-		}
-		if(role_Name.equals("")){
-			role_Id = "007";
-		}
-		if(zone_Id.equals("")){
-			zone_Id = "1";
-		}
-		if(zone_Name.equals("")){
-			zone_Name = "1";
-		}
+//		if(role_Id.equals("")){
+//			role_Id = "9527";
+//		}
+//		if(role_Name.equals("")){
+//			role_Id = "007";
+//		}
+//		if(zone_Id.equals("")){
+//			zone_Id = "1";
+//		}
+//		if(zone_Name.equals("")){
+//			zone_Name = "1";
+//		}
 		if (Integer.parseInt(ext) == 1){
 			GPSDKPlayerInfo gpsdkPlayerInfo = new GPSDKPlayerInfo();
 			gpsdkPlayerInfo.mType = GPSDKPlayerInfo.TYPE_ENTER_GAME; // 这个字段根据调用时机的不同，填入不同的类型
@@ -485,6 +487,7 @@ public class YaYawanconstants {
 					public void run() {
 						mActivity.finish();
 						System.exit(0);
+//						exitcallback.onExit();
 					}
 				}, 100);
 				break;

@@ -17,8 +17,10 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
+
 import com.huawei.android.hms.agent.HMSAgent;
 import com.huawei.android.hms.agent.common.handler.ConnectHandler;
 import com.huawei.android.hms.agent.game.handler.LoginHandler;
@@ -30,6 +32,7 @@ import com.huawei.hms.support.api.entity.game.GameUserData;
 import com.huawei.hms.support.api.entity.pay.PayReq;
 import com.huawei.hms.support.api.entity.pay.PayStatusCodes;
 import com.huawei.hms.support.api.pay.PayResultInfo;
+import com.huawei.updatesdk.sdk.service.download.h;
 import com.kkgame.sdk.bean.User;
 import com.kkgame.sdk.callback.KgameSdkCallback;
 import com.kkgame.sdkmain.KgameSdk;
@@ -61,18 +64,18 @@ public class YaYawanconstants {
 	/**
 	 * 初始化sdk
 	 */
-	public static void inintsdk(Activity mactivity) {
+	public static void inintsdk(final Activity mactivity) {
 		mActivity = mactivity;
+		HMSAgent.init(mactivity);
 		Yayalog.loger("YaYawanconstants初始化sdk");
-		//		 HMSAgent.init(mactivity);
+		//				 HMSAgent.init(mactivity);
 		// 首个界面需要调用connect进行连接
-		Connect(mactivity);
-		HMSAgent.Game.showFloatWindow(mActivity);
-		HMSAgent.checkUpdate(mActivity);
+		Log.i("tag","YaYawanconstants初始化sdk结束");
 	}
 
 
-	private static void Connect(final Activity mactivity) {
+	public static void Connect(final Activity mactivity) {
+		Log.i("tag", "Connect+Connect");
 		HMSAgent.connect(mactivity, new ConnectHandler() {
 			@Override
 			public void onConnect(int rst) {
@@ -80,11 +83,13 @@ public class YaYawanconstants {
 				if(rst == 13){
 					Connect(mactivity);
 				}else {
-					isinit = true ;
+//					isinit = true ;
+					HMSAgent.checkUpdate(mActivity);
+					HMSAgent.Game.showFloatWindow(mActivity);
+					loginstart();
 				}
 			}
 		});
-
 	}
 
 
@@ -99,15 +104,17 @@ public class YaYawanconstants {
 	 */
 	public static void login(final Activity mactivity) {
 		Yayalog.loger("YaYawanconstantssdk登录");
-		if(isinit){
+		Connect(mactivity);
+		Log.i("tag","isinit = " +isinit);
+//		if(isinit){
 			APP_ID = "" + DeviceUtil.getGameInfo(mActivity, "appid");
 			CP_APP_ID = "" + DeviceUtil.getGameInfo(mActivity, "cpid");
-			Log.i("tag","APP_ID = " +APP_ID);
-			Log.i("tag","CP_APP_ID = " +CP_APP_ID);
-			loginstart();
-		}else{
-			inintsdk(mactivity);
-		}
+//			Log.i("tag","APP_ID = " +APP_ID);
+//			Log.i("tag","CP_APP_ID = " +CP_APP_ID);
+//			loginstart();
+//		}else{
+//			inintsdk(mactivity);
+//		}
 	}
 
 	private static void loginstart() {
@@ -132,6 +139,7 @@ public class YaYawanconstants {
 					Log.i("tag", "game login: onResult: retCode=" + retCode);
 					loginFail();
 					Toast("登录失败");
+					loginstart();
 				}
 			}
 
@@ -243,29 +251,34 @@ public class YaYawanconstants {
 	public static void exit(final Activity paramActivity,
 			final YYWExitCallback callback) {
 		Yayalog.loger("YaYawanconstantssdk退出");
-
-		KgameSdk.Exitgame(paramActivity, new KgameSdkCallback() {
-
-			@Override
-			public void onSuccess(User arg0, int arg1) {
-				//				callback.onExit();
-				mActivity.finish();
-				System.exit(0);
-			}
+		paramActivity.runOnUiThread(new Runnable() {
 
 			@Override
-			public void onLogout() {
+			public void run() {
+				KgameSdk.Exitgame(paramActivity, new KgameSdkCallback() {
 
-			}
+					@Override
+					public void onSuccess(User arg0, int arg1) {
+								callback.onExit();
+//						mActivity.finish();
+//						System.exit(0);
+					}
 
-			@Override
-			public void onError(int arg0) {
+					@Override
+					public void onLogout() {
 
-			}
+					}
 
-			@Override
-			public void onCancel() {
+					@Override
+					public void onError(int arg0) {
 
+					}
+
+					@Override
+					public void onCancel() {
+
+					}
+				});
 			}
 		});
 	}
@@ -296,7 +309,7 @@ public class YaYawanconstants {
 	}
 
 	public static void onResume(Activity paramActivity) {
-		HMSAgent.Game.showFloatWindow(mActivity);
+			HMSAgent.Game.showFloatWindow(paramActivity);
 	}
 
 	public static void onPause(Activity paramActivity) {
@@ -304,8 +317,8 @@ public class YaYawanconstants {
 	}
 
 	public static void onDestroy(Activity paramActivity) {
-		HMSAgent.destroy();
-		HMSAgent.Game.hideFloatWindow(paramActivity);
+			HMSAgent.destroy();
+			HMSAgent.Game.hideFloatWindow(paramActivity);
 	}
 
 	public static void onActivityResult(Activity paramActivity, int paramInt1,
@@ -318,7 +331,7 @@ public class YaYawanconstants {
 	}
 
 	public static void onStart(Activity paramActivity) {
-		HMSAgent.Game.showFloatWindow(mActivity);
+			HMSAgent.Game.showFloatWindow(paramActivity);
 	}
 
 	public static void onRestart(Activity paramActivity) {
@@ -393,10 +406,16 @@ public class YaYawanconstants {
 	 * 
 	 */
 	public static void paySuce() {
-		if (YYWMain.mPayCallBack != null) {
-			YYWMain.mPayCallBack.onPaySuccess(YYWMain.mUser, YYWMain.mOrder,
-					"success");
-		}
+		mActivity.runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				if (YYWMain.mPayCallBack != null) {
+					YYWMain.mPayCallBack.onPaySuccess(YYWMain.mUser, YYWMain.mOrder,
+							"success");
+				}
+			}
+		});
 	}
 
 	/**
@@ -404,9 +423,15 @@ public class YaYawanconstants {
 	 * 
 	 */
 	public static void payFail() {
-		if (YYWMain.mPayCallBack != null) {
-			YYWMain.mPayCallBack.onPayFailed(null, null);
-		}
+		mActivity.runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				if (YYWMain.mPayCallBack != null) {
+					YYWMain.mPayCallBack.onPayFailed(null, null);
+				}
+			}
+		});
 	}
 
 	/*

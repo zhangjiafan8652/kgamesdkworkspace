@@ -1,17 +1,12 @@
 package com.yayawan.impl;
 
-import java.net.URL;
-import java.net.URLEncoder;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Handler;
 import android.os.Looper;
-import android.widget.Toast;
-
+import android.util.Log;
 
 import com.kkgame.sdk.login.ViewConstants;
 import com.kkgame.utils.DeviceUtil;
@@ -23,12 +18,8 @@ import com.lidroid.jxutils.http.callback.RequestCallBack;
 import com.lidroid.jxutils.http.client.HttpRequest.HttpMethod;
 import com.yayawan.callback.YYWPayCallBack;
 import com.yayawan.domain.YYWOrder;
-import com.yayawan.domain.YYWUser;
 import com.yayawan.main.YYWMain;
-import com.yayawan.main.YaYaWan;
 import com.yayawan.proxy.YYWCharger;
-import com.yayawan.sdktemplate.MainActivity;
-
 
 public class ChargerImpl implements YYWCharger {
 
@@ -56,6 +47,7 @@ public class ChargerImpl implements YYWCharger {
 	}
 
 	String orderId = null;
+	String sign = null;
 
 	public void createOrder(final Activity paramActivity) {
 		progress(paramActivity);
@@ -95,7 +87,11 @@ public class ChargerImpl implements YYWCharger {
 							int err_code = obj.optInt("err_code");
 							if (err_code == 0) {
 								JSONObject data = obj.getJSONObject("data");
+								sign = data.optString("ali_sign");
 								orderId = data.optString("id");
+								Log.i("tag","data = "+data);
+								Log.i("tag","sign = "+sign);
+								Log.i("tag","orderId = "+orderId);
 
 								new Handler(Looper.getMainLooper())
 										.post(new Runnable() {
@@ -118,7 +114,7 @@ public class ChargerImpl implements YYWCharger {
 
 	private void pay_run(final Activity paramActivity) {
 
-		YaYawanconstants.pay(paramActivity, orderId);
+		YaYawanconstants.pay(paramActivity, orderId,sign);
 
 	}
 

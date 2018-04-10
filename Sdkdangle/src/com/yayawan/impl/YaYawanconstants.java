@@ -165,24 +165,24 @@ public class YaYawanconstants {
 		//		        role_CTime = roleCTime;//角色创建时间戳。获取不了创建的时间戳，就传DEMO中的这个值。
 		//		        long roleLevelMTime = 1480747870001l;//角色等级变化时间戳。获取不了等级变化时间，就跟角色创建时间传一样的值。
 		//		        role_Level = roleLevel;//角色等级，如果没有这个值，传字符串1
-		if(zoneId.equals("")){
-			zoneId = "1";
-		}
-		if(zoneName.equals("")){
-			zoneName = "001";
-		}
-		if(roleId.equals("")){
-			roleId = "1";
-		}
-		if(roleName.equals("")){
-			roleName = "001";
-		}
-		if(roleLevel.equals("")){
-			roleLevel = "001";
-		}
-		if(roleCTime.equals("")){
-			roleCTime = "1480747870001l";
-		}
+//		if(zoneId.equals("")){
+//			zoneId = "1";
+//		}
+//		if(zoneName.equals("")){
+//			zoneName = "001";
+//		}
+//		if(roleId.equals("")){
+//			roleId = "1";
+//		}
+//		if(roleName.equals("")){
+//			roleName = "001";
+//		}
+//		if(roleLevel.equals("")){
+//			roleLevel = "001";
+//		}
+//		if(roleCTime.equals("")){
+//			roleCTime = "1480747870001l";
+//		}
 		long Time = Long.parseLong(1480747870001l+"");
 		if (Integer.parseInt(ext) == 1){
 			downjoy.submitGameRoleData(zoneId, zoneName, roleId, roleName, Time, Time, roleLevel, new ResultListener() {

@@ -55,6 +55,14 @@ public class YaYawanconstants {
 		int strPid = Integer.parseInt(pid);
 		Log.i("tag","strPid="+strPid);
 		Log.i("tag","appkey="+appkey);
+		String lhh_debug = DeviceUtil.getGameInfo(mActivity, "lhh_debug");
+		int debug = Integer.parseInt(lhh_debug);
+		if(debug == 1){
+			LehihiGameSDKApi.getInstance().setLogger(true);
+			Log.i("tag","debug模式");
+		}else {
+			LehihiGameSDKApi.getInstance().setLogger(false);
+		}
 		LehihiGameSDKApi.getInstance().init(mactivity, strPid, appkey, new InitCallBack() {
 			@Override
 			public void onInitSuccess() {
@@ -96,30 +104,35 @@ public class YaYawanconstants {
 		Yayalog.loger("YaYawanconstantssdk登录");
 		Log.i("tag","isinit="+isinit);
 		if(isinit){
-			Log.i("tag","登录");
 			LehihiGameSDKApi.getInstance().login(mactivity, new LoginCallBack() {
 				@Override
 				public void onLoginSuccess(String uid, String username, String token) {
+					Log.i("tag","登录成功");
 					Uid = uid;
 					UserName = username;
 					UserToken = token;
 					loginSuce(mactivity, Uid, UserName, UserToken);
-					//                FloatViewManager.getInstance(mactivity).showFloat();
+					Toast("登录成功");
 				}
 
 				@Override
 				public void onLoginFailure(String message) {
 					//                LoggerE("onLoginFailure message:" + message);
 					loginFail();
+					Log.i("tag","登录失败"+message);
+					Toast("登录失败");
 				}
 
 				@Override
 				public void onLoginCancel() {
 					//                LoggerE("onLoginCancel");
 					loginFail();
+					Toast("登录取消");
+					Log.i("tag","登录取消");
 				}
 			});
 		}else{
+			Log.i("tag","未初始化");
 			inintsdk(mactivity);
 		}
 	}
@@ -181,7 +194,7 @@ public class YaYawanconstants {
 	 * @param paramActivity
 	 * @param callback
 	 */
-	public static void exit(Activity paramActivity,
+	public static void exit(final Activity paramActivity,
 			final YYWExitCallback callback) {
 		Yayalog.loger("YaYawanconstantssdk退出");
 
@@ -189,19 +202,17 @@ public class YaYawanconstants {
 			
 			@Override
 			public void onExit() {
-				// TODO Auto-generated method stub
-				callback.onExit();
+				mActivity.finish();
+				System.exit(0);
 			}
 			
 			@Override
 			public void onContinueGame() {
-				// TODO Auto-generated method stub
 				
 			}
 			
 			@Override
 			public void onCancel() {
-				// TODO Auto-generated method stub
 				
 			}
 		}, null);
@@ -226,12 +237,12 @@ public class YaYawanconstants {
 	}
 	public static void onResume(Activity paramActivity) {
 		// TODO Auto-generated method stub
-//		FloatViewManager.getInstance(paramActivity).showFloat();
 		FloatWindowManager.getInstance(paramActivity).showFloat();
 	}
 
 	public static void onPause(Activity paramActivity) {
 		// TODO Auto-generated method stub
+		
 	}
 
 	public static void onDestroy(Activity paramActivity) {

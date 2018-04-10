@@ -50,7 +50,7 @@
             android:value="kk2027594055" />
         <meta-data
             android:name="isLandscape"
-            android:value="true" />
+            android:value="false" />
         
         <!-- 插件的代理器，使用框架必须声明 -->
         <activity

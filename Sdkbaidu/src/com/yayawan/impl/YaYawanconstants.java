@@ -38,7 +38,7 @@ public class YaYawanconstants {
 	private static Activity mActivity;
 
 	private static boolean isinit = false;
-	private static boolean islogin = false;
+//	private static boolean islogin = false;
 
 	public static String uid;
 	public static String token;
@@ -57,7 +57,7 @@ public class YaYawanconstants {
 		mBDGameSDKSetting.setAppID(Integer.parseInt(BD_appid)); // APPID设置
 		mBDGameSDKSetting.setAppKey(BD_appkey); // APPKEY设置
 		mBDGameSDKSetting.setDomain(Domain.RELEASE); // 设置为正式模式
-		mBDGameSDKSetting.setOrientation(Orientation.LANDSCAPE);
+		mBDGameSDKSetting.setOrientation(DeviceUtil.isLandscape(mActivity)?Orientation.LANDSCAPE:Orientation.PORTRAIT);
 
 		BDGameSDK.init(mactivity, mBDGameSDKSetting, new IResponse<Void>() {
 
@@ -69,13 +69,13 @@ public class YaYawanconstants {
 					// 初始化成功
 					isinit = true;
 					Log.i("tag","初始化成功");
-					Toast("启动成功");
+//					Toast("启动成功");
 					break;
 
 				case ResultCode.INIT_FAIL:
 				default:
 					Log.i("tag","初始化失败");
-					Toast("启动失败");
+//					Toast("启动失败");
 					mActivity.finish();
 					// 初始化失败
 				}
@@ -88,7 +88,7 @@ public class YaYawanconstants {
 			
 			BDGameSDK.closeFloatView(mactivity); // 关闭悬浮窗
 			
-		islogin = false;
+//		islogin = false;
 	}
 
 	/**
@@ -103,7 +103,9 @@ public class YaYawanconstants {
 	 */
 	public static void login(final Activity mactivity) {
 		Yayalog.loger("YaYawanconstantssdk登录");
-		if((isinit) && (!BDGameSDK.isLogined())){
+//		if((isinit) && (!BDGameSDK.isLogined())){
+			if(isinit){
+				Log.i("tag","开始登录");
 			BDGameSDK.login(mactivity, new IResponse<Void>() {
 				@Override
 				public void onResponse(int resultCode, String resultDesc,
@@ -113,9 +115,10 @@ public class YaYawanconstants {
 					case ResultCode.LOGIN_SUCCESS:
 						uid = BDGameSDK.getLoginUid();
 						token = BDGameSDK.getLoginAccessToken();
+						Log.i("tag","登录成功uid="+uid);
 						loginSuce(mactivity, uid, uid, token);
 						Toast("登录成功");
-						islogin = true;
+//						islogin = true;
 						BDGameSDK.showFloatView(mActivity); // 显示悬浮窗
 						break;
 					case ResultCode.LOGIN_CANCEL:
@@ -148,7 +151,8 @@ public class YaYawanconstants {
 		payOrderInfo.setProductName(YYWMain.mOrder.goods);
 		payOrderInfo.setTotalPriceCent(YYWMain.mOrder.money);
 		payOrderInfo.setRatio(1); //兑换比例，此时不生效 
-		payOrderInfo.setExtInfo("");//该字段在支付通知中原样返回,不超过 500 个字符
+		payOrderInfo.setExtInfo("购买"+YYWMain.mOrder.goods);//该字段在支付通知中原样返回,不超过 500 个字符
+		Log.i("tag","支付uid="+uid);
 		payOrderInfo.setCpUid(uid);//登录成功后获取的 uid
 		BDGameSDK.pay(mactivity, payOrderInfo, null, new IResponse<PayOrderInfo>() {
 
@@ -402,7 +406,7 @@ public class YaYawanconstants {
 					token = BDGameSDK.getLoginAccessToken();
 					loginSuce(mActivity, uid, uid, token);
 					Toast("切换用户成功");
-					islogin = true;
+//					islogin = true;
 					BDGameSDK.showFloatView(mActivity); // 显示悬浮窗
 					Log.i("tag","切换用户成功");
 					break ; 

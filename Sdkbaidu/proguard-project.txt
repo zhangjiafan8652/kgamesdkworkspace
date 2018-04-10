@@ -18,3 +18,33 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+
+- dontwarn com.baidu.**
+- dontwarn com.alipay.**
+- dontwarn com.duoku.**
+- dontwarn android.content.pm.**
+- dontwarn com.slidingmenu.**
+- dontwarn com.unionpay.**
+- dontwarn com.UCMobile.**
+- keep public class com.baidu.** {
+* ;
+}
+- keep public class com.alipay.** {
+* ;
+}
+- keep public class com.duoku.**{
+* ;
+}
+- keep public class android.content.pm.**{
+* ;
+} 
+-keep public class com.slidingmenu.** { 
+* ; 
+} 
+-keep public class com.unionpay.** { 
+* ; 
+} 
+-keep public class com.UCMobile.**{ 
+* ; 
+}

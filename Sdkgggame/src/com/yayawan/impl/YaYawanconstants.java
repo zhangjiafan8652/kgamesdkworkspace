@@ -69,6 +69,7 @@ public class YaYawanconstants {
 	/**
 	 * application初始化
 	 */
+	@SuppressWarnings("static-access")
 	public static void applicationInit(Context applicationContext) {
 		context =applicationContext;
 		Application application = (Application)applicationContext;
@@ -154,15 +155,25 @@ public class YaYawanconstants {
 	 * @param paramActivity
 	 * @param callback
 	 */
-	public static void exit(Activity paramActivity,
+	public static void exit(final Activity paramActivity,
 			final YYWExitCallback callback) {
 		Yayalog.loger("YaYawanconstantssdk退出");
+		paramActivity.runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
 
 KgameSdk.Exitgame(paramActivity, new KgameSdkCallback() {
 			
 			@Override
 			public void onSuccess(User arg0, int arg1) {
-				callback.onExit();
+				mActivity.runOnUiThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						callback.onExit();
+					}
+				});
 			}
 			
 			@Override
@@ -178,6 +189,8 @@ KgameSdk.Exitgame(paramActivity, new KgameSdkCallback() {
 			@Override
 			public void onCancel() {
 				
+			}
+		});
 			}
 		});
 	}

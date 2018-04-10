@@ -28,7 +28,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.example.h5demo.ScreenListener.ScreenStateListener;
-import com.nzhy.zgmr.R;
+import com.syhl.zgmr.R;
 import com.yayawan.callback.YYWAnimCallBack;
 import com.yayawan.callback.YYWExitCallback;
 import com.yayawan.main.Kgame;
@@ -46,8 +46,8 @@ public class BrowserTempActivity extends Activity {
 	// private static final String mHomeUrl =
 	// "http://jump.h5.jiulingwan.com:81/webserver/07073/android/index.html";
 	// http://h5cqllyx.jiulingwan.com/webserver/07073/android/index.html
-	
-	private static final String mHomeUrl = "http://www.qxgamer.cn/zgmr/client/publish/index.html?plat=bufan"; //测试
+
+	private static final String mHomeUrl = "http://www.qxgamer.cn/zgmr/client/publish/index.html?plat=bufan"; // 测试
 	private static final String TAG = "SdkDemo";
 	private static final int MAX_LENGTH = 14;
 	private boolean mNeedTestPage = false;
@@ -58,8 +58,7 @@ public class BrowserTempActivity extends Activity {
 
 	private URL mIntentUrl;
 	private Timer mTimer;
-	private static  Activity mActivity;
-
+	private static Activity mActivity;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +84,7 @@ public class BrowserTempActivity extends Activity {
 
 			public void onAnimSuccess(String arg0, Object arg1) {
 				// TODO Auto-generated method stub
-                Log.i("tag","1");
+				Log.i("tag", "1");
 				init();
 			}
 
@@ -105,7 +104,6 @@ public class BrowserTempActivity extends Activity {
 		rl_webview = (RelativeLayout) findViewById(R.id.rl_webview);
 
 		rl_webview.setVisibility(View.VISIBLE);
-//		rl_webview.setVisibility(View.GONE);
 		ScreenListener();
 	}
 
@@ -113,16 +111,17 @@ public class BrowserTempActivity extends Activity {
 	private static WebView mWebView;
 
 	private void init() {
-		Log.i("tag","登陆1");
+		Log.i("tag", "登陆1");
 		mWebView = (WebView) findViewById(R.id.webView1);
 		mWebView.addJavascriptInterface(new GameApi(this, mWebView), "GameApi");
 
-		//登录
+		// 登录
 		mWebView.setWebViewClient(new WebViewClient() {
 
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				System.out.println(url);
+				Log.i("tag","login-URL="+url);
 				if (url.contains("uid=")) {
 					rl_webview.setVisibility(View.VISIBLE);
 				}
@@ -143,16 +142,13 @@ public class BrowserTempActivity extends Activity {
 			View myVideoView;
 			View myNormalView;
 			CustomViewCallback callback;
-
-			// /////////////////////////////////////////////////////////
-			//
 			/**
 			 * 全屏播放配置
 			 */
 			@Override
 			public void onShowCustomView(View view,
 					CustomViewCallback customViewCallback) {
-				Log.i("tag","4");
+				Log.i("tag", "4");
 				FrameLayout normalView = (FrameLayout) findViewById(R.id.web_filechooser);
 				ViewGroup viewGroup = (ViewGroup) normalView.getParent();
 				viewGroup.removeView(normalView);
@@ -164,7 +160,7 @@ public class BrowserTempActivity extends Activity {
 
 			@Override
 			public void onHideCustomView() {
-				Log.i("tag","5");
+				Log.i("tag", "5");
 				if (callback != null) {
 					callback.onCustomViewHidden();
 					callback = null;
@@ -206,14 +202,14 @@ public class BrowserTempActivity extends Activity {
 		// "local_obj");
 
 		mWebView.loadUrl(mHomeUrl);
-		Log.i("tag","7");
+		Log.i("tag", "7");
 		CookieSyncManager.createInstance(this);
 		CookieSyncManager.getInstance().sync();
 	}
 
 	public void clearWebViewCache() {
 		// 清除cookie即可彻底清除缓存
-		Log.i("tag","12");
+		Log.i("tag", "12");
 		CookieSyncManager cookieSyncManager = CookieSyncManager
 				.createInstance(getApplicationContext());
 		CookieManager cookieManager = CookieManager.getInstance();
@@ -229,17 +225,17 @@ public class BrowserTempActivity extends Activity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			Log.i("tag","退出");
+			Log.i("tag", "退出");
 			Kgame.getInstance().exit(this, new YYWExitCallback() {
 				public void onExit() {
-					Log.i("tag","退出2");
+					Log.i("tag", "退出2");
 					finish();
 				}
 			});
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
-		
+
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -254,7 +250,7 @@ public class BrowserTempActivity extends Activity {
 		Kgame.getInstance().onNewIntent(intent);
 		if (intent == null || mWebView == null || intent.getData() == null)
 			return;
-		Log.i("tag","11");
+		Log.i("tag", "11");
 		mWebView.loadUrl(intent.getData().toString());
 	}
 
@@ -300,33 +296,36 @@ public class BrowserTempActivity extends Activity {
 	public static final int MSG_INIT_UI = 1;
 	private final int mUrlStartNum = 0;
 	private int mCurrentUrl = mUrlStartNum;
-	
-	private static void ScreenListener(){
+
+	private static void ScreenListener() {
 		ScreenListener screenlistener = new ScreenListener(mActivity);
 		screenlistener.begin(new ScreenStateListener() {
 
-            @Override
-            public void onUserPresent() {// 解锁
-                Log.e("onUserPresent", "onUserPresent");
-//                Toast.makeText(mActivity, "解锁了" , Toast.LENGTH_SHORT ).show();
-                mWebView.onResume();
-//                mWebView.resumeTimers();
-            }
+			@Override
+			public void onUserPresent() {// 解锁
+				Log.e("onUserPresent", "onUserPresent");
+				// Toast.makeText(mActivity, "解锁了" , Toast.LENGTH_SHORT
+				// ).show();
+				mWebView.onResume();
+				// mWebView.resumeTimers();
+			}
 
-            @Override
-            public void onScreenOn() {// 开屏
-                Log.e("onScreenOn", "onScreenOn");
-//                Toast.makeText(mActivity, "屏幕打开了" , Toast.LENGTH_SHORT ).show();
-            }
+			@Override
+			public void onScreenOn() {// 开屏
+				Log.e("onScreenOn", "onScreenOn");
+				// Toast.makeText(mActivity, "屏幕打开了" , Toast.LENGTH_SHORT
+				// ).show();
+			}
 
-            @Override
-            public void onScreenOff() {// 锁屏
-                Log.e("onScreenOff", "onScreenOff");
-//                Toast.makeText(mActivity, "屏幕关闭了" , Toast.LENGTH_SHORT ).show();
-                mWebView.onPause();
-//                mWebView.pauseTimers();
-            }
-        });
+			@Override
+			public void onScreenOff() {// 锁屏
+				Log.e("onScreenOff", "onScreenOff");
+				// Toast.makeText(mActivity, "屏幕关闭了" , Toast.LENGTH_SHORT
+				// ).show();
+				mWebView.onPause();
+				// mWebView.pauseTimers();
+			}
+		});
 	}
 
 }

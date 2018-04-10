@@ -111,7 +111,7 @@ public class YaYawanconstants {
 	public static void pay(Activity mactivity, String morderid) {
 		Yayalog.loger("YaYawanconstantssdk支付");
         PaayArg paayArg = new PaayArg();
-        paayArg.APP_NAME = "游戏名称1";
+        paayArg.APP_NAME = DeviceUtil.getGameInfo(mActivity, "gamename");
         paayArg.APP_ORDER_ID = morderid;
         paayArg.APP_USER_ID = uid;
         paayArg.APP_USER_NAME = uid;
@@ -255,10 +255,10 @@ public class YaYawanconstants {
 		Yayalog.loger("YaYawanconstants设置角色信息");
 		//角色创建时间
 //		HttpPost(roleId,roleName,roleLevel,zoneId,zoneName,roleCTime);
-		//1为角色登陆成功  2为角色创建  3为角色升级
 		if(roleName.equals("")){
 			roleName = "001";
 		}
+		//1为角色登陆成功  2为角色创建  3为角色升级
 		if (Integer.parseInt(ext) == 1){
 //		3.5  进入游戏接口【客户端调用】( 必接)
 			PPayCenter. enterGame(roleName,0,Integer.parseInt(zoneId));

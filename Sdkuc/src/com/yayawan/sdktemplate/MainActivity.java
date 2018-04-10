@@ -15,6 +15,7 @@ import com.yayawan.proxy.GameProxy;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -146,23 +147,26 @@ public class MainActivity extends Activity {
     }
 
 	 public void pay(View v) {
-	        YYWOrder order = new YYWOrder(UUID.randomUUID().toString(), "霜之哀伤", 600l,  "xxxx");
+	        YYWOrder order = new YYWOrder(UUID.randomUUID().toString(), "霜之哀伤", 100l,  "xxxx");
 	       
 	        GameProxy.getInstent().pay(this, order, new YYWPayCallBack() {
 
 	            @Override
 	            public void onPaySuccess(YYWUser arg0, YYWOrder arg1, Object arg2) {
 	            	Toast.makeText(MainActivity.this, "充值成功回调", Toast.LENGTH_SHORT).show();
+	            	 Log.i("tag", "GameProxy-支付成功");
 	            }
 
 	            @Override
 	            public void onPayFailed(String arg0, Object arg1) {
 	                System.out.println("支付失败");
+	                Log.i("tag", "GameProxy-支付失败");
 	            }
 
 	            @Override
 	            public void onPayCancel(String arg0, Object arg1) {
 	                System.out.println("支付退出");
+	                Log.i("tag", "GameProxy-支付失败1");
 	            }
 	        });
 	 }
